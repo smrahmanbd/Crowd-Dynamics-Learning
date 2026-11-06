@@ -1,0 +1,352 @@
+{
+ "id": "3.1",
+ "go": 3,
+ "slug": "framing-a-mass-gathering-study",
+ "title": "Framing a mass-gathering crowd study",
+ "minutes": 45,
+ "tag": "Research brief",
+ "systems": [
+  "manage",
+  "data"
+ ],
+ "summary": "A good study starts with a sharp question, a clear outcome measure, a scenario design that covers what matters, a data plan and an ethics plan. This module sets up the Go 3 research project.",
+ "outcomes": [
+  "write a researchable question about crowd safety at a mass gathering",
+  "choose outcome measures such as risk exposure, not just peak density",
+  "build a scenario design matrix and count the runs it needs",
+  "plan data, ethics and stakeholder involvement"
+ ],
+ "narration_en": "Mass gatherings bring together very large numbers of people for a common purpose: religious pilgrimages such as the Hajj, festivals, sports tournaments, concerts and large celebrations. They are hard to study. You cannot run experiments on two million pilgrims, data are scarce and sensitive, and the stakes are high. So the research question must be sharp. Instead of asking whether the event is safe, ask something you can answer: how much does staggering group departures reduce the time spent above four people per square metre on a given route, compared with the current schedule? Next, choose outcome measures. Peak density is easy to report but hides how long and how many people were exposed. Risk exposure, the person-minutes spent above a density threshold, captures both. Then design your scenarios: demand levels, schedules, layouts, management measures, and the combinations between them. Plan your data, from counts and video to schedules and site plans, and how you will calibrate and validate. Finally, plan for ethics: privacy of video, consent, and the involvement of the authorities and communities affected.",
+ "narration_ar": "تجمع التجمعات الحاشدة أعداداً كبيرة جداً من الناس لغرض مشترك: الرحلات الدينية كالحج، والمهرجانات، والبطولات الرياضية، والحفلات الموسيقية، والاحتفالات الكبيرة. ودراستها صعبة. فلا يمكنك إجراء تجارب على مليوني حاج، والبيانات نادرة وحساسة، والمخاطر عالية. لذا يجب أن يكون سؤال البحث دقيقاً. فبدلاً من أن تسأل هل الفعالية آمنة، اسأل شيئاً تستطيع الإجابة عنه: بكم يقلل توزيع أوقات انطلاق المجموعات الزمن الذي يُقضى فوق أربعة أشخاص في المتر المربع على طريق معين، مقارنة بالجدول الحالي؟ ثم اختر مقاييس النتائج. فالكثافة القصوى سهلة الإبلاغ لكنها تخفي كم من الوقت وكم من الناس تعرّضوا للخطر. أما التعرض للخطر، أي عدد الدقائق البشرية المقضية فوق عتبة كثافة، فيلتقط الأمرين معاً. ثم صمّم سيناريوهاتك: مستويات الطلب، والجداول، والتخطيطات، وإجراءات الإدارة، والتوليفات بينها. وخطّط لبياناتك، من الأعداد والفيديو إلى الجداول ومخططات الموقع، وكيف ستعاير وتتحقق. وأخيراً، خطّط للأخلاقيات: خصوصية الفيديو، والموافقة، وإشراك السلطات والمجتمعات المعنية.",
+ "diagram": {
+  "title": "The anatomy of a mass-gathering study",
+  "caption": "Question, outcomes, scenarios, data and ethics fit together; each constrains the others.",
+  "nodes": [
+   {
+    "id": "q",
+    "label": "Research question",
+    "sub": "specific, answerable",
+    "x": 450,
+    "y": 80,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Population, intervention, comparison, outcome: for example, staggered departures vs current schedule, outcome = person-minutes above 4 per m² on route X."
+   },
+   {
+    "id": "out",
+    "label": "Outcome measures",
+    "sub": "exposure, times, flows",
+    "x": 130,
+    "y": 230,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Peak density, time above thresholds, risk exposure (person-minutes above a threshold), waiting times, throughput."
+   },
+   {
+    "id": "scn",
+    "label": "Scenario design",
+    "sub": "factors × levels",
+    "x": 450,
+    "y": 230,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "Demand, schedules, layout, management; full or fractional factorial designs to capture interactions."
+   },
+   {
+    "id": "mdl",
+    "label": "Model choice",
+    "sub": "fit for the question",
+    "x": 770,
+    "y": 230,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "From module 2.5: macro for networks, micro for hot spots, often both."
+   },
+   {
+    "id": "dat",
+    "label": "Data plan",
+    "sub": "counts, video, schedules",
+    "x": 130,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Site plans, schedules, gate counts, CCTV, phone data; which data calibrate and which validate."
+   },
+   {
+    "id": "eth",
+    "label": "Ethics and access",
+    "sub": "privacy, consent, partners",
+    "x": 450,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Video privacy, data protection, approvals, and partnership with the authorities and communities."
+   },
+   {
+    "id": "rep",
+    "label": "Reporting",
+    "sub": "honest about limits",
+    "x": 770,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Uncertainty, model limits, and what decision makers can and cannot conclude."
+   }
+  ],
+  "edges": [
+   {
+    "from": "q",
+    "to": "out",
+    "label": "defines"
+   },
+   {
+    "from": "q",
+    "to": "scn",
+    "label": ""
+   },
+   {
+    "from": "scn",
+    "to": "mdl",
+    "label": ""
+   },
+   {
+    "from": "dat",
+    "to": "mdl",
+    "label": "calibrate"
+   },
+   {
+    "from": "eth",
+    "to": "dat",
+    "label": "constrains"
+   },
+   {
+    "from": "mdl",
+    "to": "rep",
+    "label": ""
+   },
+   {
+    "from": "out",
+    "to": "rep",
+    "label": ""
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "q"
+    ],
+    "text": "Start with a specific, answerable question."
+   },
+   {
+    "focus": [
+     "out"
+    ],
+    "text": "Decide how you will measure success: exposure, not just peaks.",
+    "edges": [
+     [
+      "q",
+      "out"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "scn",
+     "mdl"
+    ],
+    "text": "Design scenarios and pick a model fit for the question.",
+    "edges": [
+     [
+      "q",
+      "scn"
+     ],
+     [
+      "scn",
+      "mdl"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "dat",
+     "eth"
+    ],
+    "text": "Plan your data and the ethics and partnerships that make it possible.",
+    "edges": [
+     [
+      "dat",
+      "mdl"
+     ],
+     [
+      "eth",
+      "dat"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "rep"
+    ],
+    "text": "Plan how you will report, including limits.",
+    "edges": [
+     [
+      "mdl",
+      "rep"
+     ],
+     [
+      "out",
+      "rep"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "What makes mass gatherings special",
+   "html": "<p>Mass gatherings concentrate very large numbers of people in space and time. The Hajj brings close to two million pilgrims to Makkah and the holy sites of Mina, Muzdalifah and Arafat in a few days, following a fixed ritual sequence. Many pilgrims are older, travel in national groups and speak dozens of languages. Heat, health and crowding interact (Memish et al. 2012). Similar challenges, at smaller scale, arise at festivals, tournaments and city celebrations.</p>"
+  },
+  {
+   "heading": "A researchable question",
+   "html": "<p>Use a structure like PICO: <b>P</b>opulation (pilgrims on route X), <b>I</b>ntervention (staggered departures), <b>C</b>omparison (current schedule), <b>O</b>utcome (person-minutes above 4 per m²). A good question names the place, the change, the comparison and the measure, and can be answered with the data you can get.</p>"
+  },
+  {
+   "heading": "Outcome measures that matter",
+   "html": "<p>Peak density alone is misleading: a short spike and an hour at the same level differ hugely in risk. Report <b>time above thresholds</b> and <b>risk exposure</b>:</p><div class=\"eq\">exposure = Σ<sub>t</sub> ρ(t) × A × Δt &nbsp;&nbsp;for ρ(t) above the threshold (person-minutes)</div><p>In the lab, a synthetic density curve peaking at 6.5 per m² on a 600 m² ramp spends 29 minutes above 4 per m², giving about 96,000 person-minutes of exposure.</p>"
+  },
+  {
+   "heading": "Scenario design and ethics",
+   "html": "<p>List the factors (demand, schedule, layout, management) and their levels. A full factorial design of 2 × 2 × 3 × 2 levels gives 24 scenarios; with 10 random seeds, 240 runs. One-factor-at-a-time designs need fewer runs but miss interactions. Plan ethics early: <b>video and phone data are personal data</b>, consent is often impractical at mass gatherings, so anonymisation, data minimisation and approval from the responsible authorities are essential.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 1,
+   "kind": "research",
+   "title": "Example questions",
+   "html": "<p>Does gate metering at the plaza move risk exposure to safer open approaches? How sensitive is the peak density on a route to 20% of groups leaving early? Which of three layouts minimises counterflow conflicts?</p>"
+  },
+  {
+   "after": 3,
+   "kind": "trap",
+   "title": "Too many scenarios",
+   "html": "<p>Twelve factors at three levels give over half a million combinations. Screen factors first, then study the important ones in depth.</p>"
+  }
+ ],
+ "code": [
+  {
+   "title": "A scenario design matrix",
+   "lang": "python",
+   "file": "labs/go3/m31_design.py",
+   "runnable": true,
+   "explain": "Builds a full factorial design and counts runs. Add or remove factors to see how fast the count grows.",
+   "expected": "24 scenarios x 10 seeds = 240 runs"
+  },
+  {
+   "title": "Risk exposure from a density time series",
+   "lang": "python",
+   "file": "labs/go3/m32_exposure.py",
+   "runnable": true,
+   "explain": "Person-minutes above several thresholds for a synthetic density curve on a 600 m² ramp.",
+   "expected": "above 4 per m2:  29 min, exposure 95,891 person-minutes\npeak density 6.5 per m2 at minute 95"
+  }
+ ],
+ "takeaways": [
+  "Mass gatherings are large, synchronised and diverse; experiments are rarely possible.",
+  "Frame a specific, answerable question (population, intervention, comparison, outcome).",
+  "Report risk exposure and time above thresholds, not only peak density.",
+  "Design scenarios to capture interactions, and plan data ethics from the start."
+ ],
+ "quiz": [
+  {
+   "q": "Which outcome captures both how long and how many people were exposed?",
+   "options": [
+    "Peak density",
+    "Person-minutes above a threshold",
+    "Average speed",
+    "Total attendance"
+   ],
+   "answer": 1,
+   "explain": "Risk exposure."
+  },
+  {
+   "q": "A full factorial design with factors of 2, 2, 3 and 2 levels has…",
+   "options": [
+    "9 scenarios",
+    "24 scenarios",
+    "12 scenarios",
+    "6 scenarios"
+   ],
+   "answer": 1,
+   "explain": "2 × 2 × 3 × 2 = 24."
+  },
+  {
+   "q": "Why are video data an ethics issue at mass gatherings?",
+   "options": [
+    "They are expensive",
+    "They are personal data and consent is often impractical",
+    "They are inaccurate",
+    "They are illegal everywhere"
+   ],
+   "answer": 1,
+   "explain": "Anonymise and minimise."
+  },
+  {
+   "q": "What does the 'C' in PICO stand for?",
+   "options": [
+    "Crowd",
+    "Comparison",
+    "Capacity",
+    "Camera"
+   ],
+   "answer": 1,
+   "explain": "Compare against a baseline."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Mass gathering",
+   "def": "An event concentrating very large numbers of people at a place and time, such as the Hajj or a festival."
+  },
+  {
+   "term": "Risk exposure",
+   "def": "Person-minutes spent above a density threshold."
+  },
+  {
+   "term": "Full factorial design",
+   "def": "A scenario design containing every combination of factor levels."
+  },
+  {
+   "term": "PICO",
+   "def": "Population, Intervention, Comparison, Outcome: a structure for research questions."
+  },
+  {
+   "term": "Data minimisation",
+   "def": "Collecting only the personal data needed for the purpose."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Memish et al. (2012): Emergence of medicine for mass gatherings: lessons from the Hajj",
+   "url": "https://doi.org/10.1016/S1473-3099(11)70337-1",
+   "why": "Health and crowd challenges of the Hajj."
+  },
+  {
+   "title": "Haghani and Sarvi (2018): Crowd behaviour and motion, empirical methods",
+   "url": "https://doi.org/10.1016/j.trb.2017.06.017",
+   "why": "How crowd data are collected and used."
+  },
+  {
+   "title": "Still et al. (2020): Place crowd safety, crowd science?",
+   "url": "https://e-space.mmu.ac.uk/625559/",
+   "why": "DIM-ICE in practice."
+  }
+ ]
+}

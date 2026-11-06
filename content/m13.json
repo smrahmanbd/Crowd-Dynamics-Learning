@@ -1,0 +1,335 @@
+{
+ "id": "1.3",
+ "go": 1,
+ "slug": "speed-flow-fundamental-diagram",
+ "title": "Speed, flow and the fundamental diagram",
+ "minutes": 40,
+ "tag": "Core idea",
+ "systems": [
+  "flow",
+  "people"
+ ],
+ "summary": "Flow = density × speed. As density rises, speed falls, so flow peaks (capacity) and then drops. This curve, the fundamental diagram, is the backbone of crowd science.",
+ "outcomes": [
+  "use flow = density × speed",
+  "sketch the fundamental diagram and mark capacity",
+  "explain why adding people to a busy corridor can lower its flow",
+  "use Weidmann's speed–density relation for a quick estimate"
+ ],
+ "narration_en": "Imagine a corridor. With a few people, everyone walks at their own comfortable speed, about one point three metres per second. Add more people and two things happen. More people pass each second, because there are more of them, but each person slows down, because others are in the way. Flow, the number of people crossing a line each second per metre of width, is density times speed. At first density wins and flow rises. Then speed falls so fast that flow stops rising, reaches a maximum, and falls again. That maximum is the capacity of the corridor, about one point two people per metre per second in the classic curve by Ulrich Weidmann, reached at a density of nearly two people per square metre. The curve of flow against density is called the fundamental diagram. It is the single most important picture in crowd dynamics, and every model you meet later must reproduce it.",
+ "narration_ar": "تخيّل ممراً. عندما يكون فيه عدد قليل من الناس، يمشي كل واحد بسرعته المريحة، نحو متر وثلاثة أعشار المتر في الثانية. أضف مزيداً من الناس فيحدث أمران. يمرّ عدد أكبر من الناس كل ثانية لأنهم أكثر، لكن كل شخص يبطئ لأن الآخرين يعترضون طريقه. والتدفق، أي عدد الأشخاص الذين يعبرون خطاً كل ثانية لكل متر من العرض، يساوي الكثافة مضروبة في السرعة. في البداية تتغلب الكثافة فيرتفع التدفق. ثم تنخفض السرعة بسرعة كبيرة فيتوقف التدفق عن الارتفاع، ويبلغ حداً أقصى، ثم ينخفض من جديد. وهذا الحد الأقصى هو سعة الممر، نحو شخص وخُمس لكل متر في الثانية في المنحنى الكلاسيكي لأولريش فايدمان، ويُبلغ عند كثافة تقارب شخصين في المتر المربع. ويُسمّى منحنى التدفق مقابل الكثافة المخطط الأساسي. وهو أهم صورة في ديناميكا الحشود، وكل نموذج ستتعرف عليه لاحقاً يجب أن يعيد إنتاجه.",
+ "diagram": {
+  "title": "Density, speed and flow",
+  "caption": "More people slow everyone down; flow is their product, so it rises, peaks at capacity and falls.",
+  "nodes": [
+   {
+    "id": "rho",
+    "label": "Density",
+    "sub": "people per m²",
+    "x": 130,
+    "y": 130,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "How packed the corridor is."
+   },
+   {
+    "id": "v",
+    "label": "Speed",
+    "sub": "m/s, falls as density rises",
+    "x": 130,
+    "y": 340,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Free speed about 1.34 m/s (Weidmann). Speed falls as people get in each other's way, reaching zero at about 5.4 per m² in Weidmann's curve."
+   },
+   {
+    "id": "j",
+    "label": "Flow",
+    "sub": "per m of width per s",
+    "x": 450,
+    "y": 235,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Specific flow J = ρ × v, people per metre of width per second. Total flow = J × width."
+   },
+   {
+    "id": "cap",
+    "label": "Capacity",
+    "sub": "max flow ≈ 1.2 per m per s",
+    "x": 770,
+    "y": 120,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Weidmann's curve peaks at about 1.22 people per metre per second, at about 1.75 per m². Measured values range roughly from 1.2 to over 1.6."
+   },
+   {
+    "id": "cong",
+    "label": "Congested branch",
+    "sub": "more people, less flow",
+    "x": 770,
+    "y": 340,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Right of the peak, adding people lowers flow. A congested corridor moves fewer people than a busy but free one."
+   },
+   {
+    "id": "var",
+    "label": "Varies by crowd",
+    "sub": "culture, purpose, direction",
+    "x": 450,
+    "y": 445,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Fundamental diagrams differ by country, age, purpose, and between one-way and two-way flows. Measure your own crowd where possible."
+   }
+  ],
+  "edges": [
+   {
+    "from": "rho",
+    "to": "j",
+    "label": "×"
+   },
+   {
+    "from": "v",
+    "to": "j",
+    "label": "×"
+   },
+   {
+    "from": "rho",
+    "to": "v",
+    "label": "slows"
+   },
+   {
+    "from": "j",
+    "to": "cap",
+    "label": "peaks at"
+   },
+   {
+    "from": "j",
+    "to": "cong",
+    "label": "then falls"
+   },
+   {
+    "from": "var",
+    "to": "v",
+    "label": "shifts curve",
+    "sys": "data"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "rho",
+     "v"
+    ],
+    "text": "Two things change when you add people: density goes up and speed goes down.",
+    "edges": [
+     [
+      "rho",
+      "v"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "j"
+    ],
+    "text": "Flow is their product: people per metre of width per second.",
+    "edges": [
+     [
+      "rho",
+      "j"
+     ],
+     [
+      "v",
+      "j"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "cap"
+    ],
+    "text": "At first flow rises, then it peaks. That peak is the capacity, about 1.2 per metre per second in Weidmann's curve.",
+    "edges": [
+     [
+      "j",
+      "cap"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "cong"
+    ],
+    "text": "Past the peak, more people means less flow: congestion.",
+    "edges": [
+     [
+      "j",
+      "cong"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "var"
+    ],
+    "text": "The exact curve depends on who is walking and why. Measure your own crowd.",
+    "edges": [
+     [
+      "var",
+      "v"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Flow = density × speed",
+   "html": "<p>Think of a corridor 1 m wide. If density is 1 person per m² and everyone walks at 1 m/s, one person crosses a line each second. The rule is:</p><div class=\"eq\">J = ρ × v &nbsp;&nbsp;(people per metre of width per second)</div><p>For a corridor of width b, the total flow is <b>J × b</b>. Example: ρ = 2 per m², v = 0.6 m/s, b = 3 m gives J = 1.2 per m per s and a total of 3.6 people per second, about 216 per minute.</p>"
+  },
+  {
+   "heading": "Speed falls as density rises",
+   "html": "<p>Alone, adults walk at about <b>1.34 m/s</b> on average (Weidmann 1993). With others around, they slow down. Weidmann summarised 25 studies with a formula:</p><div class=\"eq\">v(ρ) = 1.34 × [1 − exp(−1.913 × (1/ρ − 1/5.4))] m/s</div><p>At 1 per m² it gives about 1.06 m/s, at 2 per m² about 0.61 m/s, and at 5.4 per m² zero: everyone stands still.</p>"
+  },
+  {
+   "heading": "The fundamental diagram",
+   "html": "<p>Multiply speed by density and plot flow against density: the curve rises, peaks and falls. The peak is <b>capacity</b>: about <b>1.22 people per metre per second</b> at about <b>1.75 per m²</b> in Weidmann's curve. Left of the peak the flow is <b>free</b>; right of the peak it is <b>congested</b>, and adding people reduces flow.</p><p>This is why a corridor operated near capacity is fragile: a small disturbance can push it onto the congested branch, where it moves fewer people and density keeps rising.</p>"
+  },
+  {
+   "heading": "One curve does not fit all crowds",
+   "html": "<p>Measured diagrams differ. Single-file experiments in Jülich (Seyfried et al. 2005), crowds in India and Germany (Chattaraj, Seyfried and Chakroborty 2009) and pilgrims at the Jamarat Bridge (Helbing et al. 2007) all give different curves. Purpose matters too: commuters walk faster than shoppers, and two-way flows behave differently from one-way flows.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 2,
+   "kind": "model",
+   "title": "Capacity in practice",
+   "html": "<p>A 4 m wide passage at 1.2 per m per s carries 4.8 people per second, about 290 per minute or 17,000 per hour. Guidance documents use similar or lower planning values for safety.</p>"
+  },
+  {
+   "after": 3,
+   "kind": "trap",
+   "title": "Borrowing a curve",
+   "html": "<p>Using one fundamental diagram everywhere can overestimate capacity for older or slower crowds, such as many pilgrims.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "fd",
+  "intro": "Move the density slider and watch speed and flow on Weidmann's curves.",
+  "predict": "Will a corridor at 3 people per m² carry more or fewer people per second than one at 2 per m²?"
+ },
+ "code": [
+  {
+   "title": "Weidmann's fundamental diagram",
+   "lang": "python",
+   "runnable": true,
+   "source": "import numpy as np\n\nv0, gamma, rho_max = 1.34, 1.913, 5.4\ndef speed(rho):\n    return v0 * (1 - np.exp(-gamma * (1 / rho - 1 / rho_max)))\n\nrho = np.arange(0.1, 5.4, 0.01)\nflow = rho * speed(rho)\ni = flow.argmax()\nprint(f'capacity {flow[i]:.2f} per m per s at {rho[i]:.2f} per m2, speed {speed(rho[i]):.2f} m/s')\nfor r in [0.5, 1, 2, 3, 4]:\n    print(f'rho {r}: v {speed(r):.2f} m/s, J {r*speed(r):.2f} per m per s')",
+   "explain": "Computes Weidmann's curve and finds its peak. Change v0 to 1.1 m/s for a slower crowd and see how capacity drops.",
+   "expected": "capacity 1.22 per m per s at 1.75 per m2, speed 0.70 m/s"
+  }
+ ],
+ "takeaways": [
+  "Specific flow J = density × speed; total flow = J × width.",
+  "Speed falls with density, from about 1.34 m/s to zero near 5.4 per m² (Weidmann).",
+  "Flow peaks at capacity (about 1.2 per m per s) then falls: the fundamental diagram.",
+  "Fundamental diagrams vary with culture, purpose and direction of flow."
+ ],
+ "quiz": [
+  {
+   "q": "Density is 2 per m² and speed 0.6 m/s. What is the specific flow?",
+   "options": [
+    "0.3 per m per s",
+    "1.2 per m per s",
+    "2.6 per m per s",
+    "3.3 per m per s"
+   ],
+   "answer": 1,
+   "explain": "J = 2 × 0.6 = 1.2."
+  },
+  {
+   "q": "On the congested branch of the fundamental diagram, adding people…",
+   "options": [
+    "Raises flow",
+    "Lowers flow",
+    "Does nothing",
+    "Doubles speed"
+   ],
+   "answer": 1,
+   "explain": "Speed drops faster than density rises."
+  },
+  {
+   "q": "Weidmann's capacity is about…",
+   "options": [
+    "0.5 per m per s",
+    "1.2 per m per s",
+    "5 per m per s",
+    "10 per m per s"
+   ],
+   "answer": 1,
+   "explain": "About 1.22 at 1.75 per m²."
+  },
+  {
+   "q": "Why measure the fundamental diagram for your own crowd?",
+   "options": [
+    "It is identical everywhere",
+    "It varies with culture, purpose, age and flow direction",
+    "It is required by law everywhere",
+    "To check the cameras"
+   ],
+   "answer": 1,
+   "explain": "Imported curves can mislead."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Speed",
+   "def": "How fast people walk, in metres per second."
+  },
+  {
+   "term": "Specific flow",
+   "def": "People passing per metre of width per second (J = ρ × v)."
+  },
+  {
+   "term": "Fundamental diagram",
+   "def": "The relation between density and flow (or speed) of a crowd."
+  },
+  {
+   "term": "Capacity",
+   "def": "The maximum flow a facility can carry."
+  },
+  {
+   "term": "Free speed",
+   "def": "The speed people walk when unhindered, about 1.34 m/s on average (Weidmann)."
+  },
+  {
+   "term": "Jam density",
+   "def": "The density at which movement stops; 5.4 per m² in Weidmann's curve."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Seyfried et al. (2005): The fundamental diagram of pedestrian movement revisited",
+   "url": "https://arxiv.org/abs/physics/0506170",
+   "why": "Classic single-file experiment and a clear introduction to the fundamental diagram."
+  },
+  {
+   "title": "Chattaraj, Seyfried and Chakroborty (2009): FD across cultures",
+   "url": "https://arxiv.org/abs/0903.0149",
+   "why": "Indian and German experiments give different fundamental diagrams."
+  },
+  {
+   "title": "Helbing, Johansson and Al-Abideen (2007): Dynamics of crowd disasters",
+   "url": "https://arxiv.org/abs/physics/0701203",
+   "why": "The fundamental diagram measured at the Jamarat Bridge, at extreme densities."
+  }
+ ]
+}

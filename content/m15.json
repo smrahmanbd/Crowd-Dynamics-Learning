@@ -1,0 +1,319 @@
+{
+ "id": "1.5",
+ "go": 1,
+ "slug": "self-organisation",
+ "title": "Self-organisation: lanes, oscillations and waves",
+ "minutes": 30,
+ "tag": "Patterns",
+ "systems": [
+  "flow",
+  "people"
+ ],
+ "summary": "Without a leader, crowds form lanes in counterflow, take turns at narrow doors, and make stop-and-go waves at high density. Simple local rules create these patterns.",
+ "outcomes": [
+  "describe lane formation, door oscillations and stop-and-go waves",
+  "explain how simple local rules can create large patterns",
+  "recognise when a pattern helps the flow and when it warns of danger"
+ ],
+ "narration_en": "Watch a busy station corridor where people walk in both directions. Nobody gives orders, yet within seconds the crowd sorts itself into lanes: people heading the same way follow each other, because walking behind someone going your way means fewer collisions. At a narrow door with people going both ways, small groups pass in turns, like traffic lights nobody installed. In very dense crowds, movement becomes stop-and-go: waves of stopping travel backwards through the crowd, like the ripples in a traffic jam on a motorway. These patterns are called self-organisation. They come from simple, local rules: avoid the person in front, follow someone going your way, step into a gap. Some patterns help, like lanes, which raise flow. Others are warnings: stop-and-go waves mean the crowd is near or above capacity. In this module you will see these patterns emerge in a small simulation, and learn to read them as signals.",
+ "narration_ar": "راقب ممراً مزدحماً في محطة يسير فيه الناس في الاتجاهين. لا أحد يصدر الأوامر، ومع ذلك يرتّب الحشد نفسه خلال ثوانٍ في مسارات: من يتجهون في الاتجاه نفسه يتبع بعضهم بعضاً، لأن السير خلف شخص يسير في اتجاهك يعني تصادمات أقل. وعند باب ضيق يعبره الناس في الاتجاهين، تمرّ مجموعات صغيرة بالتناوب، كأنها إشارات مرور لم يركّبها أحد. وفي الحشود الكثيفة جداً تصبح الحركة توقفاً وانطلاقاً: موجات من التوقف تنتقل إلى الخلف عبر الحشد، كالتموجات في ازدحام السيارات على الطريق السريع. تُسمّى هذه الأنماط التنظيم الذاتي. وهي تنشأ من قواعد بسيطة ومحلية: تجنّب الشخص الذي أمامك، واتبع من يسير في اتجاهك، وادخل في الفراغ. بعض الأنماط مفيد، كالمسارات التي ترفع التدفق. وبعضها إنذار: فموجات التوقف والانطلاق تعني أن الحشد قريب من سعته أو تجاوزها. سترى في هذه الوحدة هذه الأنماط تنشأ في محاكاة صغيرة، وتتعلم قراءتها كإشارات.",
+ "diagram": {
+  "title": "Local rules, global patterns",
+  "caption": "Each person follows simple rules about neighbours. Together they create lanes, turn-taking and waves that nobody planned.",
+  "nodes": [
+   {
+    "id": "rule",
+    "label": "Local rules",
+    "sub": "avoid, follow, fill gaps",
+    "x": 130,
+    "y": 120,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Each person reacts only to those close by: keep distance, step aside from oncoming people, follow someone heading your way."
+   },
+   {
+    "id": "lane",
+    "label": "Lane formation",
+    "sub": "counterflow sorts itself",
+    "x": 450,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "In two-way corridors people end up in lanes of uniform direction. Lanes reduce conflicts and raise flow."
+   },
+   {
+    "id": "osc",
+    "label": "Oscillations",
+    "sub": "turn-taking at doors",
+    "x": 450,
+    "y": 250,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "At a narrow door used both ways, small groups pass in alternating bursts, as pressure builds on one side then the other."
+   },
+   {
+    "id": "sag",
+    "label": "Stop-and-go waves",
+    "sub": "high density warning",
+    "x": 450,
+    "y": 410,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Near capacity, small slowdowns grow into waves moving backwards through the crowd (Helbing et al. 2007 observed them at the Jamarat Bridge)."
+   },
+   {
+    "id": "good",
+    "label": "Helpful",
+    "sub": "more flow, fewer conflicts",
+    "x": 770,
+    "y": 160,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Lanes and zipper effects make better use of space. Designers can encourage them, for example with a central divider."
+   },
+   {
+    "id": "bad",
+    "label": "Warning signs",
+    "sub": "near capacity",
+    "x": 770,
+    "y": 360,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Stop-and-go waves and crowd turbulence warn that density is too high: time to reduce inflow."
+   }
+  ],
+  "edges": [
+   {
+    "from": "rule",
+    "to": "lane",
+    "label": ""
+   },
+   {
+    "from": "rule",
+    "to": "osc",
+    "label": ""
+   },
+   {
+    "from": "rule",
+    "to": "sag",
+    "label": ""
+   },
+   {
+    "from": "lane",
+    "to": "good",
+    "label": "raises flow"
+   },
+   {
+    "from": "osc",
+    "to": "good",
+    "label": ""
+   },
+   {
+    "from": "sag",
+    "to": "bad",
+    "label": "danger"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "rule"
+    ],
+    "text": "Every pattern starts with simple local rules: keep distance, step aside, follow someone going your way."
+   },
+   {
+    "focus": [
+     "lane"
+    ],
+    "text": "In two-way flow, these rules sort the crowd into lanes.",
+    "edges": [
+     [
+      "rule",
+      "lane"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "osc"
+    ],
+    "text": "At narrow doors, the two directions take turns.",
+    "edges": [
+     [
+      "rule",
+      "osc"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "sag"
+    ],
+    "text": "At high density, slowdowns grow into stop-and-go waves.",
+    "edges": [
+     [
+      "rule",
+      "sag"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "good",
+     "bad"
+    ],
+    "text": "Some patterns help the flow; others warn that density is too high.",
+    "edges": [
+     [
+      "lane",
+      "good"
+     ],
+     [
+      "sag",
+      "bad"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Lanes in counterflow",
+   "html": "<p>In a two-way corridor, people who follow someone walking their way meet fewer oncoming walkers. This small advantage spreads: soon the corridor carries <b>lanes of uniform direction</b>. Lane formation is one of the most robust findings in crowd dynamics and appears in experiments and in models such as the social force model (Helbing and Molnár 1995).</p>"
+  },
+  {
+   "heading": "Taking turns at doors",
+   "html": "<p>At a narrow door with people going both ways, one side wins for a while, then pressure on the other side grows and the direction flips. The result is <b>oscillation</b>: alternating bursts. One-way doors, or separate in and out doors, remove the conflict.</p>"
+  },
+  {
+   "heading": "Stop-and-go waves",
+   "html": "<p>When density is near capacity, one person slowing down makes the person behind slow down a little more, and so on. The disturbance grows and travels <b>backwards</b> through the crowd as a stop-and-go wave. Helbing, Johansson and Al-Abideen (2007) filmed such waves at the Jamarat Bridge before the 2006 disaster, followed by crowd turbulence (module 1.7).</p>"
+  },
+  {
+   "heading": "Reading patterns as signals",
+   "html": "<p>Patterns are information. <b>Lanes</b> mean the crowd is coping. <b>Stop-and-go</b> means it is near capacity. <b>Irregular, random-looking surges</b> mean it is far beyond safe density. Control-room staff learn to watch for these changes on cameras, often before any count is available.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 0,
+   "kind": "try",
+   "title": "Look for it",
+   "html": "<p>Next time you walk through a busy station or market, watch for lanes. Count how many there are across the corridor.</p>"
+  },
+  {
+   "after": 2,
+   "kind": "model",
+   "title": "Like traffic",
+   "html": "<p>Stop-and-go waves in crowds behave much like phantom jams on motorways: no accident needed, just density near capacity.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "lanes",
+  "intro": "Blue walks right, orange walks left. Press Run, then change randomness and the number of people.",
+  "predict": "Will raising randomness make lanes clearer or break them up?"
+ },
+ "code": [
+  {
+   "title": "Counting lanes from a snapshot",
+   "lang": "python",
+   "runnable": true,
+   "source": "import random\nrandom.seed(1)\n# y position (m) and direction (+1 right, -1 left) of 60 walkers in an 8 m wide corridor\npeople = [(random.uniform(0, 8), random.choice([1, -1])) for _ in range(60)]\npeople.sort()\nbins = [0] * 16\nfor y, d in people:\n    bins[int(y / 0.5)] += d\nsigns = [1 if b > 0 else -1 for b in bins if b != 0]\nlanes = 1 + sum(1 for a, b in zip(signs, signs[1:]) if a != b)\nprint('net direction per 0.5 m strip:', bins)\nprint('lanes:', lanes)",
+   "explain": "Splits the corridor into strips and counts how often the dominant direction changes. With random positions there are many short 'lanes'; organised crowds show few wide ones.",
+   "expected": "lanes: (a number between 5 and 10 for random positions)"
+  }
+ ],
+ "takeaways": [
+  "Crowds self-organise: lanes, turn-taking and waves emerge from local rules.",
+  "Lanes in counterflow reduce conflicts and raise flow.",
+  "Stop-and-go waves travel backwards and signal density near capacity.",
+  "Patterns are signals for crowd managers."
+ ],
+ "quiz": [
+  {
+   "q": "Why do lanes form in two-way corridors?",
+   "options": [
+    "Signs tell people to",
+    "Following someone going your way means fewer collisions",
+    "People walk faster in lanes",
+    "Lighting"
+   ],
+   "answer": 1,
+   "explain": "A small local advantage spreads into lanes."
+  },
+  {
+   "q": "Stop-and-go waves travel…",
+   "options": [
+    "Forwards, with the crowd",
+    "Backwards through the crowd",
+    "Sideways only",
+    "Not at all"
+   ],
+   "answer": 1,
+   "explain": "Like traffic jams, they move upstream."
+  },
+  {
+   "q": "Oscillating flow at a narrow two-way door can be removed by…",
+   "options": [
+    "Painting arrows only",
+    "Separate doors for each direction",
+    "Faster walking",
+    "More lighting"
+   ],
+   "answer": 1,
+   "explain": "Separating directions removes the conflict."
+  },
+  {
+   "q": "Which pattern is the most urgent warning?",
+   "options": [
+    "Lanes",
+    "Zipper effect",
+    "Irregular surges in a very dense crowd",
+    "People chatting in groups"
+   ],
+   "answer": 2,
+   "explain": "Turbulent motion signals extreme density."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Self-organisation",
+   "def": "Large-scale patterns that arise from local interactions without central control."
+  },
+  {
+   "term": "Lane formation",
+   "def": "Sorting of a two-way flow into lanes of uniform direction."
+  },
+  {
+   "term": "Oscillation",
+   "def": "Alternating passage of opposite flows through a narrow opening."
+  },
+  {
+   "term": "Stop-and-go wave",
+   "def": "A wave of stopping that travels backwards through a dense crowd."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Helbing and Molnár (1995): Social force model",
+   "url": "https://doi.org/10.1103/PhysRevE.51.4282",
+   "why": "The model that reproduced lanes and oscillations."
+  },
+  {
+   "title": "Helbing, Johansson and Al-Abideen (2007)",
+   "url": "https://arxiv.org/abs/physics/0701203",
+   "why": "Stop-and-go waves and turbulence at the Jamarat Bridge."
+  },
+  {
+   "title": "Moussaïd, Helbing and Theraulaz (2011): How simple rules determine pedestrian behavior and crowd disasters",
+   "url": "https://doi.org/10.1073/pnas.1016507108",
+   "why": "Simple heuristics that produce lanes and turbulence."
+  }
+ ]
+}

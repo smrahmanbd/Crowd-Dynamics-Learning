@@ -1,0 +1,371 @@
+{
+ "id": "1.2",
+ "go": 1,
+ "slug": "space-and-density",
+ "title": "Space, density and level of service",
+ "minutes": 35,
+ "tag": "Measure",
+ "systems": [
+  "space",
+  "people"
+ ],
+ "summary": "Density is people per square metre; its inverse is the space each person has. Fruin's levels of service turn space per person into grades from A (free) to F (breakdown).",
+ "outcomes": [
+  "calculate density and space per person from a count and an area",
+  "read a level of service from A to F",
+  "explain why the same number of people can be fine in one place and dangerous in another",
+  "estimate how many people fit in an area at a chosen comfort level"
+ ],
+ "narration_en": "How full is a space? Crowd scientists answer with one number: density, the number of people per square metre. Count the people in an area and divide by the area. Turn it upside down and you get the space each person has. At one person per square metre you can walk freely. At two, you have to adjust your speed and path. At four, you are shuffling and brushing against others. At six or more, you are pressed by bodies on all sides and cannot move on your own. In the nineteen seventies the engineer John Fruin turned these experiences into levels of service, graded from A, free movement, to F, where flow breaks down. Planners still use them to design walkways, platforms and queues. In this module you will measure density, read levels of service, and estimate how many people a space can hold comfortably. Remember: the same thousand people are comfortable in a large square and dangerous in a narrow street.",
+ "narration_ar": "ما مدى امتلاء مكان ما؟ يجيب علماء الحشود برقم واحد: الكثافة، أي عدد الأشخاص في كل متر مربع. عُدّ الناس في منطقة ما واقسم العدد على المساحة. واقلب الكسر تحصل على المساحة المتاحة لكل شخص. عند شخص واحد في المتر المربع تستطيع أن تمشي بحرية. وعند شخصين عليك أن تعدّل سرعتك ومسارك. وعند أربعة تمشي بخطوات قصيرة وتحتك بالآخرين. وعند ستة أو أكثر تضغطك الأجساد من كل جانب ولا تستطيع أن تتحرك وحدك. وفي سبعينيات القرن العشرين حوّل المهندس جون فروين هذه التجارب إلى مستويات خدمة، متدرجة من A، أي الحركة الحرة، إلى F حيث ينهار التدفق. وما زال المخططون يستخدمونها لتصميم الممرات والأرصفة وطوابير الانتظار. ستقيس في هذه الوحدة الكثافة، وتقرأ مستويات الخدمة، وتقدّر كم شخصاً يتسع له مكان ما براحة. وتذكّر: الألف شخص نفسهم مرتاحون في ساحة كبيرة، ومعرّضون للخطر في شارع ضيق.",
+ "diagram": {
+  "title": "From a count to a level of service",
+  "caption": "Density = people ÷ area. Space per person is its inverse. Levels of service grade space per person from A to F.",
+  "nodes": [
+   {
+    "id": "cnt",
+    "label": "Count",
+    "sub": "people in the area",
+    "x": 120,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Count everyone inside a known area, from the ground, a photo or a sensor."
+   },
+   {
+    "id": "area",
+    "label": "Area",
+    "sub": "usable m²",
+    "x": 120,
+    "y": 270,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "Use the area people can actually stand or walk in: subtract barriers, columns and stalls."
+   },
+   {
+    "id": "dens",
+    "label": "Density",
+    "sub": "people per m²",
+    "x": 430,
+    "y": 185,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Density ρ = count ÷ area. One person per m² is comfortable walking; six or more is dangerous."
+   },
+   {
+    "id": "spp",
+    "label": "Space per person",
+    "sub": "m² each = 1 ÷ density",
+    "x": 430,
+    "y": 360,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "The inverse of density. Fruin's grades use space per person."
+   },
+   {
+    "id": "los",
+    "label": "Level of service",
+    "sub": "A (free) to F (breakdown)",
+    "x": 760,
+    "y": 185,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Walkway levels (Fruin 1971): A more than 3.25 m² each, B 2.3–3.25, C 1.4–2.3, D 0.9–1.4, E 0.5–0.9, F under 0.5."
+   },
+   {
+    "id": "cap",
+    "label": "Holding capacity",
+    "sub": "people = area × density",
+    "x": 760,
+    "y": 360,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "To find how many fit at a comfort level, multiply the usable area by the density you accept."
+   }
+  ],
+  "edges": [
+   {
+    "from": "cnt",
+    "to": "dens",
+    "label": "÷ area"
+   },
+   {
+    "from": "area",
+    "to": "dens",
+    "label": ""
+   },
+   {
+    "from": "dens",
+    "to": "spp",
+    "label": "invert"
+   },
+   {
+    "from": "spp",
+    "to": "los",
+    "label": "grade"
+   },
+   {
+    "from": "dens",
+    "to": "los",
+    "label": ""
+   },
+   {
+    "from": "area",
+    "to": "cap",
+    "label": "× density"
+   },
+   {
+    "from": "los",
+    "to": "cap",
+    "label": "choose a grade",
+    "sys": "manage"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "cnt",
+     "area"
+    ],
+    "text": "Start with a count and an area. Use only the area people can really use."
+   },
+   {
+    "focus": [
+     "dens"
+    ],
+    "text": "Density is the count divided by the area: people per square metre.",
+    "edges": [
+     [
+      "cnt",
+      "dens"
+     ],
+     [
+      "area",
+      "dens"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "spp"
+    ],
+    "text": "Turn it upside down for the space each person has.",
+    "edges": [
+     [
+      "dens",
+      "spp"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "los"
+    ],
+    "text": "Fruin graded that space from A to F. A is free walking; F is where flow breaks down.",
+    "edges": [
+     [
+      "spp",
+      "los"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "cap",
+     "area",
+     "los"
+    ],
+    "text": "Planners run it backwards: choose a grade, then area × density tells you how many people fit.",
+    "edges": [
+     [
+      "area",
+      "cap"
+     ],
+     [
+      "los",
+      "cap"
+     ]
+    ]
+   }
+  ]
+ },
+ "components": {
+  "caption": "Fruin's walkway levels of service (1971), converted from square feet.",
+  "rows": [
+   {
+    "name": "A",
+    "purpose": "More than 3.25 m² each (under 0.3 per m²): free choice of speed and path",
+    "analogy": "A quiet park"
+   },
+   {
+    "name": "B",
+    "purpose": "2.3–3.25 m² each: minor conflicts",
+    "analogy": "A calm shopping street"
+   },
+   {
+    "name": "C",
+    "purpose": "1.4–2.3 m² each: speed and passing restricted",
+    "analogy": "A busy station concourse"
+   },
+   {
+    "name": "D",
+    "purpose": "0.9–1.4 m² each: most people's speed restricted",
+    "analogy": "Rush hour in a subway corridor"
+   },
+   {
+    "name": "E",
+    "purpose": "0.5–0.9 m² each: shuffling, near capacity",
+    "analogy": "Leaving a stadium"
+   },
+   {
+    "name": "F",
+    "purpose": "Under 0.5 m² each: frequent contact, flow breaks down",
+    "analogy": "A packed concert front"
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Density, the key number",
+   "html": "<p><b>Density</b> is the number of people per square metre, written ρ (rho). Count the people in a known area and divide:</p><div class=\"eq\">ρ = number of people ÷ area (people per m²)</div><p>Example: 120 people in a 60 m² lobby give ρ = 2 people per m². The <b>space per person</b> is the inverse: 60 ÷ 120 = 0.5 m² each.</p>"
+  },
+  {
+   "heading": "What density feels like",
+   "html": "<p>Rough guide, for adults moving in one direction: <b>below 1 per m²</b> you walk freely; <b>about 2</b> you adjust speed and path; <b>about 4</b> you shuffle with frequent contact; <b>above about 5 to 6</b> you cannot move independently and pressure can build (Fruin 1993; Still 2014). Standing still, people tolerate higher densities than walking, which is why queues and viewing areas use different thresholds.</p>"
+  },
+  {
+   "heading": "Levels of service",
+   "html": "<p>John Fruin (1971) graded walkways A to F by space per person, like grades on a report card. Designers choose a target grade for the busiest 15 minutes, often C or D for stations and B or C for comfortable public spaces. Separate scales exist for <b>queuing areas</b> and <b>stairs</b>, because standing and climbing need different space.</p>"
+  },
+  {
+   "heading": "How many people fit?",
+   "html": "<p>Run the calculation backwards. A 2,000 m² square, of which 1,600 m² is usable, at a comfortable 2 people per m² holds 3,200 people. At 4 per m² it holds 6,400, but people can no longer move freely. Remember that density is never even: people gather near stages, exits and screens, so <b>average density hides dangerous hot spots</b>.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 0,
+   "kind": "try",
+   "title": "Quick check",
+   "html": "<p>A platform is 100 m long and 4 m wide, and 600 people wait on it. Density? <i>600 ÷ 400 = 1.5 per m², about 0.67 m² each: level E for a walkway, tolerable for waiting.</i></p>"
+  },
+  {
+   "after": 3,
+   "kind": "trap",
+   "title": "Average density",
+   "html": "<p>'The square was only half full' can still hide 6 per m² at the front. Always ask where the people were, not just how many.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "los",
+  "intro": "Add people to a 4 m × 3 m patch and watch density, space per person and level of service change.",
+  "predict": "How many people in a 12 m² patch would you guess still counts as level C?"
+ },
+ "code": [
+  {
+   "title": "Density and level of service",
+   "lang": "python",
+   "runnable": true,
+   "source": "def level_of_service(m2_each):\n    for grade, limit in [('A', 3.25), ('B', 2.32), ('C', 1.39), ('D', 0.93), ('E', 0.46)]:\n        if m2_each >= limit:\n            return grade\n    return 'F'\n\nfor people, area in [(30, 120), (120, 60), (600, 400), (300, 100)]:\n    rho = people / area\n    print(f'{people:4d} people in {area:4d} m2: {rho:.2f} per m2, {1/rho:.2f} m2 each, LOS {level_of_service(1/rho)}')",
+   "explain": "Fruin's walkway thresholds in m² per person. Add your own lobby or platform to the list.",
+   "expected": "  30 people in  120 m2: 0.25 per m2, 4.00 m2 each, LOS A\n 120 people in   60 m2: 2.00 per m2, 0.50 m2 each, LOS E"
+  }
+ ],
+ "takeaways": [
+  "Density ρ = people ÷ area; space per person = 1 ÷ ρ.",
+  "Below about 1 per m² people walk freely; above about 5–6 per m² they cannot move independently.",
+  "Fruin's levels of service grade space per person from A to F.",
+  "Holding capacity = usable area × accepted density, but averages hide hot spots."
+ ],
+ "quiz": [
+  {
+   "q": "200 people stand in a 50 m² area. What is the density?",
+   "options": [
+    "0.25 per m²",
+    "4 per m²",
+    "250 per m²",
+    "40 per m²"
+   ],
+   "answer": 1,
+   "explain": "200 ÷ 50 = 4 people per m²."
+  },
+  {
+   "q": "At 2 people per m², how much space does each person have?",
+   "options": [
+    "2 m²",
+    "0.5 m²",
+    "4 m²",
+    "0.2 m²"
+   ],
+   "answer": 1,
+   "explain": "Space per person = 1 ÷ 2 = 0.5 m²."
+  },
+  {
+   "q": "Fruin's level of service F means…",
+   "options": [
+    "Free flow",
+    "Flow breaks down, frequent contact",
+    "Fast walking",
+    "A fire exit"
+   ],
+   "answer": 1,
+   "explain": "F is under about 0.5 m² per person, where movement breaks down."
+  },
+  {
+   "q": "Why can an average density be misleading?",
+   "options": [
+    "Densities are always even",
+    "People cluster at hot spots like stage fronts and exits",
+    "Cameras cannot count",
+    "Density changes with weather"
+   ],
+   "answer": 1,
+   "explain": "Crowds are uneven; danger is local."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Density",
+   "def": "Number of people per square metre (ρ)."
+  },
+  {
+   "term": "Space per person",
+   "def": "Area available to each person, the inverse of density, in m²."
+  },
+  {
+   "term": "Level of service",
+   "def": "A grade (A to F) of crowd comfort based on space per person or flow (Fruin 1971)."
+  },
+  {
+   "term": "Holding capacity",
+   "def": "The number of people an area can hold at an accepted density."
+  },
+  {
+   "term": "Usable area",
+   "def": "The area people can actually occupy, excluding obstacles."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Fruin (1971): Designing for pedestrians, a level-of-service concept",
+   "url": "https://swov.nl/en/publicatie/designing-pedestrians-level-service-concept",
+   "why": "The original level-of-service paper (library record)."
+  },
+  {
+   "title": "HSE: Managing crowds safely",
+   "url": "https://www.hse.gov.uk/pubns/books/hsg154.htm",
+   "why": "Practical guidance on capacity and density at events."
+  },
+  {
+   "title": "Johansson et al. (2008): From crowd dynamics to crowd safety",
+   "url": "https://arxiv.org/abs/0810.4590",
+   "why": "Measured densities above 6 per m² at the Jamarat Bridge."
+  }
+ ]
+}

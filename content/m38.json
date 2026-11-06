@@ -1,0 +1,327 @@
+{
+ "id": "3.8",
+ "go": 3,
+ "slug": "research-frontier",
+ "title": "The research frontier and writing it up",
+ "minutes": 40,
+ "tag": "Research",
+ "systems": [
+  "people",
+  "data"
+ ],
+ "summary": "Open questions remain: pushing and high-density physics, the psychology of crowds, AI for monitoring, digital twins, and heat and health at mass gatherings. Report findings honestly, with uncertainty and limits.",
+ "outcomes": [
+  "name open research questions in crowd dynamics and mass-gathering safety",
+  "describe how physics and social psychology are being combined",
+  "write a results section that states uncertainty and limits",
+  "plan how to communicate findings to decision makers"
+ ],
+ "narration_en": "Crowd science has come a long way since Fruin's levels of service, but many questions remain open. How exactly do pushing and contact forces spread through very dense crowds, and what densities and forces are truly critical? Laboratory experiments on pushing at entrances, and new sensors that measure body forces, are starting to answer this. How do social identity, culture and norms change movement, and how can models include them? Research increasingly combines pedestrian physics with social psychology. Can artificial intelligence count and track crowds reliably in real time, across cameras and cultures, while protecting privacy? Can digital twins of venues forecast danger early enough to act? How do heat and health interact with crowding at events such as the Hajj, where many participants are older? When you write up your own study, be honest about uncertainty and limits: what your data and model can and cannot show, and how sensitive your conclusions are. Decision makers need clear messages, ranges rather than single numbers, and a plain statement of what would change your conclusions.",
+ "narration_ar": "قطع علم الحشود شوطاً طويلاً منذ مستويات الخدمة لفروين، لكن أسئلة كثيرة ما زالت مفتوحة. كيف تنتشر قوى الدفع والتلامس بالضبط عبر الحشود الكثيفة جداً، وما الكثافات والقوى الحرجة حقاً؟ بدأت التجارب المخبرية على التدافع عند المداخل، وأجهزة الاستشعار الجديدة التي تقيس القوى على الأجساد، تجيب عن ذلك. وكيف تغيّر الهوية الاجتماعية والثقافة والأعراف الحركة، وكيف يمكن للنماذج أن تتضمنها؟ إذ تجمع الأبحاث بشكل متزايد بين فيزياء المشاة وعلم النفس الاجتماعي. وهل يستطيع الذكاء الاصطناعي عدّ الحشود وتتبعها بموثوقية في الزمن الحقيقي، عبر الكاميرات والثقافات، مع حماية الخصوصية؟ وهل تستطيع التوائم الرقمية للأماكن التنبؤ بالخطر مبكراً بما يكفي للتصرف؟ وكيف تتفاعل الحرارة والصحة مع الازدحام في فعاليات كالحج، حيث كثير من المشاركين كبار في السن؟ وعندما تكتب دراستك، كن صادقاً بشأن عدم اليقين والحدود: ما الذي تستطيع بياناتك ونموذجك إظهاره وما لا تستطيع، ومدى حساسية استنتاجاتك. فصنّاع القرار يحتاجون إلى رسائل واضحة، ونطاقات بدلاً من أرقام مفردة، وبياناً صريحاً لما قد يغيّر استنتاجاتك.",
+ "diagram": {
+  "title": "Open questions around a crowd study",
+  "caption": "Five research fronts, and the reporting that turns a study into something decision makers can use.",
+  "nodes": [
+   {
+    "id": "push",
+    "label": "Pushing and forces",
+    "sub": "what is truly critical?",
+    "x": 130,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Experiments on pushing at entrances and force sensors on bodies; how forces spread at extreme density."
+   },
+   {
+    "id": "psy",
+    "label": "Psychology and culture",
+    "sub": "identity, norms",
+    "x": 130,
+    "y": 260,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Social identity, groups, culture and norms in movement models (Sieben et al. 2017; Drury et al. 2009)."
+   },
+   {
+    "id": "ai",
+    "label": "AI for monitoring",
+    "sub": "counting, tracking, privacy",
+    "x": 130,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Reliable real-time counting and tracking across cameras and cultures, with privacy protection."
+   },
+   {
+    "id": "twin",
+    "label": "Digital twins",
+    "sub": "forecast early",
+    "x": 450,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "Models in step with live data, forecasting danger minutes ahead."
+   },
+   {
+    "id": "heat",
+    "label": "Heat and health",
+    "sub": "vulnerable crowds",
+    "x": 770,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Interactions of heat, age, health and crowding at mass gatherings such as the Hajj."
+   },
+   {
+    "id": "study",
+    "label": "Your study",
+    "sub": "question, data, model",
+    "x": 450,
+    "y": 210,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "Your research question, built in modules 3.1 to 3.7."
+   },
+   {
+    "id": "rep",
+    "label": "Reporting",
+    "sub": "uncertainty and limits",
+    "x": 770,
+    "y": 210,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Ranges, sensitivity, model limits, and a clear message for decision makers."
+   }
+  ],
+  "edges": [
+   {
+    "from": "push",
+    "to": "study",
+    "label": ""
+   },
+   {
+    "from": "psy",
+    "to": "study",
+    "label": ""
+   },
+   {
+    "from": "ai",
+    "to": "study",
+    "label": ""
+   },
+   {
+    "from": "twin",
+    "to": "study",
+    "label": ""
+   },
+   {
+    "from": "heat",
+    "to": "study",
+    "label": ""
+   },
+   {
+    "from": "study",
+    "to": "rep",
+    "label": "write up"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "push",
+     "psy"
+    ],
+    "text": "Two fronts: the physics of pushing and forces, and the psychology of crowds."
+   },
+   {
+    "focus": [
+     "ai",
+     "twin"
+    ],
+    "text": "Two more: AI for monitoring, and digital twins that forecast."
+   },
+   {
+    "focus": [
+     "heat"
+    ],
+    "text": "And heat and health at mass gatherings."
+   },
+   {
+    "focus": [
+     "study"
+    ],
+    "text": "Your study draws on these fronts.",
+    "edges": [
+     [
+      "push",
+      "study"
+     ],
+     [
+      "psy",
+      "study"
+     ],
+     [
+      "ai",
+      "study"
+     ],
+     [
+      "twin",
+      "study"
+     ],
+     [
+      "heat",
+      "study"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "rep"
+    ],
+    "text": "Finally, report it honestly, with uncertainty and limits.",
+    "edges": [
+     [
+      "study",
+      "rep"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Physics at extreme density",
+   "html": "<p>Most models were developed and calibrated at moderate densities. At extreme densities, contact forces, pushing and falls dominate. Laboratory experiments with pushing at entrances, and pressure sensors worn by participants, are beginning to quantify how forces spread. Key questions: which densities and forces are critical, and how do falls start and spread?</p>"
+  },
+  {
+   "heading": "Crowds are social",
+   "html": "<p>Pedestrian dynamics increasingly works with social psychology. Sieben, Schumann and Seyfried (2017) showed how social norms and identity change behaviour in experiments; Drury and colleagues showed cooperation in emergencies. Open questions: how to represent groups, culture and shared identity in models, and how to calibrate them.</p>"
+  },
+  {
+   "heading": "AI, digital twins and health",
+   "html": "<p>Deep learning has made crowd counting from images practical, but reliability across cameras, crowds and conditions, and privacy, remain open. Digital twins promise forecasts that extend lead time, but need validated models and good data. At the Hajj and other events in hot climates, heat and health interact with crowding and walking speeds, a frontier where crowd science meets mass-gathering medicine.</p>"
+  },
+  {
+   "heading": "Writing it up",
+   "html": "<p>A strong results section states: the question; the data and model, with calibration and validation; the scenarios; results <b>with ranges</b> (seeds and sensitivity); what the model <b>cannot</b> represent and how that could bias results; and a clear message for decision makers. Avoid false precision (\"egress time 6.83 min\") and over-claiming (\"proves the site is safe\").</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 3,
+   "kind": "trap",
+   "title": "Over-claiming",
+   "html": "<p>A simulation cannot prove a site is safe. It can show that, under stated assumptions, a design keeps risk exposure below a threshold with a stated margin.</p>"
+  },
+  {
+   "after": 1,
+   "kind": "research",
+   "title": "Pick your front",
+   "html": "<p>Choose one front for your project, and say in your proposal which open question you address and how your data could answer it.</p>"
+  }
+ ],
+ "code": [
+  {
+   "title": "Reporting results with ranges",
+   "lang": "python",
+   "runnable": true,
+   "source": "import numpy as np\nrng = np.random.default_rng(3)\n# exposure (person-minutes above 4 per m2) from 20 seeds for two scenarios\nbase = rng.normal(95000, 12000, 20)\nmeter = rng.normal(61000, 15000, 20)\nfor name, x in [('baseline', base), ('metering', meter)]:\n    lo, hi = np.percentile(x, [5, 95])\n    print(f'{name:9s}: median {np.median(x):,.0f}, 90% range {lo:,.0f}-{hi:,.0f} person-minutes')\nd = base - meter\nprint(f'reduction: median {np.median(d):,.0f}; in {np.mean(d > 0):.0%} of paired runs metering was better')",
+   "explain": "Report medians and ranges, and how often one scenario beats the other, instead of a single number.",
+   "expected": "baseline : median 91,881, 90% range 70,439-120,260 person-minutes\nmetering : median 61,868, 90% range 35,101-84,479 person-minutes\nreduction: median 31,076; in 90% of paired runs metering was better"
+  }
+ ],
+ "takeaways": [
+  "Open fronts: physics at extreme density, crowd psychology, AI monitoring, digital twins, heat and health.",
+  "Pedestrian dynamics increasingly combines physics with social psychology.",
+  "Report results with ranges, state model limits, avoid false precision.",
+  "Give decision makers a clear message and say what would change it."
+ ],
+ "quiz": [
+  {
+   "q": "Why is extreme density a research frontier?",
+   "options": [
+    "It never happens",
+    "Most models were calibrated at moderate densities; forces and falls dominate at extreme ones",
+    "Cameras cannot see it",
+    "It is illegal to study"
+   ],
+   "answer": 1,
+   "explain": "Physics changes at extreme density."
+  },
+  {
+   "q": "Which is good reporting practice?",
+   "options": [
+    "One run, three decimals",
+    "Medians and ranges over seeds and sensitivity cases",
+    "Hiding limits",
+    "Claiming proof of safety"
+   ],
+   "answer": 1,
+   "explain": "Ranges, not points."
+  },
+  {
+   "q": "Combining physics with social psychology means…",
+   "options": [
+    "Ignoring groups",
+    "Representing norms, identity and groups in crowd models",
+    "Only using surveys",
+    "Only using forces"
+   ],
+   "answer": 1,
+   "explain": "Crowds are social."
+  },
+  {
+   "q": "A simulation can…",
+   "options": [
+    "Prove a site is safe",
+    "Show that, under stated assumptions, risk stays below a threshold with a margin",
+    "Replace stewards",
+    "Predict exact attendance"
+   ],
+   "answer": 1,
+   "explain": "Conditional, not absolute."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "False precision",
+   "def": "Reporting more digits than the uncertainty justifies."
+  },
+  {
+   "term": "Over-claiming",
+   "def": "Stating conclusions stronger than the evidence supports."
+  },
+  {
+   "term": "Social norm",
+   "def": "A shared expectation about how to behave."
+  },
+  {
+   "term": "Mass-gathering medicine",
+   "def": "The field studying health risks and care at mass gatherings."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Sieben, Schumann and Seyfried (2017): Collective phenomena in crowds",
+   "url": "https://doi.org/10.1371/journal.pone.0177328",
+   "why": "Where pedestrian dynamics needs social psychology."
+  },
+  {
+   "title": "Haghani and Sarvi (2018): Crowd behaviour and motion",
+   "url": "https://doi.org/10.1016/j.trb.2017.06.017",
+   "why": "Review of empirical methods and open questions."
+  },
+  {
+   "title": "Memish et al. (2012): Lessons from the Hajj",
+   "url": "https://doi.org/10.1016/S1473-3099(11)70337-1",
+   "why": "Mass-gathering medicine."
+  }
+ ]
+}

@@ -1,0 +1,352 @@
+{
+ "id": "3.5",
+ "go": 3,
+ "slug": "monitoring-and-early-warning",
+ "title": "Real-time monitoring and early warning",
+ "minutes": 45,
+ "tag": "Operations",
+ "systems": [
+  "data",
+  "risk"
+ ],
+ "summary": "Control rooms turn camera and sensor data into density, flow and crowd-pressure maps, and act on thresholds before conditions become critical. Warning levels must be tested and tied to actions.",
+ "outcomes": [
+  "compute density and crowd-pressure maps from video-derived data",
+  "design warning and action levels tied to specific responses",
+  "explain lead time and why early indicators matter",
+  "describe how forecasts and digital twins support decisions"
+ ],
+ "narration_en": "The best time to stop a crush is long before it happens. Control rooms at large events watch cameras and sensors and look for signs that density is rising towards critical levels. Video analysis can turn camera images into maps of density and local velocity. From these, crowd pressure, the local density times the variance of velocity, highlights places where a dense crowd has begun to move irregularly, which in the Jamarat data came before falls. A monitoring system needs levels: a watch level, at which staff look more closely, and an action level, at which a predefined response begins, such as stopping inflow, opening a relief route or making an announcement. Each level must be tied to an action and a person with the authority to take it. Lead time matters: a warning is only useful if there is time to act. Short-term forecasts, from models fed by live counts, and so-called digital twins of the venue can extend that lead time. In this module you will build a crowd-pressure map and set warning levels on it.",
+ "narration_ar": "أفضل وقت لمنع التزاحم القاتل هو قبل حدوثه بوقت طويل. تراقب غرف التحكم في الفعاليات الكبيرة الكاميرات وأجهزة الاستشعار وتبحث عن علامات ارتفاع الكثافة نحو المستويات الحرجة. ويمكن لتحليل الفيديو أن يحوّل صور الكاميرات إلى خرائط للكثافة والسرعة المحلية. ومن هذه الخرائط يُبرز ضغط الحشد، أي الكثافة المحلية مضروبة في تباين السرعة، الأماكن التي بدأ فيها حشد كثيف يتحرك بشكل غير منتظم، وهو ما سبق السقوط في بيانات الجمرات. ويحتاج نظام المراقبة إلى مستويات: مستوى مراقبة ينظر عنده الموظفون عن كثب، ومستوى تدخل تبدأ عنده استجابة محددة مسبقاً، كإيقاف التدفق الداخل، أو فتح طريق بديل، أو بث إعلان. ويجب ربط كل مستوى بإجراء وبشخص يملك صلاحية اتخاذه. والمهلة الزمنية مهمة: فالإنذار لا يفيد إلا إذا كان هناك وقت للتصرف. ويمكن للتنبؤات قصيرة المدى، من نماذج تغذيها أعداد حية، ولما يسمى التوائم الرقمية للمكان، أن تمدّ هذه المهلة. ستبني في هذه الوحدة خريطة لضغط الحشد وتضع عليها مستويات إنذار.",
+ "diagram": {
+  "title": "From cameras to decisions",
+  "caption": "Measurements feed indicators; indicators cross levels; each level triggers a defined action by someone with authority.",
+  "nodes": [
+   {
+    "id": "cam",
+    "label": "Cameras and sensors",
+    "sub": "CCTV, counters, phones",
+    "x": 120,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Fixed cameras, gate counters, phone data. Coverage of critical points (bottlenecks, junctions, ramps) matters most."
+   },
+   {
+    "id": "est",
+    "label": "Estimation",
+    "sub": "density and velocity maps",
+    "x": 120,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Density from counting networks; velocity from optical flow or tracking, per cell and per second."
+   },
+   {
+    "id": "ind",
+    "label": "Indicators",
+    "sub": "density, flow, pressure",
+    "x": 440,
+    "y": 200,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Local density, flow against capacity, crowd pressure ρ·Var(V), queue growth, counterflow."
+   },
+   {
+    "id": "lev",
+    "label": "Levels",
+    "sub": "watch, act",
+    "x": 440,
+    "y": 400,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Thresholds set in advance from data and guidance; tested in exercises; adjusted for the site."
+   },
+   {
+    "id": "act",
+    "label": "Actions",
+    "sub": "stop inflow, relieve, inform",
+    "x": 760,
+    "y": 400,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Predefined responses: hold or meter inflow, open relief routes, announcements, deploy stewards."
+   },
+   {
+    "id": "fc",
+    "label": "Forecasts",
+    "sub": "minutes ahead",
+    "x": 760,
+    "y": 200,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "Models fed by live counts forecast density 10–30 minutes ahead, extending lead time; a 'digital twin' keeps model and site in step."
+   },
+   {
+    "id": "auth",
+    "label": "Authority",
+    "sub": "who decides",
+    "x": 760,
+    "y": 60,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Clear roles: who can stop inflow or close a gate, without waiting for approval up a long chain."
+   }
+  ],
+  "edges": [
+   {
+    "from": "cam",
+    "to": "est",
+    "label": ""
+   },
+   {
+    "from": "est",
+    "to": "ind",
+    "label": ""
+   },
+   {
+    "from": "ind",
+    "to": "lev",
+    "label": "crosses"
+   },
+   {
+    "from": "lev",
+    "to": "act",
+    "label": "triggers"
+   },
+   {
+    "from": "ind",
+    "to": "fc",
+    "label": "feeds"
+   },
+   {
+    "from": "fc",
+    "to": "lev",
+    "label": "earlier"
+   },
+   {
+    "from": "auth",
+    "to": "act",
+    "label": "empowers",
+    "sys": "people"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "cam",
+     "est"
+    ],
+    "text": "Cameras and sensors give data; estimation turns it into density and velocity maps.",
+    "edges": [
+     [
+      "cam",
+      "est"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "ind"
+    ],
+    "text": "Indicators summarise risk: density, flow, crowd pressure.",
+    "edges": [
+     [
+      "est",
+      "ind"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "lev",
+     "act"
+    ],
+    "text": "When an indicator crosses a level, a predefined action starts.",
+    "edges": [
+     [
+      "ind",
+      "lev"
+     ],
+     [
+      "lev",
+      "act"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "fc"
+    ],
+    "text": "Forecasts give warnings earlier, extending lead time.",
+    "edges": [
+     [
+      "ind",
+      "fc"
+     ],
+     [
+      "fc",
+      "lev"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "auth"
+    ],
+    "text": "Someone must have the authority to act at once.",
+    "edges": [
+     [
+      "auth",
+      "act"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "From video to maps",
+   "html": "<p>Split the scene into cells of about 1 m². In each cell and time window, estimate <b>density</b> (from a counting network or tracking) and <b>local velocity</b> (from optical flow or tracks). Then compute indicators per cell:</p><div class=\"eq\">P<sub>cell</sub> = ρ<sub>cell</sub> × Var(V<sub>cell</sub>) over the last few seconds</div><p>Smooth over time to avoid false alarms from single frames.</p>"
+  },
+  {
+   "heading": "Levels tied to actions",
+   "html": "<p>A useful scheme has at least two levels: <b>watch</b> (look closely, prepare) and <b>act</b> (start the predefined response). In the lab, with a watch level of 0.01 and an action level of 0.02 per s², a synthetic dense zone near a bottleneck reaches 0.066, with 20 of 240 cells above the action level. Thresholds must be set from data and guidance for the site, tested in exercises, and reviewed after events. A level without an action, or an action without someone authorised to take it, is useless.</p>"
+  },
+  {
+   "heading": "Lead time and forecasts",
+   "html": "<p>At Jamarat in 2006, stop-and-go began about 30 minutes, and turbulence about 10 minutes, before the first deaths (Helbing et al. 2007, as reported in the press). That is the window for action. Short-term forecasts extend it: a macroscopic or network model fed with live gate counts can predict density on a route 10 to 30 minutes ahead. A <b>digital twin</b> is such a model kept continuously in step with the site.</p>"
+  },
+  {
+   "heading": "Pitfalls",
+   "html": "<p><b>False alarms</b> erode trust; <b>missed alarms</b> cost lives. Camera coverage is never complete. Density estimates degrade in very dense crowds, at night and in rain. Operators can be overloaded with screens. At Itaewon, emergency calls warned of danger hours before the crush, but no effective action followed: monitoring only works when it is tied to response.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 1,
+   "kind": "try",
+   "title": "Explore it",
+   "html": "<p>In the explorer, keep density at 7 per m² and lower the irregular motion. When does the alert switch off?</p>"
+  },
+  {
+   "after": 3,
+   "kind": "research",
+   "title": "Open question",
+   "html": "<p>How to set and validate warning thresholds across different sites and cameras is an open research problem.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "pressure",
+  "intro": "A synthetic camera view in 1 m² cells: set the density and irregular motion of the dense zone, and the warning level.",
+  "predict": "Can a crowd at 7 per m² stay below the warning level?"
+ },
+ "code": [
+  {
+   "title": "Crowd-pressure map with alert levels",
+   "lang": "python",
+   "file": "labs/go3/m35_pressure.py",
+   "runnable": true,
+   "explain": "Builds synthetic density and velocity fields over 50 frames, computes P = ρ·Var(V) per cell, and applies two levels.",
+   "expected": "max pressure 0.066 per s2 in cell (np.int64(14), np.int64(6))\ncells above warning (0.01): 28, above action (0.02): 20 of 240\nalert: ACT"
+  }
+ ],
+ "takeaways": [
+  "Turn video into density and velocity maps per cell, smoothed in time.",
+  "Indicators such as crowd pressure cross predefined watch and action levels.",
+  "Each level needs a defined action and someone with authority to take it.",
+  "Forecasts and digital twins extend lead time; monitoring without response fails."
+ ],
+ "quiz": [
+  {
+   "q": "Crowd pressure is high when…",
+   "options": [
+    "Density is high and motion is orderly",
+    "Density is high and motion is irregular",
+    "Density is low",
+    "People stand still in a line"
+   ],
+   "answer": 1,
+   "explain": "Both dense and irregular."
+  },
+  {
+   "q": "A warning level is useful only if…",
+   "options": [
+    "It is very low",
+    "It triggers a defined action by someone authorised",
+    "It is secret",
+    "It never fires"
+   ],
+   "answer": 1,
+   "explain": "Tie levels to actions."
+  },
+  {
+   "q": "What extends lead time?",
+   "options": [
+    "Bigger screens",
+    "Short-term forecasts from live counts",
+    "More barriers",
+    "Later announcements"
+   ],
+   "answer": 1,
+   "explain": "Forecasts warn earlier."
+  },
+  {
+   "q": "A digital twin is…",
+   "options": [
+    "A copy of the stadium",
+    "A model kept continuously in step with the live site",
+    "A second control room",
+    "A crowd counting camera"
+   ],
+   "answer": 1,
+   "explain": "Model and site in step."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Optical flow",
+   "def": "A computer-vision estimate of motion between video frames."
+  },
+  {
+   "term": "Watch level",
+   "def": "A threshold at which operators increase attention and prepare."
+  },
+  {
+   "term": "Action level",
+   "def": "A threshold that triggers a predefined response."
+  },
+  {
+   "term": "Lead time",
+   "def": "Time between a warning and the onset of danger."
+  },
+  {
+   "term": "Digital twin",
+   "def": "A model of a site kept continuously updated with live data."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Helbing, Johansson and Al-Abideen (2007)",
+   "url": "https://arxiv.org/abs/physics/0701203",
+   "why": "Crowd pressure and warning indicators."
+  },
+  {
+   "title": "Johansson et al. (2008): From crowd dynamics to crowd safety",
+   "url": "https://arxiv.org/abs/0810.4590",
+   "why": "Video-based monitoring at the Jamarat."
+  },
+  {
+   "title": "HSE: Managing crowds safely",
+   "url": "https://www.hse.gov.uk/pubns/books/hsg154.htm",
+   "why": "Monitoring, communication and contingency plans."
+  }
+ ]
+}

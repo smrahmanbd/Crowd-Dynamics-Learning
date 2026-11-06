@@ -1,0 +1,351 @@
+{
+ "id": "3.7",
+ "go": 3,
+ "slug": "interventions-and-evaluation",
+ "title": "Interventions and their evaluation",
+ "minutes": 45,
+ "tag": "Interventions",
+ "systems": [
+  "manage",
+  "space"
+ ],
+ "summary": "Metering, one-way systems, holding areas, scheduling and information can keep density down, but they move risk as well as reduce it. Evaluate them with simulation and data, including side effects.",
+ "outcomes": [
+  "describe common crowd interventions and how they work",
+  "show with a model how metering moves waiting from one place to another",
+  "design an evaluation of an intervention with a fair comparison",
+  "look for unintended effects"
+ ],
+ "narration_en": "Once you understand where risk builds up, you can change the system. The most common tools are simple. Metering limits the rate at which people enter a space, so waiting happens in a safer place, often an open approach rather than an enclosed plaza. One-way systems separate opposing flows, as on the rebuilt Jamarat Bridge. Holding areas store people safely and release them in batches. Scheduling spreads arrivals over time. Information tells people where to go and when, and stewards make it real. But interventions do not make risk disappear; they move it. Metering creates a queue outside, which must itself be safe. A one-way system lengthens some routes. A holding area can become a crush if it is not released in time. That is why every intervention needs an evaluation: compare it fairly with a baseline, in simulation first and with data after, and look for unintended effects. In this module you will meter the gates in front of a plaza and see density inside fall while the queue outside grows.",
+ "narration_ar": "ما إن تفهم أين يتراكم الخطر حتى تستطيع تغيير النظام. وأكثر الأدوات شيوعاً بسيطة. فالتحكم في معدل الدخول يحدّ من سرعة دخول الناس إلى مكان ما، فيحدث الانتظار في مكان أكثر أماناً، غالباً في طريق مفتوح بدلاً من ساحة مغلقة. وأنظمة الاتجاه الواحد تفصل التدفقات المتعاكسة، كما في جسر الجمرات الجديد. ومناطق الانتظار تحفظ الناس بأمان وتطلقهم على دفعات. والجدولة توزّع الوصول عبر الزمن. والمعلومات تخبر الناس إلى أين يذهبون ومتى، والمنظّمون يجعلونها واقعاً. لكن التدخلات لا تُخفي الخطر؛ بل تنقله. فالتحكم في معدل الدخول يصنع طابوراً في الخارج يجب أن يكون هو نفسه آمناً. ونظام الاتجاه الواحد يطيل بعض الطرق. ومنطقة الانتظار قد تصبح موقع تزاحم إن لم تُطلق في الوقت المناسب. ولهذا يحتاج كل تدخل إلى تقييم: قارنه مقارنة عادلة بخط أساس، بالمحاكاة أولاً وبالبيانات بعد ذلك، وابحث عن الآثار غير المقصودة. ستتحكم في هذه الوحدة في معدل الدخول عند بوابات أمام ساحة، وترى الكثافة في الداخل تنخفض بينما يكبر الطابور في الخارج.",
+ "diagram": {
+  "title": "Interventions move risk as well as reduce it",
+  "caption": "Each tool lowers density somewhere; evaluation checks where the waiting went and whether that place is safe.",
+  "nodes": [
+   {
+    "id": "met",
+    "label": "Metering",
+    "sub": "limit inflow rate",
+    "x": 130,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Gates or stewards admit people at a set rate; waiting moves upstream."
+   },
+   {
+    "id": "one",
+    "label": "One-way systems",
+    "sub": "separate opposing flows",
+    "x": 130,
+    "y": 260,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "Separate routes in and out; no head-on conflicts in narrow spaces."
+   },
+   {
+    "id": "hold",
+    "label": "Holding areas",
+    "sub": "store and release",
+    "x": 130,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "Pens or zones where people wait safely and are released in batches."
+   },
+   {
+    "id": "sch",
+    "label": "Scheduling and information",
+    "sub": "spread demand",
+    "x": 450,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Time slots, staggered starts, real-time information and stewards."
+   },
+   {
+    "id": "den",
+    "label": "Density at the hot spot",
+    "sub": "goes down",
+    "x": 450,
+    "y": 180,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "The intended effect."
+   },
+   {
+    "id": "side",
+    "label": "Side effects",
+    "sub": "queues elsewhere, longer routes",
+    "x": 770,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Waiting moves upstream; routes lengthen; holding areas can become hot spots themselves."
+   },
+   {
+    "id": "eval",
+    "label": "Evaluation",
+    "sub": "baseline, simulation, data",
+    "x": 770,
+    "y": 320,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Fair comparison, sensitivity analysis, monitoring after implementation."
+   }
+  ],
+  "edges": [
+   {
+    "from": "met",
+    "to": "den",
+    "label": ""
+   },
+   {
+    "from": "one",
+    "to": "den",
+    "label": ""
+   },
+   {
+    "from": "hold",
+    "to": "den",
+    "label": ""
+   },
+   {
+    "from": "sch",
+    "to": "den",
+    "label": ""
+   },
+   {
+    "from": "met",
+    "to": "side",
+    "label": "moves queue"
+   },
+   {
+    "from": "hold",
+    "to": "side",
+    "label": "if not released"
+   },
+   {
+    "from": "den",
+    "to": "eval",
+    "label": ""
+   },
+   {
+    "from": "side",
+    "to": "eval",
+    "label": ""
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "met",
+     "one",
+     "hold",
+     "sch"
+    ],
+    "text": "Four families of tools: metering, one-way systems, holding areas, scheduling and information."
+   },
+   {
+    "focus": [
+     "den"
+    ],
+    "text": "All aim to keep density down at the hot spot.",
+    "edges": [
+     [
+      "met",
+      "den"
+     ],
+     [
+      "one",
+      "den"
+     ],
+     [
+      "hold",
+      "den"
+     ],
+     [
+      "sch",
+      "den"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "side"
+    ],
+    "text": "But they move risk: queues upstream, longer routes, new hot spots.",
+    "edges": [
+     [
+      "met",
+      "side"
+     ],
+     [
+      "hold",
+      "side"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "eval"
+    ],
+    "text": "So evaluate both the intended effect and the side effects.",
+    "edges": [
+     [
+      "den",
+      "eval"
+     ],
+     [
+      "side",
+      "eval"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "The toolbox",
+   "html": "<p><b>Metering</b>: admit people at a controlled rate. <b>One-way systems</b>: separate opposing flows. <b>Holding areas</b>: store and release in batches. <b>Scheduling</b>: spread demand over time. <b>Information and stewarding</b>: guide choices and enforce plans. <b>Design changes</b>: widen bottlenecks, remove obstacles, add routes. Most real plans combine several.</p>"
+  },
+  {
+   "heading": "Metering moves the queue",
+   "html": "<p>A 1,200 m² plaza feeds a venue at 180 people per minute, with arrivals peaking at 320 per minute. Without metering the plaza peaks at about 2.5 per m². Metering the gates at 200 per minute keeps it under 1 per m², but a queue of over 2,000 builds outside (lab, 20 random seeds). Metering is only an improvement if the space outside is open, wide and managed.</p>"
+  },
+  {
+   "heading": "Evaluating fairly",
+   "html": "<p>Compare the intervention with a <b>baseline</b> under the same demand, using the same model and outputs, over several seeds and sensitivity cases. Report <b>where risk exposure goes</b>, not only whether it falls at the target. After implementation, monitor with data and compare with predictions. Real-world before–after comparisons must allow for other changes, such as different attendance.</p>"
+  },
+  {
+   "heading": "Unintended effects",
+   "html": "<p>Look for: queues in unsafe places; longer routes that people refuse to follow (short-cuts through barriers); holding areas that fill faster than planned; counterflows created by people going back for friends; and information overload. People adapt to interventions, so simulate behavioural responses (for example non-compliance) as part of the sensitivity analysis.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 1,
+   "kind": "try",
+   "title": "Explore it",
+   "html": "<p>Find the metering rate that keeps the plaza below 2 per m² with the smallest queue outside.</p>"
+  },
+  {
+   "after": 3,
+   "kind": "research",
+   "title": "Research angle",
+   "html": "<p>Few interventions at mass gatherings have been evaluated with before–after data. Designing such evaluations is a valuable research contribution.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "metering",
+  "intro": "Meter the gates in front of a 1,200 m² plaza and watch density inside and the queue outside.",
+  "predict": "If you meter more strictly, does the total waiting disappear, or move?"
+ },
+ "code": [
+  {
+   "title": "Gate metering with random arrivals",
+   "lang": "python",
+   "file": "labs/go3/m37_metering.py",
+   "runnable": true,
+   "explain": "Sweeps the metering rate with 20 random seeds each and reports the plaza's peak density and the queue outside.",
+   "expected": "metering 400/min: plaza peak 2.47 per m2, queue outside 0\n...\nmetering 200/min: plaza peak 0.86 per m2, queue outside 2,330"
+  }
+ ],
+ "takeaways": [
+  "Interventions: metering, one-way systems, holding areas, scheduling, information, design changes.",
+  "Interventions move risk as well as reduce it; metering moves waiting upstream.",
+  "Evaluate against a fair baseline and report where risk exposure goes.",
+  "Include people's adaptation, such as non-compliance and short-cuts, in tests."
+ ],
+ "quiz": [
+  {
+   "q": "Metering the gates of a plaza mainly…",
+   "options": [
+    "Removes all waiting",
+    "Moves waiting from the plaza to the approach",
+    "Raises density inside",
+    "Has no effect"
+   ],
+   "answer": 1,
+   "explain": "The queue moves upstream."
+  },
+  {
+   "q": "A fair evaluation compares the intervention with…",
+   "options": [
+    "A different event",
+    "A baseline under the same demand and outputs",
+    "Nothing",
+    "Last year's weather"
+   ],
+   "answer": 1,
+   "explain": "Like with like."
+  },
+  {
+   "q": "Which is an unintended effect of barriers?",
+   "options": [
+    "Shorter routes",
+    "People taking short-cuts around them",
+    "Lower attendance",
+    "Faster walking"
+   ],
+   "answer": 1,
+   "explain": "People adapt."
+  },
+  {
+   "q": "In the lab, metering at 200 per minute gave a plaza peak of about…",
+   "options": [
+    "2.5 per m²",
+    "under 1 per m²",
+    "5 per m²",
+    "0"
+   ],
+   "answer": 1,
+   "explain": "About 0.86 per m²."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Metering",
+   "def": "Admitting people to a space at a controlled rate."
+  },
+  {
+   "term": "Holding area",
+   "def": "A space where people wait safely before release."
+  },
+  {
+   "term": "One-way system",
+   "def": "Routing that separates opposing flows."
+  },
+  {
+   "term": "Baseline",
+   "def": "The situation without the intervention, used for comparison."
+  },
+  {
+   "term": "Unintended effect",
+   "def": "A consequence of an intervention that was not its purpose."
+  }
+ ],
+ "resources": [
+  {
+   "title": "HSE: Managing crowds safely",
+   "url": "https://www.hse.gov.uk/pubns/books/hsg154.htm",
+   "why": "Practical crowd control measures and planning."
+  },
+  {
+   "title": "Johansson et al. (2008)",
+   "url": "https://arxiv.org/abs/0810.4590",
+   "why": "Interventions at the Jamarat after 2006."
+  },
+  {
+   "title": "Still et al. (2020)",
+   "url": "https://e-space.mmu.ac.uk/625559/",
+   "why": "Case studies of crowd safety interventions."
+  }
+ ]
+}

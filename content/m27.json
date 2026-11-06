@@ -1,0 +1,342 @@
+{
+ "id": "2.7",
+ "go": 2,
+ "slug": "evacuation-modelling",
+ "title": "Evacuation modelling: RSET and ASET",
+ "minutes": 45,
+ "tag": "Safety",
+ "systems": [
+  "risk",
+  "manage"
+ ],
+ "summary": "An evacuation is safe when the time people need (RSET) is less than the time available (ASET), with a margin. Pre-movement time is usually the biggest and most uncertain part.",
+ "outcomes": [
+  "break RSET into detection, warning, pre-movement and movement",
+  "estimate movement time with the hydraulic method",
+  "explain why pre-movement time dominates and is uncertain",
+  "treat RSET as a distribution, not a single number"
+ ],
+ "narration_en": "Fire engineers ask a simple question: will everyone get out before conditions become dangerous? The time available, called ASET, comes from fire and smoke modelling. The time required, called RSET, is the sum of four parts: the time to detect the fire, the time to warn people, the pre-movement time while people notice, decide and gather their things or their families, and the movement time to walk to and through the exits. A design is acceptable when RSET is clearly shorter than ASET. Movement time can be estimated by hand with the hydraulic method: the walking time, or the time for the crowd to flow through the exits, whichever is longer. Simulators add detail. But the largest and most uncertain part is usually pre-movement. People finish their conversation, look for friends, or wait for confirmation. Experiments and real evacuations show long, skewed distributions of pre-movement times. That is why careful studies treat RSET not as one number but as a distribution, and look at its high percentiles.",
+ "narration_ar": "يطرح مهندسو الحريق سؤالاً بسيطاً: هل سيخرج الجميع قبل أن تصبح الظروف خطرة؟ والوقت المتاح، ويسمى ASET، يأتي من نمذجة الحريق والدخان. أما الوقت المطلوب، ويسمى RSET، فهو مجموع أربعة أجزاء: زمن اكتشاف الحريق، وزمن تحذير الناس، وزمن ما قبل الحركة الذي يلاحظ فيه الناس ويقررون ويجمعون أغراضهم أو عائلاتهم، وزمن الحركة للمشي إلى المخارج وعبرها. ويكون التصميم مقبولاً عندما يكون RSET أقصر بوضوح من ASET. ويمكن تقدير زمن الحركة يدوياً بالطريقة الهيدروليكية: زمن المشي، أو زمن تدفق الحشد عبر المخارج، أيهما أطول. وتضيف المحاكيات مزيداً من التفاصيل. لكن الجزء الأكبر والأكثر غموضاً هو عادة زمن ما قبل الحركة. فالناس ينهون حديثهم، أو يبحثون عن أصدقائهم، أو ينتظرون التأكيد. وتُظهر التجارب وعمليات الإخلاء الحقيقية توزيعات طويلة ومنحرفة لأزمنة ما قبل الحركة. ولهذا تتعامل الدراسات الدقيقة مع RSET لا كرقم واحد بل كتوزيع، وتنظر إلى نسبه المئوية العليا.",
+ "diagram": {
+  "title": "RSET against ASET",
+  "caption": "Four parts add up to the time people need; it must stay below the time conditions allow, with a margin.",
+  "nodes": [
+   {
+    "id": "det",
+    "label": "Detection",
+    "sub": "alarm triggered",
+    "x": 120,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Time from ignition (or an incident) to detection, from detector design or fire modelling."
+   },
+   {
+    "id": "warn",
+    "label": "Warning",
+    "sub": "people alerted",
+    "x": 340,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Time to alert people: alarms, voice messages, staff. Voice messages work better than bells."
+   },
+   {
+    "id": "pre",
+    "label": "Pre-movement",
+    "sub": "notice, decide, gather",
+    "x": 560,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Recognition and response. Often the longest and most variable part; depends on alertness, familiarity, staff and message quality."
+   },
+   {
+    "id": "mov",
+    "label": "Movement",
+    "sub": "walk and queue",
+    "x": 780,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Hydraulic estimate: max(walking time, people ÷ exit capacity), or a simulation."
+   },
+   {
+    "id": "rset",
+    "label": "RSET",
+    "sub": "sum of the four",
+    "x": 450,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Required safe egress time = detection + warning + pre-movement + movement."
+   },
+   {
+    "id": "aset",
+    "label": "ASET",
+    "sub": "from fire and smoke",
+    "x": 780,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Available safe egress time: until smoke, heat or toxicity become untenable, from fire modelling."
+   },
+   {
+    "id": "dist",
+    "label": "As a distribution",
+    "sub": "percentiles, margin",
+    "x": 450,
+    "y": 450,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Sample uncertain inputs (Monte Carlo) and compare high percentiles of RSET with ASET."
+   }
+  ],
+  "edges": [
+   {
+    "from": "det",
+    "to": "rset",
+    "label": ""
+   },
+   {
+    "from": "warn",
+    "to": "rset",
+    "label": ""
+   },
+   {
+    "from": "pre",
+    "to": "rset",
+    "label": "largest"
+   },
+   {
+    "from": "mov",
+    "to": "rset",
+    "label": ""
+   },
+   {
+    "from": "rset",
+    "to": "aset",
+    "label": "must be <"
+   },
+   {
+    "from": "rset",
+    "to": "dist",
+    "label": "uncertain"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "det",
+     "warn"
+    ],
+    "text": "First the fire must be detected and people warned.",
+    "edges": [
+     [
+      "det",
+      "rset"
+     ],
+     [
+      "warn",
+      "rset"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "pre"
+    ],
+    "text": "Then people notice, decide and gather: pre-movement, often the longest part.",
+    "edges": [
+     [
+      "pre",
+      "rset"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "mov"
+    ],
+    "text": "Then they walk and queue through the exits.",
+    "edges": [
+     [
+      "mov",
+      "rset"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "rset",
+     "aset"
+    ],
+    "text": "The four add up to RSET, which must stay below ASET with a margin.",
+    "edges": [
+     [
+      "rset",
+      "aset"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "dist"
+    ],
+    "text": "Because the inputs are uncertain, treat RSET as a distribution.",
+    "edges": [
+     [
+      "rset",
+      "dist"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Two clocks",
+   "html": "<p>Performance-based fire engineering compares two times. <b>ASET</b>, the available safe egress time, runs until smoke, heat or toxic gases make conditions untenable; it comes from fire modelling. <b>RSET</b>, the required safe egress time, is how long people need:</p><div class=\"eq\">RSET = t<sub>detection</sub> + t<sub>warning</sub> + t<sub>pre-movement</sub> + t<sub>movement</sub></div><p>The design is acceptable if RSET &lt; ASET with an adequate safety margin (see the SFPE Handbook and PD 7974-6).</p>"
+  },
+  {
+   "heading": "Movement time by hand",
+   "html": "<p>The <b>hydraulic method</b> takes the longer of walking time and flow time:</p><div class=\"eq\">t<sub>movement</sub> ≈ max( distance ÷ speed, people ÷ (specific flow × exit width) )</div><p>Example: 1,500 people, 6 m of exits at 1.3 per m per s, 60 m at 1.2 m/s: walking 50 s, flow 1,500 ÷ 7.8 ≈ 192 s, so movement ≈ 192 s. With detection 60 s, warning 30 s and pre-movement 120 s, RSET ≈ 402 s, about 6.7 minutes.</p>"
+  },
+  {
+   "heading": "Pre-movement time",
+   "html": "<p>People rarely move the moment an alarm sounds. They look for information, finish tasks, find their group. Measured pre-movement times are often <b>long-tailed</b>: most people start within a minute or two, some much later. Pre-movement depends on alertness (asleep or awake), familiarity, staff behaviour and the alarm: <b>voice messages</b> that say what to do shorten it compared with bells.</p>"
+  },
+  {
+   "heading": "RSET as a distribution",
+   "html": "<p>Uncertain inputs make RSET uncertain. Sample them many times (Monte Carlo): in the lab, a lognormal pre-movement around 120 s and uncertain flow and speed give RSET percentiles of about 323 s (5th), 409 s (50th) and 569 s (95th). Compare a high percentile, not the average, with ASET, and report how sensitive the result is to each input.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 1,
+   "kind": "try",
+   "title": "Explore it",
+   "html": "<p>In the explorer, double the pre-movement time. Then double the exit width instead. Which changes RSET more?</p>"
+  },
+  {
+   "after": 2,
+   "kind": "trap",
+   "title": "Zero pre-movement",
+   "html": "<p>Simulations that start everyone moving at time zero can underestimate RSET badly. Always add a realistic pre-movement distribution.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "rset",
+  "intro": "Set each part of RSET and the ASET from fire modelling.",
+  "predict": "Which usually changes RSET more: pre-movement time or exit width?"
+ },
+ "code": [
+  {
+   "title": "RSET and its uncertainty",
+   "lang": "python",
+   "file": "labs/go2/m27_rset.py",
+   "runnable": true,
+   "explain": "A deterministic hydraulic RSET, then 5,000 Monte Carlo samples of uncertain pre-movement, flow and speed.",
+   "expected": "deterministic RSET: 402 s\nRSET 5th / 50th / 95th percentile: 323 / 409 / 569 s; ASET 900 s\nshare of runs with RSET > ASET: 0.0%"
+  }
+ ],
+ "takeaways": [
+  "RSET = detection + warning + pre-movement + movement; it must be below ASET with a margin.",
+  "The hydraulic method takes the longer of walking time and flow time.",
+  "Pre-movement time is often the largest and most uncertain part.",
+  "Treat RSET as a distribution and compare high percentiles with ASET."
+ ],
+ "quiz": [
+  {
+   "q": "RSET stands for…",
+   "options": [
+    "Required safe egress time",
+    "Rapid safe exit test",
+    "Real smoke escape time",
+    "Route safety estimate"
+   ],
+   "answer": 0,
+   "explain": "The time people need."
+  },
+  {
+   "q": "1,500 people, 6 m of exits at 1.3 per m per s. Flow time?",
+   "options": [
+    "About 50 s",
+    "About 192 s",
+    "About 1,170 s",
+    "About 7.8 s"
+   ],
+   "answer": 1,
+   "explain": "1,500 ÷ 7.8 ≈ 192 s."
+  },
+  {
+   "q": "Which part of RSET is usually most uncertain?",
+   "options": [
+    "Detection",
+    "Warning",
+    "Pre-movement",
+    "Walking speed"
+   ],
+   "answer": 2,
+   "explain": "Human response varies widely."
+  },
+  {
+   "q": "Why compare a high percentile of RSET with ASET?",
+   "options": [
+    "Averages hide the slow cases that matter for safety",
+    "It is easier",
+    "ASET is a percentile",
+    "To reduce RSET"
+   ],
+   "answer": 0,
+   "explain": "Safety depends on the tail."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "RSET",
+   "def": "Required safe egress time: detection + warning + pre-movement + movement."
+  },
+  {
+   "term": "ASET",
+   "def": "Available safe egress time, until conditions become untenable."
+  },
+  {
+   "term": "Pre-movement time",
+   "def": "Time from warning to the start of purposeful movement."
+  },
+  {
+   "term": "Hydraulic method",
+   "def": "Movement time from flow rates and walking speeds."
+  },
+  {
+   "term": "Monte Carlo",
+   "def": "Repeated random sampling of uncertain inputs to get a distribution of results."
+  }
+ ],
+ "resources": [
+  {
+   "title": "SFPE Handbook of Fire Protection Engineering",
+   "url": "https://link.springer.com/referencework/10.1007/978-1-4939-2565-0",
+   "why": "Reference for egress calculations and human behaviour in fire."
+  },
+  {
+   "title": "Ronchi et al. (2013): Verification and validation of evacuation models (NIST TN 1822)",
+   "url": "https://nvlpubs.nist.gov/nistpubs/TechnicalNotes/NIST.TN.1822.pdf",
+   "why": "How to test evacuation models."
+  },
+  {
+   "title": "Kuligowski: The process of human behavior in fires (NIST TN 1632)",
+   "url": "https://nvlpubs.nist.gov/nistpubs/TechnicalNotes/NIST.TN.1632.pdf",
+   "why": "Why people delay before evacuating."
+  }
+ ]
+}

@@ -1,0 +1,337 @@
+{
+ "id": "1.6",
+ "go": 1,
+ "slug": "people-not-particles",
+ "title": "People, not particles: behaviour and choice",
+ "minutes": 35,
+ "tag": "Behaviour",
+ "systems": [
+  "people",
+  "manage"
+ ],
+ "summary": "People choose routes, walk in groups, follow familiar paths and respond to information. Crowd behaviour is social, and 'panic' is rare. Good management works with that behaviour.",
+ "outcomes": [
+  "explain why people often use familiar routes even when others are free",
+  "describe how groups and social identity shape crowd behaviour",
+  "explain why information, not just space, changes how crowds move",
+  "challenge the myth of mass panic with evidence"
+ ],
+ "narration_en": "Physics explains a lot about crowds, but people are not particles. They have goals, habits and friends. When people leave a building, many head for the door they came in by, even when another exit is closer and empty. Families and friends walk together, and a group moves at the pace of its slowest member. People look at what others do and follow them. In emergencies, research shows that people mostly stay calm and help each other, partly because they come to feel part of a shared group. Real problems come from missing or confusing information, delays in deciding to move, and designs that send everyone the same way. That is why good crowd management is not only about widths and capacities. It is about signs that people understand, announcements they trust, stewards they can ask, and routes that match what people naturally do. In this module you will explore how behaviour changes evacuation times, and why the myth of mass panic is so persistent and so misleading.",
+ "narration_ar": "تفسّر الفيزياء كثيراً عن الحشود، لكن الناس ليسوا جسيمات. لديهم أهداف وعادات وأصدقاء. فعندما يغادر الناس مبنى، يتجه كثير منهم إلى الباب الذي دخلوا منه، حتى لو كان مخرج آخر أقرب وفارغاً. وتسير العائلات والأصدقاء معاً، وتتحرك المجموعة بسرعة أبطأ أفرادها. وينظر الناس إلى ما يفعله الآخرون فيتبعونهم. وفي حالات الطوارئ، تُظهر الأبحاث أن الناس يبقون في الغالب هادئين ويساعد بعضهم بعضاً، ويعود ذلك جزئياً إلى شعورهم بالانتماء إلى مجموعة مشتركة. أما المشكلات الحقيقية فتأتي من المعلومات الناقصة أو المربكة، والتأخر في قرار التحرك، والتصاميم التي ترسل الجميع في الاتجاه نفسه. لهذا فإن الإدارة الجيدة للحشود لا تقتصر على العروض والسعات. بل تشمل لافتات يفهمها الناس، وإعلانات يثقون بها، ومنظّمين يمكن سؤالهم، وطرقاً تتوافق مع ما يفعله الناس بطبيعتهم. ستستكشف في هذه الوحدة كيف يغيّر السلوك أزمنة الإخلاء، ولماذا تستمر أسطورة الذعر الجماعي وكم هي مضللة.",
+ "diagram": {
+  "title": "What shapes how people move",
+  "caption": "Goals, habits, groups and information shape choices; those choices shape the flow.",
+  "nodes": [
+   {
+    "id": "goal",
+    "label": "Goals",
+    "sub": "where and how fast",
+    "x": 130,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Destination, urgency and desired speed differ: commuters hurry, families stroll, pilgrims follow a ritual sequence."
+   },
+   {
+    "id": "hab",
+    "label": "Habits and familiarity",
+    "sub": "known routes first",
+    "x": 130,
+    "y": 260,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "People prefer routes and exits they know, often the one they arrived by (affiliation; Sime 1985)."
+   },
+   {
+    "id": "grp",
+    "label": "Groups",
+    "sub": "move together",
+    "x": 130,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Most people at events are in groups. Groups walk at the pace of the slowest member and do not split easily."
+   },
+   {
+    "id": "info",
+    "label": "Information",
+    "sub": "signs, announcements, stewards",
+    "x": 470,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Clear, early, trusted information shortens decision times and spreads people across routes."
+   },
+   {
+    "id": "ch",
+    "label": "Choices",
+    "sub": "route, exit, timing",
+    "x": 470,
+    "y": 260,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Decisions about which way, which exit and when to move. Their sum is the crowd's distribution across routes."
+   },
+   {
+    "id": "id",
+    "label": "Shared identity",
+    "sub": "helping, not panic",
+    "x": 470,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "In emergencies people often develop a shared identity and help each other (Drury, Cocking and Reicher 2009)."
+   },
+   {
+    "id": "flow",
+    "label": "Crowd outcome",
+    "sub": "queues, times, risk",
+    "x": 780,
+    "y": 260,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Uneven use of exits, long pre-movement times and counterflows lengthen evacuations and create hot spots."
+   }
+  ],
+  "edges": [
+   {
+    "from": "goal",
+    "to": "ch",
+    "label": ""
+   },
+   {
+    "from": "hab",
+    "to": "ch",
+    "label": "bias"
+   },
+   {
+    "from": "grp",
+    "to": "ch",
+    "label": "slows, sticks"
+   },
+   {
+    "from": "info",
+    "to": "ch",
+    "label": "steers",
+    "sys": "manage"
+   },
+   {
+    "from": "id",
+    "to": "ch",
+    "label": "cooperation"
+   },
+   {
+    "from": "ch",
+    "to": "flow",
+    "label": "adds up to"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "goal",
+     "hab",
+     "grp"
+    ],
+    "text": "People bring goals, habits and companions with them."
+   },
+   {
+    "focus": [
+     "ch"
+    ],
+    "text": "These shape their choices: which route, which exit, when to move.",
+    "edges": [
+     [
+      "goal",
+      "ch"
+     ],
+     [
+      "hab",
+      "ch"
+     ],
+     [
+      "grp",
+      "ch"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "info"
+    ],
+    "text": "Information steers those choices, if it is clear, early and trusted.",
+    "edges": [
+     [
+      "info",
+      "ch"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "id"
+    ],
+    "text": "In emergencies, shared identity usually makes people cooperate rather than panic.",
+    "edges": [
+     [
+      "id",
+      "ch"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "flow"
+    ],
+    "text": "Add the choices up and you get the crowd's outcome: queues, times and risk.",
+    "edges": [
+     [
+      "ch",
+      "flow"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Familiar routes",
+   "html": "<p>Studies of evacuations and exit choice show that many people head for the exit they know, often the one they entered by, even if another is nearer and free. Sime (1985) called this <b>affiliation</b> with familiar places and people. The result: one exit queues while another stands empty.</p><div class=\"eq\">evacuation time ≈ time of the slowest exit to empty</div>"
+  },
+  {
+   "heading": "Groups",
+   "html": "<p>At events, most people come with family or friends. Groups move together, walk more slowly, and form walking shapes such as a line abreast or a V (Moussaïd et al. 2010). In evacuations, people look for their group before leaving, which adds to <b>pre-movement time</b>.</p>"
+  },
+  {
+   "heading": "The myth of panic",
+   "html": "<p>Films and headlines show crowds 'panicking'. Research on real emergencies finds the opposite: people are mostly orderly and helpful, and selfish behaviour is rare (Drury, Cocking and Reicher 2009). What looks like panic in a crush is people being pushed by forces they cannot resist. Blaming panic draws attention away from design, information and management.</p>"
+  },
+  {
+   "heading": "Information changes movement",
+   "html": "<p>People decide using what they see and hear. Clear signs in the crowd's languages, announcements from trusted voices, and visible stewards shorten decision times and balance routes. Poor information, or none, is a cause in many incidents: crowds keep pushing forward because those at the back cannot see what is happening at the front.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 0,
+   "kind": "try",
+   "title": "Explore it",
+   "html": "<p>Use the explorer: with 80% of people heading for the main entrance, how much longer does the evacuation take than with an even split?</p>"
+  },
+  {
+   "after": 3,
+   "kind": "research",
+   "title": "Pilgrims and information",
+   "html": "<p>At the Hajj, pilgrims come from over 150 countries and speak many languages. Group leaders, colour-coded signs and staggered schedules are part of how information reaches them.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "familiar",
+  "intro": "1,200 people leave through two equal exits. Change the share heading for the entrance they came in by.",
+  "predict": "If 90% use the main entrance, roughly how much longer does it take than an even split: 10%, 50% or 80%?"
+ },
+ "code": [
+  {
+   "title": "Familiar exit bias",
+   "lang": "python",
+   "runnable": true,
+   "source": "N, cap = 1200, 3.0          # people, and people per second per exit\nfor share in [0.5, 0.6, 0.7, 0.8, 0.9]:\n    a, b = N * share, N * (1 - share)\n    t = max(a / cap + 20, b / cap + 25)   # walking time 20 s and 25 s\n    print(f'{share:.0%} at the main entrance: everyone out in {t/60:.1f} min')",
+   "explain": "Total time is set by the slower exit. Try changing the walking times.",
+   "expected": "50% at the main entrance: everyone out in 3.8 min\n...\n90% at the main entrance: everyone out in 6.3 min"
+  }
+ ],
+ "takeaways": [
+  "People often choose familiar routes, which leaves some exits underused.",
+  "Groups move together and slow evacuations.",
+  "Mass panic is a myth; cooperation is the norm, and crushes are physical.",
+  "Clear, early, trusted information changes how crowds move."
+ ],
+ "quiz": [
+  {
+   "q": "Why do many people use the entrance they came in by during an evacuation?",
+   "options": [
+    "It is always closest",
+    "Familiarity and affiliation",
+    "Signs require it",
+    "It is the widest"
+   ],
+   "answer": 1,
+   "explain": "People prefer known routes (Sime 1985)."
+  },
+  {
+   "q": "What does research say about behaviour in emergencies?",
+   "options": [
+    "Mass panic is common",
+    "People mostly cooperate and help",
+    "People freeze",
+    "Everyone runs"
+   ],
+   "answer": 1,
+   "explain": "Drury and colleagues found cooperation is the norm."
+  },
+  {
+   "q": "How do groups affect evacuations?",
+   "options": [
+    "They speed them up",
+    "They slow them, as people gather and walk together",
+    "No effect",
+    "They always use the nearest exit"
+   ],
+   "answer": 1,
+   "explain": "Gathering adds to pre-movement time."
+  },
+  {
+   "q": "Why do people at the back of a crowd keep pushing forward?",
+   "options": [
+    "They want to hurt others",
+    "They cannot see what is happening at the front",
+    "They are told to",
+    "To keep warm"
+   ],
+   "answer": 1,
+   "explain": "Missing information is a common cause."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Affiliation",
+   "def": "The tendency to move towards familiar people and places (Sime 1985)."
+  },
+  {
+   "term": "Pre-movement time",
+   "def": "Time between an alarm and the start of purposeful movement."
+  },
+  {
+   "term": "Social identity",
+   "def": "A sense of belonging to a group, which can grow among strangers in an emergency."
+  },
+  {
+   "term": "Mass panic",
+   "def": "The myth that crowds in danger turn irrational and selfish."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Drury, Cocking and Reicher (2009)",
+   "url": "https://doi.org/10.1348/014466608X357893",
+   "why": "Shared identity and cooperation in emergencies."
+  },
+  {
+   "title": "Moussaïd et al. (2010): The walking behaviour of pedestrian social groups",
+   "url": "https://doi.org/10.1371/journal.pone.0010047",
+   "why": "Group walking shapes and speeds."
+  },
+  {
+   "title": "Sieben, Schumann and Seyfried (2017): Collective phenomena in crowds",
+   "url": "https://doi.org/10.1371/journal.pone.0177328",
+   "why": "Why pedestrian dynamics needs social psychology."
+  }
+ ]
+}

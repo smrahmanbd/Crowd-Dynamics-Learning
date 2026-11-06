@@ -1,0 +1,355 @@
+{
+ "id": "3.6",
+ "go": 3,
+ "slug": "simulating-a-mass-gathering",
+ "title": "Simulating a mass gathering",
+ "minutes": 50,
+ "tag": "Methods",
+ "systems": [
+  "data",
+  "space"
+ ],
+ "summary": "Build the geometry, set demand and schedules, choose and calibrate a model, run many seeds and scenarios, and analyse sensitivity. Open simulators such as JuPedSim make this reproducible.",
+ "outcomes": [
+  "set up a simulation study from geometry to outputs",
+  "run a scenario in an open-source simulator and repeat it with several seeds",
+  "carry out a sensitivity analysis and report percentiles",
+  "combine macroscopic and microscopic models across scales"
+ ],
+ "narration_en": "A simulation of a mass gathering is a chain of choices, and each link can break. First the geometry: walkable areas, walls, gates, stairs and ramps, from site plans and checked on site. Then demand: how many people, arriving when, going where, often from schedules and counts. Then the model: macroscopic for the whole network, microscopic for hot spots, calibrated as in Go 2. Then the runs: stochastic models give different answers with different random seeds, so run each scenario several times. Then sensitivity: vary the uncertain inputs, such as pre-movement times, walking speeds and compliance with schedules, and see how much the outputs change. Finally the outputs that answer your question, such as risk exposure or time to clear, reported with their spread. Open-source simulators make this transparent and reproducible. In this module you run a gate scenario in JuPedSim, a simulator from Forschungszentrum Jülich, repeat it with several seeds and gate widths, and add a simple sensitivity analysis. JuPedSim reproduces bottleneck flows of about one point one people per metre per second here, consistent with experiments.",
+ "narration_ar": "محاكاة تجمع حاشد سلسلة من الخيارات، وكل حلقة فيها قد تنكسر. أولاً الهندسة: المناطق الصالحة للمشي، والجدران، والبوابات، والسلالم، والمنحدرات، من مخططات الموقع مع التحقق منها ميدانياً. ثم الطلب: كم عدد الناس، ومتى يصلون، وإلى أين يذهبون، وغالباً من الجداول والأعداد. ثم النموذج: عياني للشبكة كلها، ومجهري للنقاط الساخنة، معاير كما في المرحلة الثانية. ثم التشغيلات: تعطي النماذج العشوائية إجابات مختلفة مع بذور عشوائية مختلفة، فشغّل كل سيناريو عدة مرات. ثم الحساسية: غيّر المدخلات غير المؤكدة، كأزمنة ما قبل الحركة وسرعات المشي والالتزام بالجداول، وانظر كم تتغير المخرجات. وأخيراً المخرجات التي تجيب عن سؤالك، كالتعرض للخطر أو زمن الإخلاء، مع الإبلاغ عن مدى تفاوتها. وتجعل المحاكيات مفتوحة المصدر هذا شفافاً وقابلاً للتكرار. ستشغّل في هذه الوحدة سيناريو بوابة في JuPedSim، وهو محاكٍ من مركز يوليش للأبحاث، وتكرره بعدة بذور وعروض بوابات، وتضيف تحليل حساسية بسيطاً. ويعيد JuPedSim هنا إنتاج تدفقات عنق زجاجة تقارب شخصاً وعُشراً لكل متر في الثانية، بما يتفق مع التجارب.",
+ "diagram": {
+  "title": "A simulation study, step by step",
+  "caption": "Each step feeds the next; uncertainty enters at every step and must be carried through to the results.",
+  "nodes": [
+   {
+    "id": "geo",
+    "label": "Geometry",
+    "sub": "plans, checked on site",
+    "x": 110,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "Walkable areas, obstacles, gates, ramps. Temporary structures (stalls, barriers, tents) matter."
+   },
+   {
+    "id": "dem",
+    "label": "Demand",
+    "sub": "numbers, timing, destinations",
+    "x": 330,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "From schedules, tickets, counts. Include profiles: speeds, groups, mobility."
+   },
+   {
+    "id": "mod",
+    "label": "Model",
+    "sub": "macro + micro",
+    "x": 550,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "Network or macro model for the whole site; micro model for hot spots; calibrated."
+   },
+   {
+    "id": "run",
+    "label": "Runs",
+    "sub": "scenarios × seeds",
+    "x": 770,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "Repeat stochastic runs; record outputs consistently."
+   },
+   {
+    "id": "sen",
+    "label": "Sensitivity",
+    "sub": "vary uncertain inputs",
+    "x": 770,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "One-at-a-time screening, then Monte Carlo or variance-based methods for key inputs."
+   },
+   {
+    "id": "out",
+    "label": "Outputs",
+    "sub": "exposure, times, flows",
+    "x": 450,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Answer the research question: risk exposure, time above thresholds, clearance times, with spread."
+   },
+   {
+    "id": "rep",
+    "label": "Reproducibility",
+    "sub": "code, data, versions",
+    "x": 130,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Share scripts, geometry and parameter files, simulator versions and seeds."
+   }
+  ],
+  "edges": [
+   {
+    "from": "geo",
+    "to": "dem",
+    "label": ""
+   },
+   {
+    "from": "dem",
+    "to": "mod",
+    "label": ""
+   },
+   {
+    "from": "mod",
+    "to": "run",
+    "label": ""
+   },
+   {
+    "from": "run",
+    "to": "sen",
+    "label": ""
+   },
+   {
+    "from": "sen",
+    "to": "out",
+    "label": ""
+   },
+   {
+    "from": "run",
+    "to": "out",
+    "label": ""
+   },
+   {
+    "from": "out",
+    "to": "rep",
+    "label": "documented"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "geo",
+     "dem"
+    ],
+    "text": "Start with geometry and demand, checked against the real site.",
+    "edges": [
+     [
+      "geo",
+      "dem"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "mod"
+    ],
+    "text": "Choose and calibrate a model, often macro for the network and micro for hot spots.",
+    "edges": [
+     [
+      "dem",
+      "mod"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "run"
+    ],
+    "text": "Run every scenario with several random seeds.",
+    "edges": [
+     [
+      "mod",
+      "run"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "sen",
+     "out"
+    ],
+    "text": "Vary uncertain inputs, then report outputs with their spread.",
+    "edges": [
+     [
+      "run",
+      "sen"
+     ],
+     [
+      "sen",
+      "out"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "rep"
+    ],
+    "text": "Document everything so others can reproduce it.",
+    "edges": [
+     [
+      "out",
+      "rep"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Geometry and demand",
+   "html": "<p>Build the geometry from site plans, then <b>check it on site</b>: temporary stalls, barriers and vehicles change effective widths. Demand comes from schedules, ticketing and counts: how many, when, from where to where, and with what profile (speeds, groups, mobility). For the Hajj, group schedules and routes are key inputs.</p>"
+  },
+  {
+   "heading": "Running a scenario in JuPedSim",
+   "html": "<p>JuPedSim is an open-source simulator with a Python interface (<code>pip install jupedsim</code>). The lab builds a 20 m × 10 m forecourt emptying through a gate, places 150 people with the collision-free speed model, and repeats each gate width with 5 seeds. Results: 1.0 m gate about 143 s, 1.6 m about 80 s, 2.4 m about 57 s, with flows of about 1.05 to 1.18 people per metre per second, consistent with experiments.</p>"
+  },
+  {
+   "heading": "Seeds and sensitivity",
+   "html": "<p>Stochastic models differ between runs: report the <b>mean and spread</b> over seeds. Then vary uncertain inputs. In the explorer, ± 50% uncertainty in pre-movement and ± 20% in specific flow spread the egress time widely; the 95th percentile, not the median, is what safety depends on. Screen inputs one at a time first, then study the important ones jointly.</p>"
+  },
+  {
+   "heading": "Across scales",
+   "html": "<p>No single model fits a whole mass gathering. A common approach couples a fast <b>network or macroscopic model</b> for the whole site and timetable with <b>microscopic models</b> for critical spots such as ramps, junctions and gates. The coupling passes flows and densities at the boundaries. Check that both models agree where they overlap.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 1,
+   "kind": "try",
+   "title": "Run it yourself",
+   "html": "<p>Download the JuPedSim script, install JuPedSim, and add a 3.2 m gate. Is the flow per metre still about the same?</p>"
+  },
+  {
+   "after": 2,
+   "kind": "trap",
+   "title": "One run is an anecdote",
+   "html": "<p>A single stochastic run can be unusually good or bad. Never report one run as the result.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "sensitivity",
+  "intro": "3,000 people leave through 8 m of exits. Change the uncertainty in pre-movement time and specific flow.",
+  "predict": "Which uncertainty spreads the egress time more: pre-movement or flow?"
+ },
+ "code": [
+  {
+   "title": "A gate scenario in JuPedSim",
+   "lang": "python",
+   "file": "labs/go3/m36_jupedsim.py",
+   "runnable": false,
+   "explain": "Requires pip install jupedsim (version 1.x). Builds the geometry with shapely, runs the collision-free speed model, repeats each gate width with 5 seeds.",
+   "expected": "gate 1.0 m: evacuation 142.7 s (min 141.2, max 143.9), flow 1.05 per m per s\ngate 1.6 m: evacuation 79.5 s (min 78.2, max 80.3), flow 1.18 per m per s\ngate 2.4 m: evacuation 57.3 s (min 55.5, max 59.1), flow 1.09 per m per s"
+  },
+  {
+   "title": "Monte Carlo sensitivity of egress time",
+   "lang": "python",
+   "runnable": true,
+   "source": "import numpy as np\nrng = np.random.default_rng(21)\nN, width = 3000, 8.0\nfor pu, fu in [(0.0, 0.0), (0.5, 0.0), (0.0, 0.2), (0.5, 0.2)]:\n    pre = 120 * (1 + rng.uniform(-pu, pu, 5000))\n    js = 1.3 * (1 + rng.uniform(-fu, fu, 5000))\n    t = pre + N / (js * width)\n    p5, p50, p95 = np.percentile(t, [5, 50, 95]) / 60\n    print(f'pre +/-{pu:.0%}, flow +/-{fu:.0%}: median {p50:.1f} min, 5-95% {p5:.1f}-{p95:.1f} min')",
+   "explain": "One-at-a-time and joint uncertainty. Which input widens the interval more?",
+   "expected": "pre +/-0%, flow +/-0%: median 6.8 min, 5-95% 6.8-6.8 min\n..."
+  }
+ ],
+ "takeaways": [
+  "A simulation study chains geometry, demand, model, runs, sensitivity and outputs.",
+  "Check geometry on site; derive demand from schedules and counts.",
+  "Repeat stochastic runs and vary uncertain inputs; report percentiles.",
+  "Couple macro models for the site with micro models for hot spots; share code and data."
+ ],
+ "quiz": [
+  {
+   "q": "Why run each scenario with several seeds?",
+   "options": [
+    "To use more computer time",
+    "Stochastic models vary between runs; report the spread",
+    "Seeds make it faster",
+    "It is required by JuPedSim"
+   ],
+   "answer": 1,
+   "explain": "One run is an anecdote."
+  },
+  {
+   "q": "In the JuPedSim lab, a 1.6 m gate gave a flow of about…",
+   "options": [
+    "0.5 per m per s",
+    "1.2 per m per s",
+    "3 per m per s",
+    "8 per m per s"
+   ],
+   "answer": 1,
+   "explain": "About 1.18, consistent with experiments."
+  },
+  {
+   "q": "A common multi-scale approach couples…",
+   "options": [
+    "Two identical micro models",
+    "A network or macro model for the site with micro models at hot spots",
+    "Weather and traffic models",
+    "Only hand calculations"
+   ],
+   "answer": 1,
+   "explain": "Macro for scale, micro for detail."
+  },
+  {
+   "q": "Which percentile matters most for safety?",
+   "options": [
+    "5th",
+    "Median",
+    "95th or higher",
+    "None"
+   ],
+   "answer": 2,
+   "explain": "The slow tail."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Random seed",
+   "def": "A number that fixes the random sequence of a stochastic simulation run."
+  },
+  {
+   "term": "Sensitivity analysis",
+   "def": "Studying how outputs change with uncertain inputs."
+  },
+  {
+   "term": "JuPedSim",
+   "def": "Open-source pedestrian simulator from Forschungszentrum Jülich, with a Python interface."
+  },
+  {
+   "term": "Multi-scale coupling",
+   "def": "Linking models of different detail at their boundaries."
+  },
+  {
+   "term": "Reproducibility",
+   "def": "The ability of others to rerun a study and get the same results."
+  }
+ ],
+ "resources": [
+  {
+   "title": "JuPedSim",
+   "url": "https://www.jupedsim.org/",
+   "why": "Documentation and tutorials for the open-source simulator."
+  },
+  {
+   "title": "Vadere",
+   "url": "https://www.vadere.org/",
+   "why": "Another open framework, with optimal steps and other models."
+  },
+  {
+   "title": "Ronchi et al. (2013): V&V of evacuation models (NIST TN 1822)",
+   "url": "https://nvlpubs.nist.gov/nistpubs/TechnicalNotes/NIST.TN.1822.pdf",
+   "why": "Testing and reporting simulation results."
+  }
+ ]
+}

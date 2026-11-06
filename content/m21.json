@@ -1,0 +1,357 @@
+{
+ "id": "2.1",
+ "go": 2,
+ "slug": "measuring-crowds",
+ "title": "Measuring crowds: counts, trajectories and density",
+ "minutes": 45,
+ "tag": "Data",
+ "systems": [
+  "data",
+  "flow"
+ ],
+ "summary": "Every model starts from measurements. Learn to get density, speed and flow from counts and trajectories, and why the Voronoi method gives smoother, fairer densities than counting heads in a box.",
+ "outcomes": [
+  "compute density, speed and flow from trajectory data",
+  "explain classical and Voronoi density and when each is better",
+  "check that J = ρ × v holds in your own measurements",
+  "name the main open datasets and tools for crowd measurement"
+ ],
+ "narration_en": "Before you can model a crowd, you have to measure it. The richest data are trajectories: the position of every person, many times a second, extracted from video. Researchers at Forschungszentrum Jülich and partners have run hundreds of laboratory experiments and published the trajectories openly. From trajectories you can compute the three basic quantities. Density can be measured the classical way, by counting heads in a measurement area and dividing by its area, but that number jumps every time someone steps in or out. The Voronoi method gives each person the patch of floor closer to them than to anyone else; density inside the area is then the average of one over each patch's size, weighted by how much of the patch lies inside. It is smoother and responds to small changes. Speed comes from the change in position over time, and flow from counting people crossing a line. In this module you will compute all three from synthetic trajectories, and check that flow equals density times speed.",
+ "narration_ar": "قبل أن تبني نموذجاً للحشد، عليك أن تقيسه. وأغنى البيانات هي المسارات: موضع كل شخص مرات كثيرة في الثانية، مستخرجاً من الفيديو. وقد أجرى باحثون في مركز يوليش للأبحاث وشركاؤهم مئات التجارب المخبرية ونشروا المسارات علناً. ومن المسارات تستطيع أن تحسب الكميات الأساسية الثلاث. يمكن قياس الكثافة بالطريقة التقليدية، بعدّ الرؤوس في منطقة قياس وقسمتها على مساحتها، لكن هذا الرقم يقفز كلما دخل شخص أو خرج. أما طريقة فورونوي فتعطي كل شخص رقعة الأرض الأقرب إليه منها إلى أي شخص آخر؛ ثم تكون الكثافة داخل المنطقة متوسط مقلوب مساحة كل رقعة، موزوناً بالجزء الواقع منها داخل المنطقة. وهي أنعم وتستجيب للتغيرات الصغيرة. وتأتي السرعة من تغيّر الموضع عبر الزمن، ويأتي التدفق من عدّ الأشخاص الذين يعبرون خطاً. ستحسب في هذه الوحدة الكميات الثلاث من مسارات مصطنعة، وتتحقق من أن التدفق يساوي الكثافة مضروبة في السرعة.",
+ "diagram": {
+  "title": "From video to the fundamental diagram",
+  "caption": "Trajectories feed three measurements; together they give the fundamental diagram that every model must reproduce.",
+  "nodes": [
+   {
+    "id": "vid",
+    "label": "Video",
+    "sub": "overhead cameras",
+    "x": 120,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Overhead cameras record the scene. Software such as PeTrack (Jülich) detects heads and tracks them frame by frame."
+   },
+   {
+    "id": "traj",
+    "label": "Trajectories",
+    "sub": "x, y, t for each person",
+    "x": 120,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Positions of each person over time, usually at 16 to 25 frames per second, corrected for camera distortion."
+   },
+   {
+    "id": "rho",
+    "label": "Density",
+    "sub": "classical or Voronoi",
+    "x": 440,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Classical: count in the area ÷ area. Voronoi: average of 1 ÷ cell area over the measurement area (Steffen and Seyfried 2010)."
+   },
+   {
+    "id": "vel",
+    "label": "Speed",
+    "sub": "Δposition ÷ Δt",
+    "x": 440,
+    "y": 260,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Each person's speed from positions a short time apart; the area speed averages over the people (or Voronoi cells) inside."
+   },
+   {
+    "id": "flw",
+    "label": "Flow",
+    "sub": "crossings per second",
+    "x": 440,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Count people crossing a line per second; divide by width for specific flow."
+   },
+   {
+    "id": "fd",
+    "label": "Fundamental diagram",
+    "sub": "plot and compare",
+    "x": 770,
+    "y": 260,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "Plot speed or flow against density for many time windows. Check J ≈ ρ × v. Compare with other studies and models."
+   }
+  ],
+  "edges": [
+   {
+    "from": "vid",
+    "to": "traj",
+    "label": "track"
+   },
+   {
+    "from": "traj",
+    "to": "rho",
+    "label": ""
+   },
+   {
+    "from": "traj",
+    "to": "vel",
+    "label": ""
+   },
+   {
+    "from": "traj",
+    "to": "flw",
+    "label": ""
+   },
+   {
+    "from": "rho",
+    "to": "fd",
+    "label": ""
+   },
+   {
+    "from": "vel",
+    "to": "fd",
+    "label": ""
+   },
+   {
+    "from": "flw",
+    "to": "fd",
+    "label": "check"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "vid",
+     "traj"
+    ],
+    "text": "Cameras record the crowd; tracking software turns heads into trajectories.",
+    "edges": [
+     [
+      "vid",
+      "traj"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "rho"
+    ],
+    "text": "Density: count heads in a box, or use Voronoi cells for a smoother measure.",
+    "edges": [
+     [
+      "traj",
+      "rho"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "vel",
+     "flw"
+    ],
+    "text": "Speed from movement over time; flow from people crossing a line.",
+    "edges": [
+     [
+      "traj",
+      "vel"
+     ],
+     [
+      "traj",
+      "flw"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "fd"
+    ],
+    "text": "Plot them together: the fundamental diagram. Check that flow ≈ density × speed.",
+    "edges": [
+     [
+      "rho",
+      "fd"
+     ],
+     [
+      "vel",
+      "fd"
+     ],
+     [
+      "flw",
+      "fd"
+     ]
+    ]
+   }
+  ]
+ },
+ "components": {
+  "caption": "Open data and tools.",
+  "rows": [
+   {
+    "name": "Jülich data archive",
+    "purpose": "Trajectories from controlled experiments: corridors, bottlenecks, crossings, stairs",
+    "analogy": "A library of crowd recordings"
+   },
+   {
+    "name": "PeTrack",
+    "purpose": "Software that extracts trajectories from video (Boltes and Seyfried 2013)",
+    "analogy": "A very patient person with a stopwatch"
+   },
+   {
+    "name": "PedPy",
+    "purpose": "Python library for density, speed and flow, including Voronoi methods",
+    "analogy": "A calculator built for crowds"
+   },
+   {
+    "name": "Counts and sensors",
+    "purpose": "Turnstiles, ticket scans, Wi-Fi or Bluetooth probes, mobile phone data",
+    "analogy": "Many thermometers instead of one camera"
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Trajectories",
+   "html": "<p>The richest crowd data are <b>trajectories</b>: (x, y) positions of each person at each time. They come from overhead video processed by tracking software such as PeTrack, or from experiments where participants wear coloured caps. The <b>Jülich pedestrian dynamics data archive</b> publishes hundreds of such experiments.</p>"
+  },
+  {
+   "heading": "Classical and Voronoi density",
+   "html": "<p><b>Classical density</b> counts people in a measurement area A: ρ = N ÷ A. It jumps by 1 ÷ A each time someone enters or leaves. <b>Voronoi density</b> (Steffen and Seyfried 2010) gives each person i the region closer to them than to anyone else (area A<sub>i</sub>) and averages:</p><div class=\"eq\">ρ<sub>V</sub> = (1 ÷ A) × Σ<sub>i</sub> (area of cell i inside the box) ÷ A<sub>i</sub></div><p>It varies smoothly, works in small areas, and reduces scatter in fundamental diagrams.</p>"
+  },
+  {
+   "heading": "Speed and flow",
+   "html": "<p>Speed is distance moved over a short time: v = Δx ÷ Δt, usually over 0.5 to 1 s to smooth out the sway of each step. Flow is the number of people crossing a line in a time window, divided by the window, and by the width for specific flow. In a steady crowd, the three must agree: <b>J ≈ ρ × v</b>. If they do not, check the measurement area, time window or tracking.</p>"
+  },
+  {
+   "heading": "Beyond the laboratory",
+   "html": "<p>Real events rarely have overhead cameras everywhere. Practitioners combine <b>counts</b> (gates, turnstiles, ticket scans), <b>CCTV</b> with computer-vision counting (module 3.4), and <b>phone-based data</b> such as Wi-Fi probes or network data. Each has errors and privacy issues: report both.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 1,
+   "kind": "try",
+   "title": "See it",
+   "html": "<p>In the explorer, move the seed slider: the classical density in the box jumps between snapshots, while the Voronoi density changes more smoothly.</p>"
+  },
+  {
+   "after": 2,
+   "kind": "trap",
+   "title": "Edge effects",
+   "html": "<p>Voronoi cells at the edge of the crowd are unbounded. Cut them at a sensible distance or with walls, as PedPy does.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "voronoi",
+  "intro": "Random people in a 10 m × 10 m area; the black box is the 4 m × 4 m measurement area. Coloured patches are Voronoi cells.",
+  "predict": "With few people, will classical and Voronoi densities agree well or badly?"
+ },
+ "code": [
+  {
+   "title": "Density, speed and flow from trajectories",
+   "lang": "python",
+   "file": "labs/go2/m21_measure.py",
+   "runnable": true,
+   "explain": "Synthetic one-way corridor. Computes classical density, mean speed, flow across a line and a Voronoi-style density for one frame. Replace the synthetic trajectories with data from the Jülich archive.",
+   "expected": "people crossing x = 12 m: 120 in 60 s -> flow 2.00 per s, 0.50 per m per s\nmean classical density 0.42 per m2 (all frames), mean speed 1.14 m/s\ncheck J = rho * v: 0.50 per m per s\nframe 300: classical 1.00 per m2, Voronoi 0.96 per m2"
+  }
+ ],
+ "takeaways": [
+  "Trajectories give density, speed and flow; the Jülich archive and PedPy make them accessible.",
+  "Classical density jumps; Voronoi density is smoother and works in small areas.",
+  "J ≈ ρ × v is a built-in check on your measurements.",
+  "Field data combine counts, CCTV and phone data, each with errors and privacy issues."
+ ],
+ "quiz": [
+  {
+   "q": "Classical density in a 16 m² area with 24 people is…",
+   "options": [
+    "0.67 per m²",
+    "1.5 per m²",
+    "24 per m²",
+    "384 per m²"
+   ],
+   "answer": 1,
+   "explain": "24 ÷ 16 = 1.5."
+  },
+  {
+   "q": "A Voronoi cell of a person is…",
+   "options": [
+    "Their body outline",
+    "The region closer to them than to anyone else",
+    "A 1 m² square",
+    "The camera's view"
+   ],
+   "answer": 1,
+   "explain": "Each point of floor belongs to its nearest person."
+  },
+  {
+   "q": "Why measure speed over about a second?",
+   "options": [
+    "Cameras are slow",
+    "To smooth out the sideways sway of each step",
+    "It is required by law",
+    "To save memory"
+   ],
+   "answer": 1,
+   "explain": "Step sway adds noise at short intervals."
+  },
+  {
+   "q": "Your measured flow is much larger than density × speed. What should you suspect?",
+   "options": [
+    "Nothing, this is normal",
+    "A measurement error: area, time window or tracking",
+    "The crowd is too happy",
+    "Weidmann was wrong"
+   ],
+   "answer": 1,
+   "explain": "In steady flow they should agree."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Trajectory",
+   "def": "The path of one person: their position at successive times."
+  },
+  {
+   "term": "Measurement area",
+   "def": "The region in which density and speed are measured."
+  },
+  {
+   "term": "Voronoi density",
+   "def": "Density from each person's Voronoi cell: smoother than counting heads."
+  },
+  {
+   "term": "Voronoi cell",
+   "def": "The region of floor closer to one person than to any other."
+  },
+  {
+   "term": "PedPy",
+   "def": "Open-source Python library for pedestrian data analysis."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Jülich pedestrian dynamics data archive",
+   "url": "https://ped.fz-juelich.de/da/",
+   "why": "Open trajectories from controlled experiments."
+  },
+  {
+   "title": "PedPy (GitHub)",
+   "url": "https://github.com/PedestrianDynamics/PedPy",
+   "why": "Compute density, speed and flow, including Voronoi methods."
+  },
+  {
+   "title": "Steffen and Seyfried (2010): Methods for measuring pedestrian density, flow, speed and direction",
+   "url": "https://arxiv.org/abs/0911.2165",
+   "why": "The Voronoi method and its benefits."
+  }
+ ]
+}

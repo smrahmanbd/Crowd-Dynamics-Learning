@@ -1,0 +1,356 @@
+{
+ "id": "3.2",
+ "go": 3,
+ "slug": "lessons-from-crowd-disasters",
+ "title": "Lessons from crowd disasters",
+ "minutes": 50,
+ "tag": "Evidence",
+ "systems": [
+  "risk",
+  "manage"
+ ],
+ "summary": "Investigations of Hillsborough, Love Parade, Mina and Itaewon show systemic failures of design, information and management. Analyse them with DIM-ICE and the published evidence, not with hindsight stories of panic.",
+ "outcomes": [
+  "describe the evidence base for four crowd disasters",
+  "apply DIM-ICE to locate failures by phase",
+  "distinguish proximate and underlying causes",
+  "explain why crowd disasters are systemic failures"
+ ],
+ "narration_en": "Crowd disasters are rare, but each one teaches lessons at a terrible price. At Hillsborough in Sheffield in nineteen eighty-nine, a gate was opened to relieve a crush outside the stadium, and supporters flowed into central pens that were already full; ninety-seven people died. At the Love Parade in Duisburg in two thousand and ten, a single ramp served as the only entrance and exit of the festival area; inflow and outflow met, density soared, and twenty-one people died. At Mina during the Hajj in two thousand and fifteen, two large streams of pilgrims met where streets two hundred and four and two hundred and twenty-three join; the official Saudi count was seven hundred and sixty-nine deaths, and independent counts exceeded two thousand. At Itaewon in Seoul in two thousand and twenty-two, a narrow sloping alley filled from both ends during Halloween, with no event plan; one hundred and fifty-nine people died. Researchers such as Helbing and Mukerji describe such events as systemic failures. In this module you analyse them with DIM-ICE, separating the proximate cause, the crush itself, from the underlying causes in design, information and management.",
+ "narration_ar": "كوارث الحشود نادرة، لكن كل واحدة منها تعلّم دروساً بثمن فادح. ففي ملعب هيلزبره في شيفيلد عام ألف وتسعمئة وتسعة وثمانين، فُتحت بوابة لتخفيف تزاحم خارج الملعب، فتدفق المشجعون إلى حظائر وسطى كانت ممتلئة أصلاً؛ ومات سبعة وتسعون شخصاً. وفي موكب الحب في دويسبورغ عام ألفين وعشرة، كان منحدر واحد هو المدخل والمخرج الوحيد لمنطقة المهرجان؛ فالتقى الداخلون بالخارجين، وارتفعت الكثافة بشدة، ومات واحد وعشرون شخصاً. وفي منى أثناء الحج عام ألفين وخمسة عشر، التقى تياران كبيران من الحجاج حيث يتقاطع الشارعان مئتان وأربعة ومئتان وثلاثة وعشرون؛ وكان العدد الرسمي السعودي سبعمئة وتسعة وستين وفاة، وتجاوزت الأعداد المستقلة ألفين. وفي إيتايوون في سيول عام ألفين واثنين وعشرين، امتلأ زقاق ضيق منحدر من طرفيه أثناء الهالوين، دون خطة للفعالية؛ ومات مئة وتسعة وخمسون شخصاً. ويصف باحثون مثل هيلبنغ وموكيرجي هذه الأحداث بأنها إخفاقات منظومية. ستحلل في هذه الوحدة هذه الكوارث باستخدام DIM-ICE، فاصلاً السبب المباشر، أي التزاحم نفسه، عن الأسباب الكامنة في التصميم والمعلومات والإدارة.",
+ "diagram": {
+  "title": "From underlying causes to a crush",
+  "caption": "Underlying failures in design, information and management create the conditions; a trigger and high density produce the proximate cause.",
+  "nodes": [
+   {
+    "id": "des",
+    "label": "Design",
+    "sub": "routes, widths, slopes",
+    "x": 130,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "Single routes for both directions, narrowings, slopes, dead ends, inadequate holding space."
+   },
+   {
+    "id": "inf",
+    "label": "Information",
+    "sub": "what people know",
+    "x": 130,
+    "y": 260,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "People at the back cannot see the front; no warnings; unclear signs; control rooms without good views or counts."
+   },
+   {
+    "id": "man",
+    "label": "Management",
+    "sub": "decisions, staff, plans",
+    "x": 130,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Opening gates into full areas, no event plan, unclear responsibilities, late responses to warnings."
+   },
+   {
+    "id": "cond",
+    "label": "Dangerous conditions",
+    "sub": "flows meet, density rises",
+    "x": 470,
+    "y": 260,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Converging or opposing flows in a confined space faster than it empties."
+   },
+   {
+    "id": "trig",
+    "label": "Trigger",
+    "sub": "gate opened, fall, surge",
+    "x": 470,
+    "y": 440,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Often small: a gate opened, a person falling, a surge towards an attraction."
+   },
+   {
+    "id": "prox",
+    "label": "Proximate cause",
+    "sub": "crush, collapse",
+    "x": 790,
+    "y": 260,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Compressive asphyxia in a crowd collapse or crush."
+   },
+   {
+    "id": "sys",
+    "label": "Systemic failure",
+    "sub": "many small failures align",
+    "x": 790,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "No single cause: many weaknesses line up (Helbing and Mukerji 2012)."
+   }
+  ],
+  "edges": [
+   {
+    "from": "des",
+    "to": "cond",
+    "label": ""
+   },
+   {
+    "from": "inf",
+    "to": "cond",
+    "label": ""
+   },
+   {
+    "from": "man",
+    "to": "cond",
+    "label": ""
+   },
+   {
+    "from": "cond",
+    "to": "prox",
+    "label": "density"
+   },
+   {
+    "from": "trig",
+    "to": "prox",
+    "label": "tips"
+   },
+   {
+    "from": "prox",
+    "to": "sys",
+    "label": "seen as"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "des",
+     "inf",
+     "man"
+    ],
+    "text": "Underlying causes lie in design, information and management."
+   },
+   {
+    "focus": [
+     "cond"
+    ],
+    "text": "Together they create dangerous conditions: flows meeting in confined spaces.",
+    "edges": [
+     [
+      "des",
+      "cond"
+     ],
+     [
+      "inf",
+      "cond"
+     ],
+     [
+      "man",
+      "cond"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "trig"
+    ],
+    "text": "A small trigger can tip the situation.",
+    "edges": [
+     [
+      "trig",
+      "prox"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "prox"
+    ],
+    "text": "The proximate cause is the crush itself.",
+    "edges": [
+     [
+      "cond",
+      "prox"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "sys"
+    ],
+    "text": "Seen as a whole, it is a systemic failure: many small weaknesses aligned.",
+    "edges": [
+     [
+      "prox",
+      "sys"
+     ]
+    ]
+   }
+  ]
+ },
+ "components": {
+  "caption": "Four disasters in brief (from official inquiries and published analyses).",
+  "rows": [
+   {
+    "name": "Hillsborough, Sheffield, 1989",
+    "purpose": "Gate opened to relieve a crush outside; flow into already full central pens; 97 deaths",
+    "analogy": "Pouring into a full glass"
+   },
+   {
+    "name": "Love Parade, Duisburg, 2010",
+    "purpose": "One ramp as the only way in and out; flows met; 21 deaths, 652 injured",
+    "analogy": "One door for a crowded room"
+   },
+   {
+    "name": "Mina, Hajj, 2015",
+    "purpose": "Two large flows met at streets 204 and 223; 769 deaths officially, over 2,000 in independent counts",
+    "analogy": "Two rivers forced into one channel"
+   },
+   {
+    "name": "Itaewon, Seoul, 2022",
+    "purpose": "Narrow sloping alley filled from both ends, no event organiser or plan; 159 deaths",
+    "analogy": "A funnel fed from both ends"
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Proximate and underlying causes",
+   "html": "<p>The <b>proximate cause</b> of death in crowd disasters is usually compressive asphyxia in a crush or crowd collapse. The <b>underlying causes</b> are the decisions and conditions that allowed density to reach that level: design, information and management. Investigations that stop at the proximate cause, or blame 'panic', miss what can be fixed.</p>"
+  },
+  {
+   "heading": "Four cases",
+   "html": "<p><b>Hillsborough (1989)</b>: the Hillsborough Independent Panel (2012) documented how a gate was opened to relieve congestion outside, and supporters entered a tunnel into central pens that were already full. <b>Love Parade (2010)</b>: Helbing and Mukerji (2012) reconstructed from video how inflow and outflow met on the ramp that was the festival's only access. <b>Mina (2015)</b>: two streams met at a junction; official and independent death counts differ widely, a reminder that even basic facts can be contested. <b>Itaewon (2022)</b>: an unorganised Halloween gathering in narrow streets; the alley was about 3 to 4 m wide, sloped and fed from both ends, and emergency calls began hours before the crush.</p>"
+  },
+  {
+   "heading": "Analysing with DIM-ICE",
+   "html": "<p>Place each failure in the DIM-ICE matrix (module 1.8). At the Love Parade, weaknesses cluster in <b>design × ingress/egress</b> (a single ramp) and <b>management × circulation</b> (handling the ramp during the event). At Itaewon, almost every cell is weak, because there was no organiser: design, information and management were all missing. Clusters of weak cells show where the system failed.</p>"
+  },
+  {
+   "heading": "Evidence and hindsight",
+   "html": "<p>Use primary sources: official inquiries, court records, published video analyses, and peer-reviewed reconstructions. Beware <b>hindsight bias</b>: what is obvious after the event was rarely obvious before it, to people with partial information. Good research asks what decision makers knew, when, and what better information or design would have changed.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 2,
+   "kind": "try",
+   "title": "Use the explorer",
+   "html": "<p>Load the Love Parade and Itaewon cases in the DIM-ICE explorer. Do you agree with the scores? Change them and explain why.</p>"
+  },
+  {
+   "after": 3,
+   "kind": "research",
+   "title": "Systemic failure",
+   "html": "<p>Helbing and Mukerji (2012) argued that the Love Parade disaster resulted from many interacting factors rather than one mistake: a systemic failure.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "dimice",
+  "intro": "Score each DIM-ICE cell from 1 (low risk) to 3 (high risk), or load a case.",
+  "predict": "For an unorganised street gathering, which row of DIM-ICE do you expect to be weakest?"
+ },
+ "takeaways": [
+  "Proximate cause: crush and asphyxia; underlying causes: design, information and management.",
+  "Hillsborough, Love Parade, Mina and Itaewon all involved flows meeting or accumulating in confined spaces.",
+  "DIM-ICE locates failures by phase and shows clusters.",
+  "Crowd disasters are systemic failures; analyse them with primary evidence and without hindsight bias."
+ ],
+ "quiz": [
+  {
+   "q": "The Love Parade disaster involved…",
+   "options": [
+    "A fire",
+    "A single ramp used as the only way in and out",
+    "A bridge collapse",
+    "A stampede of animals"
+   ],
+   "answer": 1,
+   "explain": "Inflow and outflow met on the ramp."
+  },
+  {
+   "q": "At Itaewon, a key factor was…",
+   "options": [
+    "Too many stewards",
+    "No event organiser or plan for a large gathering in narrow streets",
+    "A locked stadium gate",
+    "Heat"
+   ],
+   "answer": 1,
+   "explain": "An unorganised gathering."
+  },
+  {
+   "q": "The proximate cause of most crush deaths is…",
+   "options": [
+    "Panic",
+    "Compressive asphyxia",
+    "Trampling by animals",
+    "Dehydration"
+   ],
+   "answer": 1,
+   "explain": "People cannot breathe."
+  },
+  {
+   "q": "Hindsight bias means…",
+   "options": [
+    "Looking at video",
+    "Judging past decisions with knowledge people did not have then",
+    "Counting deaths",
+    "Using DIM-ICE"
+   ],
+   "answer": 1,
+   "explain": "It distorts blame and lessons."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Proximate cause",
+   "def": "The immediate cause of harm, such as compressive asphyxia."
+  },
+  {
+   "term": "Underlying cause",
+   "def": "The conditions and decisions that made the harm possible."
+  },
+  {
+   "term": "Systemic failure",
+   "def": "A disaster resulting from many interacting weaknesses rather than one error."
+  },
+  {
+   "term": "Hindsight bias",
+   "def": "Seeing past events as more predictable than they were."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Helbing and Mukerji (2012): Crowd disasters as systemic failures (Love Parade)",
+   "url": "https://doi.org/10.1140/epjds7",
+   "why": "Open-access reconstruction of the Love Parade disaster."
+  },
+  {
+   "title": "The report of the Hillsborough Independent Panel (2012)",
+   "url": "https://www.gov.uk/government/publications/the-report-of-the-hillsborough-independent-panel",
+   "why": "The official review of the 1989 disaster."
+  },
+  {
+   "title": "Unraveling the causes of the Seoul Halloween crowd-crush disaster (PLOS ONE 2024)",
+   "url": "https://doi.org/10.1371/journal.pone.0306764",
+   "why": "Data and simulation analysis of Itaewon."
+  },
+  {
+   "title": "2015 Mina stampede (overview with sources)",
+   "url": "https://en.wikipedia.org/wiki/2015_Mina_stampede",
+   "why": "Timeline and the contested death counts, with links to primary reports."
+  }
+ ]
+}

@@ -1,0 +1,349 @@
+{
+ "id": "1.7",
+ "go": 1,
+ "slug": "when-crowds-become-dangerous",
+ "title": "When crowds become dangerous",
+ "minutes": 40,
+ "tag": "Risk",
+ "systems": [
+  "risk",
+  "people"
+ ],
+ "summary": "Risk rises steeply with density. Above about 5 to 6 people per m² people lose control of their movement; forces add up through bodies, and crowd turbulence and collapse can follow.",
+ "outcomes": [
+  "describe how risk changes with density",
+  "explain crowd pressure and crowd turbulence",
+  "describe the causal chain of a crowd crush",
+  "use the lessons of Hillsborough, Love Parade, Mina and Itaewon"
+ ],
+ "narration_en": "Most crowds are safe. Danger comes when density gets very high. Above about five or six people per square metre, nobody can move independently: you are carried by the crowd. Forces from many people pushing, even gently, add up through bodies and can reach levels that make breathing impossible. Researchers Dirk Helbing, Anders Johansson and Habib Zein Al-Abideen studied video of the 2006 Jamarat Bridge disaster during the Hajj. They saw the crowd change from smooth flow to stop-and-go waves, and then to crowd turbulence: irregular, random-looking surges that pushed people several metres and made them fall. They measured crowd pressure, density times the variance of local speeds, and found it rose sharply before people fell. Once one person falls in such a crowd, others fall over them, and a crowd collapse spreads. The lesson from Hillsborough, Love Parade, Mina and Itaewon is the same: keep density well below critical levels, watch for warning signs, and never let large flows meet in narrow spaces.",
+ "narration_ar": "معظم الحشود آمنة. يأتي الخطر عندما تصبح الكثافة عالية جداً. فوق نحو خمسة أو ستة أشخاص في المتر المربع لا يستطيع أحد أن يتحرك مستقلاً: فالحشد يحملك. والقوى الناتجة عن دفع كثير من الناس، ولو برفق، تتراكم عبر الأجساد وقد تبلغ حداً يجعل التنفس مستحيلاً. وقد درس الباحثون ديرك هيلبنغ وأندرس يوهانسون وحبيب زين العابدين تسجيلات كارثة جسر الجمرات عام ألفين وستة أثناء الحج. فرأوا الحشد يتحول من تدفق سلس إلى موجات توقف وانطلاق، ثم إلى اضطراب الحشد: اندفاعات غير منتظمة تبدو عشوائية تدفع الناس عدة أمتار وتُسقطهم. وقاسوا ضغط الحشد، أي الكثافة مضروبة في تباين السرعات المحلية، فوجدوا أنه يرتفع بحدة قبل سقوط الناس. وما إن يسقط شخص في مثل هذا الحشد حتى يسقط آخرون فوقه، فينتشر انهيار الحشد. والدرس من هيلزبره وموكب الحب ومنى وإيتايوون واحد: أبقِ الكثافة أدنى بكثير من المستويات الحرجة، وراقب علامات الإنذار، ولا تدع تدفقات كبيرة تلتقي في أماكن ضيقة.",
+ "diagram": {
+  "title": "The chain to a crowd crush",
+  "caption": "High density removes control; forces add up; turbulence and falls follow. Each link is a chance to intervene.",
+  "nodes": [
+   {
+    "id": "dem",
+    "label": "Demand above capacity",
+    "sub": "too many, too fast",
+    "x": 120,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "More people arrive than routes and spaces can handle, often because flows meet or an exit is blocked."
+   },
+   {
+    "id": "den",
+    "label": "High density",
+    "sub": "above about 5–6 per m²",
+    "x": 400,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "People touch on all sides and cannot move independently. Space per person is under about 0.2 m²."
+   },
+   {
+    "id": "force",
+    "label": "Forces add up",
+    "sub": "through bodies",
+    "x": 680,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Pushing from many people adds up along chains of bodies. Barriers and walls concentrate it. Breathing becomes difficult."
+   },
+   {
+    "id": "turb",
+    "label": "Crowd turbulence",
+    "sub": "random-looking surges",
+    "x": 680,
+    "y": 280,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Irregular motion in all directions, people displaced several metres (Helbing et al. 2007). Crowd pressure ρ·Var(V) is high."
+   },
+   {
+    "id": "fall",
+    "label": "Falls and collapse",
+    "sub": "progressive",
+    "x": 680,
+    "y": 440,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "When people fall, others are pushed over them; a crowd collapse spreads. Victims die mostly of compressive asphyxia."
+   },
+   {
+    "id": "warn",
+    "label": "Warning signs",
+    "sub": "stop-and-go, surges, calls",
+    "x": 400,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Stop-and-go waves, swaying surges, people climbing out, distress calls. At Itaewon, emergency calls started hours before the crush."
+   },
+   {
+    "id": "act",
+    "label": "Intervene early",
+    "sub": "stop inflow, relieve, inform",
+    "x": 120,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Stop or meter inflow, open relief routes, separate flows, inform those at the back. The earlier, the easier."
+   }
+  ],
+  "edges": [
+   {
+    "from": "dem",
+    "to": "den",
+    "label": "accumulates"
+   },
+   {
+    "from": "den",
+    "to": "force",
+    "label": "contact"
+   },
+   {
+    "from": "force",
+    "to": "turb",
+    "label": ""
+   },
+   {
+    "from": "turb",
+    "to": "fall",
+    "label": ""
+   },
+   {
+    "from": "den",
+    "to": "warn",
+    "label": "shows as"
+   },
+   {
+    "from": "warn",
+    "to": "act",
+    "label": "triggers",
+    "sys": "manage"
+   },
+   {
+    "from": "act",
+    "to": "dem",
+    "label": "reduces",
+    "sys": "manage"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "dem",
+     "den"
+    ],
+    "text": "It starts when more people arrive than the space can pass, and density climbs.",
+    "edges": [
+     [
+      "dem",
+      "den"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "force"
+    ],
+    "text": "Above about 5 to 6 per m², people lose control of their movement and forces add up through bodies.",
+    "edges": [
+     [
+      "den",
+      "force"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "turb",
+     "fall"
+    ],
+    "text": "Then crowd turbulence: surges that push people over. Falls spread into a collapse.",
+    "edges": [
+     [
+      "force",
+      "turb"
+     ],
+     [
+      "turb",
+      "fall"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "warn"
+    ],
+    "text": "There are warning signs along the way: stop-and-go waves, surges, distress calls.",
+    "edges": [
+     [
+      "den",
+      "warn"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "act"
+    ],
+    "text": "Each sign is a chance to act: stop inflow, open relief routes, inform the crowd.",
+    "edges": [
+     [
+      "warn",
+      "act"
+     ],
+     [
+      "act",
+      "dem"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Risk rises steeply with density",
+   "html": "<p>Below about 2 people per m² risk is low. Around <b>4 to 5 per m²</b> people are in frequent contact. Above about <b>5 to 6 per m²</b> they cannot move independently, and forces from others can be transmitted through them (Fruin 1993; Still 2014). Densities of 7 to 9 per m² or more have been measured in fatal incidents.</p>"
+  },
+  {
+   "heading": "Crowd pressure and turbulence",
+   "html": "<p>Helbing, Johansson and Al-Abideen (2007) analysed video of the Jamarat Bridge entrance before the January 2006 disaster. Flow changed from laminar to <b>stop-and-go</b>, then to <b>crowd turbulence</b>. They defined crowd pressure as:</p><div class=\"eq\">P = ρ × Var(V) &nbsp;&nbsp;(density × variance of local velocity)</div><p>In their data, falls and deaths followed when P rose above about 0.02 per s². Pressure is high only when the crowd is both dense and moving irregularly, which makes it a useful warning signal.</p>"
+  },
+  {
+   "heading": "Four disasters, one lesson",
+   "html": "<p><b>Hillsborough, Sheffield (1989)</b>: 97 deaths after a crowd was let into already full central pens. <b>Love Parade, Duisburg (2010)</b>: 21 deaths on a ramp that was the only way in and out. <b>Mina, during the Hajj (2015)</b>: two large flows met at a junction of streets 204 and 223; the official Saudi toll was 769, independent counts exceed 2,000. <b>Itaewon, Seoul (2022)</b>: 159 deaths in a sloping alley about 3 to 4 m wide, fed from both ends with no event plan.</p><p>In each case, flows were allowed to meet or accumulate in a confined space faster than it could empty.</p>"
+  },
+  {
+   "heading": "Intervene early",
+   "html": "<p>The chain has many links, and the early ones are easiest to break. <b>Before the event</b>: design routes so flows do not meet head-on, size spaces for the peak, plan for the unexpected. <b>During the event</b>: watch density and warning signs, stop or meter inflow early, open relief routes, and tell people at the back what is happening.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 1,
+   "kind": "trap",
+   "title": "One number is not a law",
+   "html": "<p>The 0.02 s⁻² value comes from one site and one camera set-up. It is a research finding, not a design standard.</p>"
+  },
+  {
+   "after": 2,
+   "kind": "research",
+   "title": "Go 3 returns here",
+   "html": "<p>Module 3.2 analyses these disasters in depth with the DIM-ICE model and the published evidence.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "danger",
+  "intro": "Raise density and the spread of local speeds, and watch crowd pressure.",
+  "predict": "Can a crowd at 7 per m² have low crowd pressure?"
+ },
+ "code": [
+  {
+   "title": "Crowd pressure from local speeds",
+   "lang": "python",
+   "runnable": true,
+   "source": "import statistics as st\n# local speeds (m/s) measured in one 1 m2 cell over 20 frames\ncalm      = [0.31, 0.30, 0.32, 0.29, 0.31, 0.30, 0.32, 0.31, 0.30, 0.29, 0.31, 0.30, 0.31, 0.32, 0.30, 0.31, 0.29, 0.30, 0.31, 0.30]\nturbulent = [0.05, 0.40, 0.10, 0.35, 0.02, 0.30, 0.15, 0.45, 0.00, 0.38, 0.08, 0.33, 0.12, 0.42, 0.03, 0.36, 0.11, 0.29, 0.06, 0.41]\nrho = 7.0   # people per m2\nfor name, v in [('calm', calm), ('turbulent', turbulent)]:\n    p = rho * st.pvariance(v)\n    print(f'{name:9s}: variance {st.pvariance(v):.4f}, pressure {p:.3f} per s2', '-> WARNING' if p > 0.02 else '')",
+   "explain": "Same density, very different pressure. Speed variance is what turns a dense crowd into a dangerous one.",
+   "expected": "calm     : variance 0.0001, pressure 0.001 per s2\nturbulent: variance 0.0244, pressure 0.171 per s2 -> WARNING"
+  }
+ ],
+ "takeaways": [
+  "Above about 5–6 per m² people lose control of their movement.",
+  "Crowd pressure = density × variance of local velocity; high values preceded falls at Jamarat in 2006.",
+  "Crushes follow a chain: demand above capacity, high density, forces, turbulence, falls.",
+  "The disasters at Hillsborough, Love Parade, Mina and Itaewon share one cause: flows meeting or accumulating in confined spaces."
+ ],
+ "quiz": [
+  {
+   "q": "Above roughly what density can people no longer move independently?",
+   "options": [
+    "1 per m²",
+    "2 per m²",
+    "5–6 per m²",
+    "20 per m²"
+   ],
+   "answer": 2,
+   "explain": "Above about 5 to 6 per m² control is lost."
+  },
+  {
+   "q": "Crowd pressure as defined by Helbing and colleagues is…",
+   "options": [
+    "Density × variance of local velocity",
+    "Flow × width",
+    "Speed squared",
+    "Number of people"
+   ],
+   "answer": 0,
+   "explain": "P = ρ × Var(V)."
+  },
+  {
+   "q": "What do most crush victims die of?",
+   "options": [
+    "Trampling",
+    "Compressive asphyxia",
+    "Heat stroke",
+    "Heart attacks only"
+   ],
+   "answer": 1,
+   "explain": "They cannot breathe."
+  },
+  {
+   "q": "A common factor in Mina 2015 and Itaewon 2022 was…",
+   "options": [
+    "Fire",
+    "Large flows meeting in narrow streets",
+    "Bad weather",
+    "Too many stewards"
+   ],
+   "answer": 1,
+   "explain": "Meeting flows in confined spaces."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Crowd pressure",
+   "def": "Local density × variance of local velocity; a warning indicator (Helbing et al. 2007)."
+  },
+  {
+   "term": "Crowd turbulence",
+   "def": "Irregular, random-looking motion of a very dense crowd that displaces people and causes falls."
+  },
+  {
+   "term": "Crowd collapse",
+   "def": "Progressive falling of people in a dense crowd."
+  },
+  {
+   "term": "Crowd crush",
+   "def": "An incident in which people are compressed so much that they are injured or killed."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Helbing, Johansson and Al-Abideen (2007): The dynamics of crowd disasters",
+   "url": "https://doi.org/10.1103/PhysRevE.75.046109",
+   "why": "Crowd pressure and turbulence at the Jamarat Bridge."
+  },
+  {
+   "title": "Helbing and Mukerji (2012): Crowd disasters as systemic failures (Love Parade)",
+   "url": "https://doi.org/10.1140/epjds7",
+   "why": "A detailed open-access analysis of the Love Parade disaster."
+  },
+  {
+   "title": "Hillsborough Independent Panel report (2012)",
+   "url": "https://www.gov.uk/government/publications/the-report-of-the-hillsborough-independent-panel",
+   "why": "The official review of the 1989 disaster."
+  }
+ ]
+}

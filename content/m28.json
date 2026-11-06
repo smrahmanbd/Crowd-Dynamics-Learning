@@ -1,0 +1,332 @@
+{
+ "id": "2.8",
+ "go": 2,
+ "slug": "calibration-and-validation",
+ "title": "Calibration, validation and uncertainty",
+ "minutes": 45,
+ "tag": "Method",
+ "systems": [
+  "data",
+  "flow"
+ ],
+ "summary": "A model is only as trustworthy as the data it was tested against. Calibrate parameters on one data set, validate on another, test standard cases, and report the uncertainty.",
+ "outcomes": [
+  "distinguish verification, calibration and validation",
+  "calibrate a fundamental diagram by least squares",
+  "use standard test cases such as the RiMEA tests",
+  "report model uncertainty honestly"
+ ],
+ "narration_en": "Every crowd model has parameters: desired speeds, repulsion strengths, floor-field weights. Calibration is choosing their values so that the model matches measurements. Validation is checking the calibrated model against different data it has not seen. Verification comes first and is simpler: does the code do what the equations say? A good calibration uses several observables at once, for example the fundamental diagram, the flow through a bottleneck and travel times, because a model can match one and miss the others. Keep part of the data aside for validation, or the model may only have memorised the data. Standard test cases, such as the RiMEA guideline tests from Germany and the NIST verification tests, check that a simulator behaves sensibly in simple situations: walking speed in a corridor, flow through a door, reaction times. Finally, report uncertainty. Run the model with plausible ranges of parameters and with more than one model if you can, and show how much the answer changes. In this module you will calibrate a fundamental diagram by hand and by computer, and validate it on held-out data.",
+ "narration_ar": "لكل نموذج حشد معاملات: سرعات مرغوبة، وقوى تنافر، وأوزان لحقول الأرضية. والمعايرة هي اختيار قيمها بحيث يطابق النموذج القياسات. والتحقق من الصلاحية هو فحص النموذج المعاير على بيانات مختلفة لم يرها. ويأتي التحقق البرمجي أولاً وهو أبسط: هل يفعل البرنامج ما تقوله المعادلات؟ والمعايرة الجيدة تستخدم عدة مخرجات مقيسة في آن واحد، كالمخطط الأساسي والتدفق عبر عنق الزجاجة وأزمنة الرحلة، لأن النموذج قد يطابق أحدها ويخطئ الأخرى. واحتفظ بجزء من البيانات للتحقق من الصلاحية، وإلا فقد يكون النموذج قد حفظ البيانات فقط. وتتحقق حالات الاختبار القياسية، مثل اختبارات دليل RiMEA الألماني واختبارات المعهد الوطني للمعايير والتقنية الأمريكي، من أن المحاكي يتصرف بشكل معقول في مواقف بسيطة: سرعة المشي في ممر، والتدفق عبر باب، وأزمنة الاستجابة. وأخيراً، أبلغ عن عدم اليقين. شغّل النموذج بنطاقات معقولة من المعاملات وبأكثر من نموذج إن استطعت، وبيّن كم تتغير الإجابة. ستعاير في هذه الوحدة مخططاً أساسياً يدوياً وبالحاسوب، وتتحقق منه على بيانات محجوزة.",
+ "diagram": {
+  "title": "From code to a trustworthy model",
+  "caption": "Verify the code, calibrate on one data set, validate on another, then quantify uncertainty.",
+  "nodes": [
+   {
+    "id": "ver",
+    "label": "Verification",
+    "sub": "does the code match the equations?",
+    "x": 130,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "Unit tests and simple analytic cases: a single person walks at v₀, nobody passes through walls."
+   },
+   {
+    "id": "data",
+    "label": "Data",
+    "sub": "FD, bottleneck flow, travel times",
+    "x": 130,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Experiments (Jülich archive), field counts, video. Split into calibration and validation sets."
+   },
+   {
+    "id": "cal",
+    "label": "Calibration",
+    "sub": "fit parameters",
+    "x": 450,
+    "y": 210,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Choose parameters that minimise an error such as RMSE across several observables."
+   },
+   {
+    "id": "val",
+    "label": "Validation",
+    "sub": "test on unseen data",
+    "x": 760,
+    "y": 210,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Run the calibrated model on new scenarios or held-out data and compare."
+   },
+   {
+    "id": "std",
+    "label": "Standard tests",
+    "sub": "RiMEA, NIST",
+    "x": 450,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Benchmark scenarios that any evacuation simulator should pass."
+   },
+   {
+    "id": "unc",
+    "label": "Uncertainty",
+    "sub": "ranges, ensembles",
+    "x": 760,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Parameter ranges, several models, stochastic repeats; report spread and percentiles."
+   }
+  ],
+  "edges": [
+   {
+    "from": "ver",
+    "to": "cal",
+    "label": "first"
+   },
+   {
+    "from": "data",
+    "to": "cal",
+    "label": "calibration set"
+   },
+   {
+    "from": "cal",
+    "to": "val",
+    "label": ""
+   },
+   {
+    "from": "data",
+    "to": "val",
+    "label": "validation set"
+   },
+   {
+    "from": "std",
+    "to": "val",
+    "label": "also"
+   },
+   {
+    "from": "val",
+    "to": "unc",
+    "label": "then"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "ver"
+    ],
+    "text": "First verify: the code does what the equations say."
+   },
+   {
+    "focus": [
+     "data",
+     "cal"
+    ],
+    "text": "Then calibrate parameters on part of the data, using several observables.",
+    "edges": [
+     [
+      "data",
+      "cal"
+     ],
+     [
+      "ver",
+      "cal"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "val"
+    ],
+    "text": "Validate on data the model has not seen.",
+    "edges": [
+     [
+      "cal",
+      "val"
+     ],
+     [
+      "data",
+      "val"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "std"
+    ],
+    "text": "Pass standard test cases too.",
+    "edges": [
+     [
+      "std",
+      "val"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "unc"
+    ],
+    "text": "Finally, quantify and report uncertainty.",
+    "edges": [
+     [
+      "val",
+      "unc"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Three different checks",
+   "html": "<p><b>Verification</b>: is the code right? (A lone person walks at v<sub>0</sub>; people never pass through walls.) <b>Calibration</b>: which parameter values make the model match data? <b>Validation</b>: does the calibrated model predict data it was not fitted to? Mixing them up is a common error; a perfectly calibrated but unvalidated model may simply have memorised its data.</p>"
+  },
+  {
+   "heading": "Calibrating a fundamental diagram",
+   "html": "<p>Pick an error measure, often the root mean square error:</p><div class=\"eq\">RMSE = √( (1/n) Σ (v<sub>model</sub>(ρ<sub>i</sub>) − v<sub>i</sub>)² )</div><p>and search for parameters that minimise it. In the lab, 40 'measured' points from a slower crowd give v<sub>0</sub> = 1.08 m/s, γ = 1.60 and ρ<sub>max</sub> = 6.4 per m², with RMSE 0.055 m/s; on 20 held-out points the RMSE is 0.063. Weidmann's default curve gives 0.174: imported parameters can be badly wrong.</p>"
+  },
+  {
+   "heading": "Several observables and standard tests",
+   "html": "<p>A model fitted only to the fundamental diagram can still get bottleneck flows or travel times wrong (recall the CA in module 2.3). Calibrate on several observables. Then run <b>standard tests</b>: the German <b>RiMEA</b> guideline tests and the NIST verification and validation tests (Ronchi et al. 2013) check simple behaviours that every simulator should get right.</p>"
+  },
+  {
+   "heading": "Reporting uncertainty",
+   "html": "<p>Results depend on parameters, random seeds and model choice. Report: the parameter ranges tried, results from repeated stochastic runs (mean and spread), and, where possible, results from a second model. State what the model cannot represent (pushing, groups, information) and how that could bias the answer.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 1,
+   "kind": "try",
+   "title": "Calibrate by hand",
+   "html": "<p>In the explorer, get the RMSE below 0.06 m/s. Which slider matters most at high density?</p>"
+  },
+  {
+   "after": 3,
+   "kind": "trap",
+   "title": "Overfitting",
+   "html": "<p>With enough parameters, a model can fit any one data set. Always validate on data you did not use for fitting.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "calibrate",
+  "intro": "Fit Weidmann's curve to 'measured' speeds from a slower crowd.",
+  "predict": "Will Weidmann's default parameters fit these data well?"
+ },
+ "code": [
+  {
+   "title": "Least-squares calibration with validation",
+   "lang": "python",
+   "file": "labs/go2/m28_calibrate.py",
+   "runnable": true,
+   "explain": "Grid search over three parameters on 40 training points, then validation on 20 held-out points.",
+   "expected": "fitted v0 = 1.08 m/s, gamma = 1.60, rho_max = 6.4 per m2, training RMSE 0.055 m/s\nvalidation RMSE 0.063 m/s\nWeidmann's default curve on the same data: RMSE 0.174 m/s"
+  }
+ ],
+ "takeaways": [
+  "Verification checks code; calibration fits parameters; validation tests on unseen data.",
+  "Calibrate on several observables, not just one.",
+  "Standard tests (RiMEA, NIST) check basic simulator behaviour.",
+  "Report parameter, stochastic and model uncertainty."
+ ],
+ "quiz": [
+  {
+   "q": "Validation means…",
+   "options": [
+    "Checking the code",
+    "Fitting parameters",
+    "Testing the calibrated model on data it was not fitted to",
+    "Making nice plots"
+   ],
+   "answer": 2,
+   "explain": "Unseen data."
+  },
+  {
+   "q": "Why keep some data aside?",
+   "options": [
+    "To save time",
+    "To test for overfitting",
+    "Because of privacy",
+    "To make the RMSE smaller"
+   ],
+   "answer": 1,
+   "explain": "Held-out data reveal overfitting."
+  },
+  {
+   "q": "Weidmann's default curve on the lab's data gave an RMSE of about…",
+   "options": [
+    "0.055",
+    "0.063",
+    "0.174",
+    "1.34"
+   ],
+   "answer": 2,
+   "explain": "Imported parameters can be badly wrong."
+  },
+  {
+   "q": "RiMEA tests are…",
+   "options": [
+    "Fire tests",
+    "Standard scenarios that evacuation simulators should pass",
+    "Medical tests",
+    "Crowd counting methods"
+   ],
+   "answer": 1,
+   "explain": "A German guideline."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Verification",
+   "def": "Checking that a model's code correctly implements its equations."
+  },
+  {
+   "term": "Calibration",
+   "def": "Choosing parameter values so a model matches measured data."
+  },
+  {
+   "term": "Validation",
+   "def": "Testing a calibrated model against independent data."
+  },
+  {
+   "term": "RMSE",
+   "def": "Root mean square error, a measure of average misfit."
+  },
+  {
+   "term": "Overfitting",
+   "def": "Fitting noise in one data set so the model predicts new data poorly."
+  },
+  {
+   "term": "RiMEA",
+   "def": "German guideline with standard test cases for evacuation simulators."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Ronchi et al. (2013): The process of verification and validation of building fire evacuation models (NIST TN 1822)",
+   "url": "https://nvlpubs.nist.gov/nistpubs/TechnicalNotes/NIST.TN.1822.pdf",
+   "why": "Verification and validation tests."
+  },
+  {
+   "title": "RiMEA guideline",
+   "url": "https://rimea.de/",
+   "why": "German guideline for microscopic evacuation analysis, with test cases."
+  },
+  {
+   "title": "Jülich data archive",
+   "url": "https://ped.fz-juelich.de/da/",
+   "why": "Data for calibration and validation."
+  }
+ ]
+}

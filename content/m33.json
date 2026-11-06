@@ -1,0 +1,348 @@
+{
+ "id": "3.3",
+ "go": 3,
+ "slug": "the-hajj-as-a-crowd-system",
+ "title": "The Hajj as a crowd system",
+ "minutes": 50,
+ "tag": "Case study",
+ "systems": [
+  "manage",
+  "space"
+ ],
+ "summary": "Close to two million pilgrims follow one ritual sequence across Mina, Muzdalifah and Arafat. Infrastructure (the multi-level Jamarat), one-way routing and time-slot scheduling of groups are the main tools.",
+ "outcomes": [
+  "describe the Hajj ritual sequence as a set of synchronised crowd movements",
+  "explain how the Jamarat Bridge was redesigned after 2006",
+  "explain time-slot scheduling of pilgrim groups and its sensitivity to compliance",
+  "identify research questions for Hajj crowd management"
+ ],
+ "narration_en": "The Hajj is one of the largest regular mass gatherings in the world. In recent years close to two million pilgrims have performed it, moving together between Makkah and the holy sites of Mina, Arafat and Muzdalifah over a few days, following a ritual sequence fixed by religion. That synchronisation is what makes crowd management so demanding: everyone needs to be in the same places at nearly the same times. The stoning ritual at the Jamarat in Mina has been the most critical point. After the disaster of January two thousand and six, studied by Helbing and colleagues, the Jamarat Bridge was rebuilt as a multi-storey structure with separate levels, wide ramps and one-way flows, and the authorities introduced schedules that assign pilgrim groups to time slots. A metro line now links the holy sites. In this module you will see the Hajj as a crowd system, and explore how scheduling spreads demand over time, and how quickly its benefits vanish when groups ignore their slots.",
+ "narration_ar": "الحج من أكبر التجمعات الحاشدة المنتظمة في العالم. ففي السنوات الأخيرة أدّاه ما يقارب مليوني حاج، يتنقلون معاً بين مكة والمشاعر المقدسة في منى وعرفات ومزدلفة خلال أيام قليلة، وفق تسلسل شعائري يحدده الدين. وهذا التزامن هو ما يجعل إدارة الحشود شديدة الصعوبة: فالجميع يحتاج إلى أن يكون في الأماكن نفسها في الأوقات نفسها تقريباً. وكانت شعيرة رمي الجمرات في منى أكثر النقاط حرجاً. وبعد كارثة يناير ألفين وستة، التي درسها هيلبنغ وزملاؤه، أُعيد بناء جسر الجمرات منشأةً متعددة الطوابق ذات مستويات منفصلة ومنحدرات عريضة وتدفقات في اتجاه واحد، وأدخلت السلطات جداول تخصص لمجموعات الحجاج فترات زمنية. ويربط خط مترو الآن بين المشاعر. سترى في هذه الوحدة الحج نظاماً للحشود، وتستكشف كيف يوزّع الجدولة الطلب عبر الزمن، وكم تتلاشى فوائدها بسرعة عندما تتجاهل المجموعات فتراتها.",
+ "diagram": {
+  "title": "The Hajj as a crowd system",
+  "caption": "A fixed ritual sequence synchronises demand; infrastructure, routing and scheduling spread and separate it.",
+  "nodes": [
+   {
+    "id": "rit",
+    "label": "Ritual sequence",
+    "sub": "fixed days and places",
+    "x": 130,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Makkah, Mina, Arafat, Muzdalifah, Jamarat, in an order and on days set by the rites. Demand is synchronised."
+   },
+   {
+    "id": "grp",
+    "label": "Pilgrim groups",
+    "sub": "by country and company",
+    "x": 130,
+    "y": 270,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Pilgrims travel in organised groups with leaders, which makes scheduling possible."
+   },
+   {
+    "id": "inf",
+    "label": "Infrastructure",
+    "sub": "multi-level Jamarat, metro",
+    "x": 460,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "After 2006 the Jamarat Bridge was rebuilt with several levels, wide ramps and one-way flows; a metro line links the holy sites."
+   },
+   {
+    "id": "rt",
+    "label": "Routing",
+    "sub": "one-way, separated streams",
+    "x": 460,
+    "y": 270,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "Separate routes to and from the Jamarat, one-way systems, and avoidance of crossing and opposing flows."
+   },
+   {
+    "id": "sch",
+    "label": "Scheduling",
+    "sub": "time slots per group",
+    "x": 460,
+    "y": 440,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Groups are assigned time slots for movements such as the stoning ritual, spreading demand over the day."
+   },
+   {
+    "id": "mon",
+    "label": "Monitoring",
+    "sub": "CCTV, control rooms",
+    "x": 780,
+    "y": 270,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Control rooms watch density and flows and can adjust routes and release times."
+   },
+   {
+    "id": "risk",
+    "label": "Residual risks",
+    "sub": "non-compliance, heat",
+    "x": 780,
+    "y": 440,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Groups leaving outside their slot, unregistered pilgrims, heat and health emergencies."
+   }
+  ],
+  "edges": [
+   {
+    "from": "rit",
+    "to": "grp",
+    "label": ""
+   },
+   {
+    "from": "grp",
+    "to": "sch",
+    "label": "assigned"
+   },
+   {
+    "from": "inf",
+    "to": "rt",
+    "label": "enables"
+   },
+   {
+    "from": "sch",
+    "to": "rt",
+    "label": "spreads load"
+   },
+   {
+    "from": "rt",
+    "to": "mon",
+    "label": ""
+   },
+   {
+    "from": "mon",
+    "to": "sch",
+    "label": "adjusts",
+    "sys": "manage"
+   },
+   {
+    "from": "risk",
+    "to": "sch",
+    "label": "undermines"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "rit",
+     "grp"
+    ],
+    "text": "A fixed ritual sequence means everyone needs the same places at the same times; pilgrims move in organised groups.",
+    "edges": [
+     [
+      "rit",
+      "grp"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "inf",
+     "rt"
+    ],
+    "text": "Infrastructure and routing separate the streams: the multi-level Jamarat and one-way routes.",
+    "edges": [
+     [
+      "inf",
+      "rt"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "sch"
+    ],
+    "text": "Scheduling assigns groups to time slots to spread demand.",
+    "edges": [
+     [
+      "grp",
+      "sch"
+     ],
+     [
+      "sch",
+      "rt"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "mon"
+    ],
+    "text": "Control rooms monitor and adjust.",
+    "edges": [
+     [
+      "rt",
+      "mon"
+     ],
+     [
+      "mon",
+      "sch"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "risk"
+    ],
+    "text": "Residual risks: groups ignoring slots, unregistered pilgrims, heat.",
+    "edges": [
+     [
+      "risk",
+      "sch"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "A synchronised crowd",
+   "html": "<p>The rites take place on specific days at specific places, so demand is <b>synchronised</b> rather than spread out as at a city festival. The movement from Arafat to Muzdalifah after sunset on the day of Arafat, and the stoning ritual at the Jamarat in the following days, concentrate very large flows on a few routes.</p>"
+  },
+  {
+   "heading": "Redesigning the Jamarat",
+   "html": "<p>Helbing, Johansson and Al-Abideen (2007) analysed video of the old Jamarat Bridge entrance before the January 2006 disaster and identified stop-and-go waves and crowd turbulence (module 1.7). Their recommendations fed into the redevelopment: the new Jamarat is a <b>multi-storey structure</b> with several levels, wide access ramps and <b>one-way flows</b>, so that streams to and from the pillars do not meet. Johansson et al. (2008) describe the measures used during the first Hajj after the disaster, which passed without a major incident at the bridge.</p>"
+  },
+  {
+   "heading": "Scheduling groups",
+   "html": "<p>Because pilgrims travel in organised groups, the authorities can assign <b>time slots</b> for movements such as the stoning ritual. If 450,000 pilgrims use a route that carries 60,000 people per hour (toy numbers), six evenly spread slots give 75,000 per slot: still too many in one hour, so slots must be split further or routes added. The lab's greedy schedule of 60 groups into 12 slots keeps the peak below 47,000 per hour, but if 12 groups arrive in the first slot instead of their own, the peak jumps to about 166,000.</p>"
+  },
+  {
+   "heading": "Open research questions",
+   "html": "<p>How robust are schedules to non-compliance and delays? How should real-time monitoring adjust release times? How do heat and health interact with crowd density and walking speed for older pilgrims? How can data from cameras and phones be used while protecting privacy? These are live questions for Hajj research, and transfer to other mass gatherings.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 2,
+   "kind": "try",
+   "title": "Explore it",
+   "html": "<p>In the explorer, set 6 slots and 85% compliance, then 12 slots. How much does each change the largest queue?</p>"
+  },
+  {
+   "after": 1,
+   "kind": "research",
+   "title": "From data to design",
+   "html": "<p>The Jamarat redesign is a rare example of video-based crowd research feeding directly into infrastructure and operations.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "tafweej",
+  "intro": "Schedule pilgrims into time slots on a route that carries at most 60,000 people per hour (toy number).",
+  "predict": "Which matters more for the peak: doubling the number of slots, or raising compliance from 70% to 95%?"
+ },
+ "code": [
+  {
+   "title": "Scheduling groups into slots",
+   "lang": "python",
+   "file": "labs/go3/m33_schedule.py",
+   "runnable": true,
+   "explain": "Assigns 60 groups to 12 hourly slots, largest first into the least-loaded slot, then tests what happens if 12 groups come early.",
+   "expected": "peak 46,538 per hour vs capacity 60,000: OK\nwith 12 groups arriving in slot 0: peak 165,843 per hour (over capacity)"
+  }
+ ],
+ "takeaways": [
+  "Hajj demand is synchronised by the ritual sequence and concentrated on a few routes.",
+  "After 2006 the Jamarat was rebuilt with several levels, wide ramps and one-way flows.",
+  "Time-slot scheduling of groups spreads demand, but its benefit depends on compliance.",
+  "Open questions: robustness, real-time adjustment, heat and age, and privacy."
+ ],
+ "quiz": [
+  {
+   "q": "Why is Hajj crowd management especially demanding?",
+   "options": [
+    "The site is small",
+    "The ritual sequence synchronises demand at the same places and times",
+    "Pilgrims walk fast",
+    "There is no infrastructure"
+   ],
+   "answer": 1,
+   "explain": "Synchronisation concentrates flows."
+  },
+  {
+   "q": "A key design principle of the rebuilt Jamarat is…",
+   "options": [
+    "One entrance for all",
+    "Several levels and one-way flows",
+    "Narrow ramps",
+    "No schedules"
+   ],
+   "answer": 1,
+   "explain": "Streams do not meet."
+  },
+  {
+   "q": "Time-slot scheduling relies most on…",
+   "options": [
+    "Hot weather",
+    "Groups keeping to their slots",
+    "Cameras",
+    "Ticket prices"
+   ],
+   "answer": 1,
+   "explain": "Compliance is everything."
+  },
+  {
+   "q": "In the lab, 12 of 60 groups arriving early raised the peak to about…",
+   "options": [
+    "47,000 per hour",
+    "60,000 per hour",
+    "166,000 per hour",
+    "10,000 per hour"
+   ],
+   "answer": 2,
+   "explain": "More than triple."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Hajj",
+   "def": "The annual Islamic pilgrimage to Makkah and the holy sites of Mina, Arafat and Muzdalifah."
+  },
+  {
+   "term": "Jamarat",
+   "def": "The pillars in Mina where pilgrims perform the stoning ritual, and the multi-level bridge built around them."
+  },
+  {
+   "term": "Time-slot scheduling",
+   "def": "Assigning groups to times for a movement to spread demand."
+  },
+  {
+   "term": "Compliance",
+   "def": "The share of groups that keep to their assigned slots or routes."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Helbing, Johansson and Al-Abideen (2007)",
+   "url": "https://doi.org/10.1103/PhysRevE.75.046109",
+   "why": "Video analysis of the 2006 Jamarat disaster."
+  },
+  {
+   "title": "Johansson et al. (2008): From crowd dynamics to crowd safety",
+   "url": "https://arxiv.org/abs/0810.4590",
+   "why": "Measures taken after 2006, by researchers and Saudi officials."
+  },
+  {
+   "title": "Memish et al. (2012): Lessons from the Hajj",
+   "url": "https://doi.org/10.1016/S1473-3099(11)70337-1",
+   "why": "Mass-gathering medicine and the Hajj."
+  }
+ ]
+}

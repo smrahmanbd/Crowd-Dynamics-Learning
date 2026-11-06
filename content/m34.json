@@ -1,0 +1,343 @@
+{
+ "id": "3.4",
+ "go": 3,
+ "slug": "data-and-sensing",
+ "title": "Data and sensing at mass gatherings",
+ "minutes": 45,
+ "tag": "Data",
+ "systems": [
+  "data",
+  "people"
+ ],
+ "summary": "Counting very large crowds combines area-and-density methods, computer vision on CCTV and drone images, and phone data. Every method has errors; quantify them, and protect privacy.",
+ "outcomes": [
+  "estimate a crowd's size with Jacobs' method and its uncertainty",
+  "explain how density-map neural networks count crowds in images",
+  "compare cameras, drones, phone data and counters",
+  "plan privacy safeguards for crowd data"
+ ],
+ "narration_en": "How many people are here, and how dense is it? For a mass gathering, these are hard questions. The oldest method is Herbert Jacobs': divide the area into zones, estimate the density of each, multiply and add. It is simple, but only as good as the densities you assume, and reported crowd sizes are often wildly exaggerated. Modern methods use computer vision. Neural networks trained on annotated images learn to produce a density map, a picture in which the brightness of each pixel is the expected number of heads there, so the total count is the sum of the map. The multi-column network of Zhang and colleagues and the ShanghaiTech dataset made this approach popular. Cameras need calibration for perspective, and very dense crowds, where heads overlap, remain hard. Drones give overhead views; phone data, from mobile networks or Wi-Fi, give coverage over large areas, as in analyses of Itaewon. All these methods have errors, so report intervals, not single numbers. And all of them raise privacy questions that must be answered before the data are collected.",
+ "narration_ar": "كم عدد الناس هنا، وما مدى الكثافة؟ في التجمعات الحاشدة هذه أسئلة صعبة. وأقدم طريقة هي طريقة هربرت جيكوبس: قسّم المساحة إلى مناطق، وقدّر كثافة كل منها، ثم اضرب واجمع. إنها بسيطة، لكنها لا تكون أفضل من الكثافات التي تفترضها، وكثيراً ما تكون أحجام الحشود المعلنة مبالغاً فيها بشدة. وتستخدم الطرق الحديثة الرؤية الحاسوبية. فالشبكات العصبية المدرّبة على صور مشروحة تتعلم إنتاج خريطة كثافة، أي صورة يكون فيها سطوع كل بكسل هو العدد المتوقع للرؤوس هناك، فيكون العدد الكلي مجموع الخريطة. وقد جعلت الشبكة متعددة الأعمدة لجانغ وزملائه ومجموعة بيانات شنغهاي تِك هذا النهج شائعاً. وتحتاج الكاميرات إلى معايرة للمنظور، وتبقى الحشود الكثيفة جداً، حيث تتداخل الرؤوس، صعبة. وتعطي الطائرات المسيّرة منظراً علوياً؛ وتعطي بيانات الهواتف، من شبكات الاتصال أو الواي فاي، تغطية لمساحات واسعة، كما في تحليلات إيتايوون. ولكل هذه الطرق أخطاء، فأبلغ عن فترات لا عن أرقام مفردة. وكلها تثير أسئلة خصوصية يجب الإجابة عنها قبل جمع البيانات.",
+ "diagram": {
+  "title": "Four ways to count a crowd",
+  "caption": "Area × density, computer vision, overhead imagery and phone data each give an estimate with its own errors; combine and calibrate them.",
+  "nodes": [
+   {
+    "id": "jac",
+    "label": "Jacobs' method",
+    "sub": "area × density per zone",
+    "x": 130,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Divide into zones, multiply area by assumed density, add. Simple; sensitive to the densities assumed."
+   },
+   {
+    "id": "cv",
+    "label": "Computer vision",
+    "sub": "density maps from CCTV",
+    "x": 130,
+    "y": 290,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Convolutional networks predict a density map; the count is its sum (Zhang et al. 2016, ShanghaiTech)."
+   },
+   {
+    "id": "uav",
+    "label": "Drones and overhead",
+    "sub": "near-orthographic views",
+    "x": 130,
+    "y": 450,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Overhead images reduce perspective and occlusion; need permits and safety rules."
+   },
+   {
+    "id": "ph",
+    "label": "Phone data",
+    "sub": "network, Wi-Fi, Bluetooth",
+    "x": 450,
+    "y": 450,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "Coverage of large areas over time; biased by phone ownership and settings; privacy-sensitive."
+   },
+   {
+    "id": "fuse",
+    "label": "Combine and calibrate",
+    "sub": "ground truth, intervals",
+    "x": 450,
+    "y": 210,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "Calibrate each source against manual counts, combine them, and report intervals."
+   },
+   {
+    "id": "use",
+    "label": "Use",
+    "sub": "density, flows, alerts",
+    "x": 780,
+    "y": 210,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Feed density and flow estimates to control rooms and models (module 3.5)."
+   },
+   {
+    "id": "priv",
+    "label": "Privacy",
+    "sub": "minimise, anonymise",
+    "x": 780,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Count without identifying; aggregate; store securely; follow the law and ethics approvals."
+   }
+  ],
+  "edges": [
+   {
+    "from": "jac",
+    "to": "fuse",
+    "label": ""
+   },
+   {
+    "from": "cv",
+    "to": "fuse",
+    "label": ""
+   },
+   {
+    "from": "uav",
+    "to": "fuse",
+    "label": ""
+   },
+   {
+    "from": "ph",
+    "to": "fuse",
+    "label": ""
+   },
+   {
+    "from": "fuse",
+    "to": "use",
+    "label": ""
+   },
+   {
+    "from": "priv",
+    "to": "use",
+    "label": "governs",
+    "sys": "people"
+   },
+   {
+    "from": "priv",
+    "to": "ph",
+    "label": "constrains",
+    "sys": "people"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "jac"
+    ],
+    "text": "The oldest method: zone areas times densities."
+   },
+   {
+    "focus": [
+     "cv",
+     "uav"
+    ],
+    "text": "Computer vision turns CCTV and drone images into density maps."
+   },
+   {
+    "focus": [
+     "ph"
+    ],
+    "text": "Phone data cover large areas over time, with biases."
+   },
+   {
+    "focus": [
+     "fuse"
+    ],
+    "text": "Calibrate each source and combine them, reporting intervals.",
+    "edges": [
+     [
+      "jac",
+      "fuse"
+     ],
+     [
+      "cv",
+      "fuse"
+     ],
+     [
+      "uav",
+      "fuse"
+     ],
+     [
+      "ph",
+      "fuse"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "use",
+     "priv"
+    ],
+    "text": "Use the estimates for monitoring, under strict privacy rules.",
+    "edges": [
+     [
+      "fuse",
+      "use"
+     ],
+     [
+      "priv",
+      "use"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Jacobs' method and its uncertainty",
+   "html": "<div class=\"eq\">N ≈ Σ<sub>zones</sub> area<sub>z</sub> × density<sub>z</sub></div><p>Example: 12,000 m² at 3 per m², 18,000 m² at 1.6 and 30,000 m² at 0.5 give about 79,800 people. If each density is uncertain (say ± 0.5, 0.3 and 0.15), a Monte Carlo gives a 90% interval of roughly 64,000 to 95,000. The largest share of the uncertainty comes from the zone with the largest area × uncertainty. Densities above about 4 per m² across whole zones are rare, so very high reported totals deserve scepticism.</p>"
+  },
+  {
+   "heading": "Density maps from images",
+   "html": "<p>Instead of detecting each person, a neural network learns to output a <b>density map</b>: each pixel's value is the expected number of heads there, so the sum is the count. Zhang et al. (2016) introduced a multi-column network and the ShanghaiTech dataset; many later models followed. Challenges: <b>perspective</b> (people far away are tiny), <b>occlusion</b> in very dense crowds, lighting, and transfer to new cameras and cultures (clothing such as the white ihram garments of pilgrims differs from training data).</p>"
+  },
+  {
+   "heading": "Overhead views and phone data",
+   "html": "<p>Drones and high cameras give near-overhead views, ideal for density and trajectory extraction, but need permits and safety rules over crowds. Phone data (mobile network records, Wi-Fi and Bluetooth probes) estimate presence and movement over large areas; the Itaewon analysis used mobile network data to estimate visitor numbers. They are biased by phone ownership and settings and are highly privacy-sensitive.</p>"
+  },
+  {
+   "heading": "Privacy by design",
+   "html": "<p>Crowd data are personal data. Use <b>data minimisation</b> (count, do not identify), <b>aggregation</b> (density per cell, not tracks of named people), <b>short retention</b>, secure storage and clear purposes, and follow the applicable law and ethics approvals. Publish methods and error estimates, not raw footage.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 0,
+   "kind": "try",
+   "title": "Explore it",
+   "html": "<p>In the explorer, which zone's density guess changes your error most? Why?</p>"
+  },
+  {
+   "after": 1,
+   "kind": "trap",
+   "title": "Training data",
+   "html": "<p>A counting model trained on street scenes may undercount dense crowds in white clothing under strong sun. Validate on your own site.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "jacobs",
+  "intro": "Estimate a crowd with Jacobs' method. The true size is shown so you can see your error; in reality it is unknown.",
+  "predict": "Which zone will dominate your error: the dense small one or the light large one?"
+ },
+ "code": [
+  {
+   "title": "Jacobs' method with uncertainty",
+   "lang": "python",
+   "file": "labs/go3/m34_counting.py",
+   "runnable": true,
+   "explain": "Monte Carlo over uncertain zone densities gives an interval, not just a number.",
+   "expected": "point estimate: 79,800 people\n90% interval: 64,481 to 94,686 (median 79,713)"
+  }
+ ],
+ "takeaways": [
+  "Jacobs' method: area × density per zone; report an interval.",
+  "Neural networks count crowds by predicting density maps; perspective and occlusion are hard.",
+  "Drones and phone data add coverage with their own biases.",
+  "Crowd data are personal data: minimise, aggregate and protect."
+ ],
+ "quiz": [
+  {
+   "q": "In a density-map approach, the total count is…",
+   "options": [
+    "The number of detected faces",
+    "The sum of the density map",
+    "The image size",
+    "The brightest pixel"
+   ],
+   "answer": 1,
+   "explain": "Each pixel holds expected heads."
+  },
+  {
+   "q": "Why are very high reported crowd sizes often doubtful?",
+   "options": [
+    "Cameras lie",
+    "They imply densities above about 4 per m² across whole areas, which are rare",
+    "Crowds never exceed 1,000",
+    "Phones overcount"
+   ],
+   "answer": 1,
+   "explain": "Check the implied density."
+  },
+  {
+   "q": "A main difficulty for crowd counting in very dense crowds is…",
+   "options": [
+    "Colour",
+    "Occlusion: heads hidden behind others",
+    "Sound",
+    "Wind"
+   ],
+   "answer": 1,
+   "explain": "People overlap."
+  },
+  {
+   "q": "Which is a privacy-by-design measure?",
+   "options": [
+    "Storing all faces",
+    "Counting without identifying individuals",
+    "Publishing raw footage",
+    "Keeping data forever"
+   ],
+   "answer": 1,
+   "explain": "Minimise and aggregate."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Jacobs' method",
+   "def": "Estimating crowd size by multiplying zone areas by densities and adding."
+  },
+  {
+   "term": "Density map",
+   "def": "An image whose pixel values give the expected number of people there."
+  },
+  {
+   "term": "Occlusion",
+   "def": "People hidden behind others in an image."
+  },
+  {
+   "term": "Perspective correction",
+   "def": "Adjusting for people appearing smaller further from the camera."
+  },
+  {
+   "term": "Mobile network data",
+   "def": "Aggregated records from phone networks used to estimate presence and movement."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Zhang et al. (2016): Single-image crowd counting via multi-column CNN",
+   "url": "https://openaccess.thecvf.com/content_cvpr_2016/html/Zhang_Single-Image_Crowd_Counting_CVPR_2016_paper.html",
+   "why": "Density maps and the ShanghaiTech dataset."
+  },
+  {
+   "title": "Crowd counting (overview)",
+   "url": "https://en.wikipedia.org/wiki/Crowd_counting",
+   "why": "Jacobs' method and other techniques, with references."
+  },
+  {
+   "title": "Itaewon analysis using mobile data (PLOS ONE 2024)",
+   "url": "https://doi.org/10.1371/journal.pone.0306764",
+   "why": "Phone-network data to estimate visitor numbers."
+  }
+ ]
+}

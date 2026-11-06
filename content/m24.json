@@ -1,0 +1,380 @@
+{
+ "id": "2.4",
+ "go": 2,
+ "slug": "social-force-model",
+ "title": "The social force model",
+ "minutes": 50,
+ "tag": "Model",
+ "systems": [
+  "flow",
+  "people"
+ ],
+ "summary": "Each person is pulled towards a goal and pushed by neighbours and walls, like particles on springs. The model reproduces lanes, clogging at doors and 'faster is slower', but needs careful parameters.",
+ "outcomes": [
+  "write the social force equation and name each term",
+  "explain the roles of desired speed, relaxation time and repulsion",
+  "reproduce clogging and 'faster is slower' in a simulation",
+  "list the model's strengths and weaknesses"
+ ],
+ "narration_en": "In nineteen ninety-five Dirk Helbing and Péter Molnár described pedestrians as if they were particles moved by forces. Not physical forces, at first, but social ones: each person feels a pull towards their goal at their desired speed, and a push away from other people and walls that grows quickly as they get closer. The pull works like a spring: if you are slower than you want to be, you accelerate, over a relaxation time of about half a second. In two thousand, Helbing, Farkas and Vicsek added physical forces for when bodies actually touch: a body force that resists squeezing, and sliding friction. With these, the model shows something surprising. When people try to leave a room very fast, they press into the door, arches of bodies form and block it, and the room empties more slowly. Faster is slower. The social force model reproduces lanes, oscillations at doors and clogging. Its weaknesses are many parameters, sensitivity to time steps, and people who can overlap or wobble if parameters are poorly chosen.",
+ "narration_ar": "في عام ألف وتسعمئة وخمسة وتسعين وصف ديرك هيلبنغ وبيتر مولنار المشاة كأنهم جسيمات تحرّكها قوى. ليست قوى فيزيائية في البداية، بل قوى اجتماعية: يشعر كل شخص بجذب نحو هدفه بسرعته المرغوبة، وبدفع بعيداً عن الآخرين والجدران يشتد بسرعة كلما اقترب منهم. ويعمل الجذب كالنابض: إذا كنت أبطأ مما تريد فإنك تتسارع خلال زمن استرخاء يقارب نصف ثانية. وفي عام ألفين أضاف هيلبنغ وفاركاش وفيتشيك قوى فيزيائية لحالة تلامس الأجساد فعلاً: قوة جسدية تقاوم الانضغاط، واحتكاكاً انزلاقياً. وبهذه الإضافات يُظهر النموذج أمراً مفاجئاً. فعندما يحاول الناس مغادرة غرفة بسرعة كبيرة، يضغطون نحو الباب، فتتشكل أقواس من الأجساد تسدّه، فتفرغ الغرفة أبطأ. الأسرع أبطأ. ويعيد نموذج القوة الاجتماعية إنتاج المسارات والتذبذب عند الأبواب والانسداد. ونقاط ضعفه كثرة المعاملات، والحساسية للخطوة الزمنية، وأشخاص قد يتداخلون أو يتمايلون إذا اختيرت المعاملات اختياراً سيئاً.",
+ "diagram": {
+  "title": "Forces on one person",
+  "caption": "Driving force towards the goal, repulsion from others and walls, and contact forces when bodies touch.",
+  "nodes": [
+   {
+    "id": "goal",
+    "label": "Goal",
+    "sub": "door or target",
+    "x": 770,
+    "y": 120,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "The direction e towards the next target, for example the nearest point of the door."
+   },
+   {
+    "id": "drv",
+    "label": "Driving force",
+    "sub": "m(v₀e − v)/τ",
+    "x": 450,
+    "y": 120,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Relaxes the velocity towards the desired velocity v₀e over the relaxation time τ (about 0.5 s)."
+   },
+   {
+    "id": "soc",
+    "label": "Social repulsion",
+    "sub": "A·exp((r−d)/B)",
+    "x": 130,
+    "y": 220,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Grows exponentially as people approach: A sets strength, B the range (Helbing, Farkas and Vicsek 2000 used A = 2,000 N, B = 0.08 m)."
+   },
+   {
+    "id": "body",
+    "label": "Contact forces",
+    "sub": "body force and friction",
+    "x": 130,
+    "y": 400,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "When bodies overlap: body force k·g (k = 1.2×10⁵ kg/s²) and sliding friction κ·g·Δv (κ = 2.4×10⁵ kg/(m·s))."
+   },
+   {
+    "id": "wall",
+    "label": "Walls",
+    "sub": "same forms",
+    "x": 450,
+    "y": 450,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "Repulsion and contact forces from walls and obstacles."
+   },
+   {
+    "id": "acc",
+    "label": "Acceleration",
+    "sub": "m dv/dt = ΣF",
+    "x": 450,
+    "y": 290,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "Sum the forces, divide by mass, integrate with a small time step to update velocity and position."
+   },
+   {
+    "id": "emg",
+    "label": "Emergent effects",
+    "sub": "lanes, clogging, faster-is-slower",
+    "x": 770,
+    "y": 380,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Lanes in counterflow, oscillations at doors, arches and clogging at exits, faster-is-slower."
+   }
+  ],
+  "edges": [
+   {
+    "from": "goal",
+    "to": "drv",
+    "label": "direction"
+   },
+   {
+    "from": "drv",
+    "to": "acc",
+    "label": ""
+   },
+   {
+    "from": "soc",
+    "to": "acc",
+    "label": ""
+   },
+   {
+    "from": "body",
+    "to": "acc",
+    "label": ""
+   },
+   {
+    "from": "wall",
+    "to": "acc",
+    "label": ""
+   },
+   {
+    "from": "acc",
+    "to": "emg",
+    "label": "many people"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "goal",
+     "drv"
+    ],
+    "text": "A driving force pulls each person towards the goal at their desired speed.",
+    "edges": [
+     [
+      "goal",
+      "drv"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "soc"
+    ],
+    "text": "Other people push back, more strongly the closer they are.",
+    "edges": [
+     [
+      "soc",
+      "acc"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "body",
+     "wall"
+    ],
+    "text": "When bodies touch, contact forces and friction act; walls push too.",
+    "edges": [
+     [
+      "body",
+      "acc"
+     ],
+     [
+      "wall",
+      "acc"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "acc"
+    ],
+    "text": "Add the forces up and Newton's law moves everyone a small step.",
+    "edges": [
+     [
+      "drv",
+      "acc"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "emg"
+    ],
+    "text": "With many people, lanes, clogging and faster-is-slower emerge.",
+    "edges": [
+     [
+      "acc",
+      "emg"
+     ]
+    ]
+   }
+  ]
+ },
+ "components": {
+  "caption": "The main parameters and typical values (Helbing, Farkas and Vicsek 2000).",
+  "rows": [
+   {
+    "name": "Desired speed v₀",
+    "purpose": "Speed people want: about 0.6 m/s (relaxed) to 1.5 (normal) or more (hurried)",
+    "analogy": "The cruise control setting"
+   },
+   {
+    "name": "Relaxation time τ",
+    "purpose": "How quickly people adapt their velocity: about 0.5 s",
+    "analogy": "How fast you react on a bike"
+   },
+   {
+    "name": "A and B",
+    "purpose": "Strength (2,000 N) and range (0.08 m) of social repulsion",
+    "analogy": "Personal-space bubble"
+   },
+   {
+    "name": "k and κ",
+    "purpose": "Body force and friction coefficients when bodies touch",
+    "analogy": "Stiffness and grip of a rubber ball"
+   },
+   {
+    "name": "Radius r",
+    "purpose": "Body radius, about 0.25 to 0.35 m",
+    "analogy": "Shoulder half-width"
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "The equation",
+   "html": "<p>For person i with mass m, velocity v and desired velocity v<sub>0</sub>e:</p><div class=\"eq\">m dv<sub>i</sub>/dt = m (v<sub>0</sub>e<sub>i</sub> − v<sub>i</sub>) ÷ τ + Σ<sub>j</sub> f<sub>ij</sub> + Σ<sub>W</sub> f<sub>iW</sub></div><p>The first term pulls the person to their desired velocity over a relaxation time τ. The others are interaction forces with other people j and walls W (Helbing and Molnár 1995).</p>"
+  },
+  {
+   "heading": "Repulsion and contact",
+   "html": "<p>Helbing, Farkas and Vicsek (2000) used</p><div class=\"eq\">f<sub>ij</sub> = [A exp((r<sub>ij</sub> − d<sub>ij</sub>) ÷ B) + k g(r<sub>ij</sub> − d<sub>ij</sub>)] n<sub>ij</sub> + κ g(r<sub>ij</sub> − d<sub>ij</sub>) Δv<sup>t</sup><sub>ji</sub> t<sub>ij</sub></div><p>where r<sub>ij</sub> is the sum of radii, d<sub>ij</sub> the distance, n and t the normal and tangent, and g(x) = x when bodies overlap, else 0. The first part is social repulsion; the k and κ terms act only on contact.</p>"
+  },
+  {
+   "heading": "Faster is slower",
+   "html": "<p>In the lab with 100 people and a 0.8 m door, raising the desired speed from 1 to 2 m/s halves the evacuation time (85 s to 43 s), 4 m/s helps a little (40 s), but 6 m/s is <b>slower</b> (52 s): people press into the door, form arches and block each other. Helbing, Farkas and Vicsek (2000) called this <b>faster-is-slower</b>. Experiments with pushing crowds and animals show related effects, though the details remain debated.</p>"
+  },
+  {
+   "heading": "Strengths and weaknesses",
+   "html": "<p><b>Strengths:</b> continuous space, intuitive forces, reproduces lanes, oscillations and clogging; widely implemented. <b>Weaknesses:</b> many parameters, stiff equations needing small time steps (about 0.005 s with contact forces), people who can overlap or oscillate, and speeds that do not drop to zero at high density without extra care. Many variants exist; always state which you use and how you calibrated it.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 2,
+   "kind": "try",
+   "title": "Explore it",
+   "html": "<p>Run the explorer with v₀ = 1.0 m/s, then 3 m/s. Watch the door: do arches form and break?</p>"
+  },
+  {
+   "after": 3,
+   "kind": "trap",
+   "title": "Time step",
+   "html": "<p>With contact forces, a time step of 0.05 s can let people pass through each other. The lab uses 0.005 s.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "sfm",
+  "intro": "A 12 m × 8 m room with a door in the right wall. Press Run; change the desired speed and the repulsion strength.",
+  "predict": "Will doubling the desired speed from 1.5 to 3 m/s halve the evacuation time?"
+ },
+ "code": [
+  {
+   "title": "Social force on one pair",
+   "lang": "python",
+   "runnable": true,
+   "source": "import math\nA, B, k, kappa = 2000.0, 0.08, 1.2e5, 2.4e5\nr = 0.30 + 0.30                      # sum of the two radii (m)\nfor d in [1.0, 0.7, 0.6, 0.58, 0.55]:\n    g = max(0.0, r - d)               # overlap\n    social = A * math.exp((r - d) / B)\n    body = k * g\n    print(f'distance {d:.2f} m: social {social:8.0f} N, body {body:7.0f} N')",
+   "explain": "Repulsion between two people at different distances. Social repulsion grows exponentially; the body force switches on only when they overlap.",
+   "expected": "distance 1.00 m: social       13 N, body       0 N\n...\ndistance 0.55 m: social     3736 N, body    6000 N"
+  },
+  {
+   "title": "Room evacuation with the social force model",
+   "lang": "python",
+   "file": "labs/go2/m24_sfm.py",
+   "runnable": false,
+   "explain": "NumPy simulation of 100 people and a 0.8 m door for four desired speeds. Takes a few minutes; download and run it on your machine.",
+   "expected": "v0 = 1.0 m/s: 100 out, last after 85.47 s\nv0 = 2.0 m/s: 100 out, last after 43.155 s\nv0 = 4.0 m/s: 100 out, last after 40.47 s\nv0 = 6.0 m/s: 100 out, last after 52.21 s"
+  }
+ ],
+ "takeaways": [
+  "The social force model: driving force + repulsion from people and walls + contact forces.",
+  "Typical values: τ ≈ 0.5 s, A ≈ 2,000 N, B ≈ 0.08 m (Helbing et al. 2000).",
+  "It reproduces lanes, clogging and faster-is-slower.",
+  "It has many parameters and stiff equations: use small time steps and calibrate."
+ ],
+ "quiz": [
+  {
+   "q": "The driving force term is…",
+   "options": [
+    "m(v₀e − v)/τ",
+    "A exp(d/B)",
+    "k g",
+    "ρ × v"
+   ],
+   "answer": 0,
+   "explain": "It relaxes velocity towards the desired velocity."
+  },
+  {
+   "q": "What does τ (about 0.5 s) represent?",
+   "options": [
+    "Body radius",
+    "How quickly people adapt their velocity",
+    "Range of repulsion",
+    "Door width"
+   ],
+   "answer": 1,
+   "explain": "The relaxation time."
+  },
+  {
+   "q": "'Faster is slower' means…",
+   "options": [
+    "Slow walkers are faster",
+    "Pushing to leave faster can clog the exit and slow evacuation",
+    "Speed limits help",
+    "Fast music slows crowds"
+   ],
+   "answer": 1,
+   "explain": "Arches form at the door."
+  },
+  {
+   "q": "Why use a small time step with contact forces?",
+   "options": [
+    "To save computing time",
+    "The equations are stiff; large steps let people pass through each other",
+    "For nicer pictures",
+    "Because people walk slowly"
+   ],
+   "answer": 1,
+   "explain": "Stiff contact forces need small steps."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Social force model",
+   "def": "A microscopic model where people move under a driving force and interaction forces (Helbing and Molnár 1995)."
+  },
+  {
+   "term": "Desired speed",
+   "def": "The speed a person wants to walk at (v₀)."
+  },
+  {
+   "term": "Relaxation time",
+   "def": "The time over which a person adapts their velocity (τ)."
+  },
+  {
+   "term": "Faster-is-slower",
+   "def": "The effect that higher desired speeds can slow an evacuation through clogging."
+  },
+  {
+   "term": "Arching",
+   "def": "A blocking arch of people that forms in front of a narrow exit."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Helbing and Molnár (1995): Social force model for pedestrian dynamics",
+   "url": "https://doi.org/10.1103/PhysRevE.51.4282",
+   "why": "The original model."
+  },
+  {
+   "title": "Helbing, Farkas and Vicsek (2000): Simulating dynamical features of escape panic",
+   "url": "https://doi.org/10.1038/35035023",
+   "why": "Contact forces and faster-is-slower."
+  },
+  {
+   "title": "JuPedSim documentation",
+   "url": "https://www.jupedsim.org/",
+   "why": "Open-source simulator with force-based and velocity-based models."
+  }
+ ]
+}

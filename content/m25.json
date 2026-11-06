@@ -1,0 +1,363 @@
+{
+ "id": "2.5",
+ "go": 2,
+ "slug": "the-model-family",
+ "title": "The crowd model family: choosing the right tool",
+ "minutes": 40,
+ "tag": "Compare",
+ "systems": [
+  "flow",
+  "people"
+ ],
+ "summary": "Hydraulic calculations, macroscopic, cellular, force-based, velocity-based, step-based and heuristic models each answer different questions. Choose by the question, the scale and the data you have.",
+ "outcomes": [
+  "place each model family on a scale from hand calculation to cognitive model",
+  "match a model family to a research or design question",
+  "explain velocity-based and optimal-steps models",
+  "know which open simulators implement which models"
+ ],
+ "narration_en": "You now know three ways to model a crowd: as a fluid, as people hopping on a grid, and as particles pushed by forces. There are more. Velocity-based models choose a speed and direction directly, for example the collision-free speed model, where each person walks as fast as possible without colliding within a short time horizon. The optimal steps model, developed by Seitz and Köster, moves people in discrete steps, choosing the best point on a circle around them. Cognitive heuristic models, from Moussaïd, Helbing and Theraulaz, assume people look ahead and head where they can walk furthest towards their goal without a collision. At the other end of the scale, the hydraulic method is a hand calculation with flow rates and walking speeds, still used in building codes. No model is best for everything. The question decides: sizing an exit, forecasting a city-wide event, studying pushing at a door, or exploring how individual decisions shape a crowd. Open simulators such as JuPedSim and Vadere implement several of these models, so you can compare them on the same scenario.",
+ "narration_ar": "تعرف الآن ثلاث طرق لنمذجة الحشد: كسائل، وكأشخاص يقفزون على شبكة، وكجسيمات تدفعها قوى. وهناك المزيد. فالنماذج القائمة على السرعة تختار السرعة والاتجاه مباشرة، كنموذج السرعة الخالية من التصادم، حيث يمشي كل شخص بأقصى سرعة ممكنة دون أن يصطدم خلال أفق زمني قصير. ونموذج الخطوات المثلى، الذي طوّره زايتس وكوستر، يحرّك الناس بخطوات منفصلة، مختاراً أفضل نقطة على دائرة حولهم. ونماذج الاستدلال المعرفي، من موسعيد وهيلبنغ وثيرولاز، تفترض أن الناس ينظرون أمامهم ويتجهون حيث يستطيعون المشي أبعد مسافة نحو هدفهم دون تصادم. وفي الطرف الآخر من السلم، الطريقة الهيدروليكية حساب يدوي بمعدلات التدفق وسرعات المشي، وما زالت تُستخدم في أنظمة البناء. لا يوجد نموذج هو الأفضل لكل شيء. السؤال هو الذي يقرر: تحديد عرض مخرج، أو التنبؤ بفعالية على مستوى مدينة، أو دراسة التدافع عند باب، أو استكشاف كيف تشكّل القرارات الفردية الحشد. وتطبّق محاكيات مفتوحة مثل JuPedSim وVadere عدة نماذج من هذه، فتستطيع مقارنتها على السيناريو نفسه.",
+ "diagram": {
+  "title": "From hand calculation to cognition",
+  "caption": "Model families ordered by detail. More detail means more realism in some respects, more parameters and more computing.",
+  "nodes": [
+   {
+    "id": "hyd",
+    "label": "Hydraulic",
+    "sub": "flow rates by hand",
+    "x": 110,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Egress time from flow rates and walking speeds (SFPE Handbook, PD 7974-6, Green Guide). Transparent, fast, no behaviour."
+   },
+   {
+    "id": "mac",
+    "label": "Macroscopic",
+    "sub": "density fields",
+    "x": 330,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Continuum or cell-transmission models (module 2.2). Large networks, real-time forecasts."
+   },
+   {
+    "id": "ca",
+    "label": "Cellular automata",
+    "sub": "grid hops",
+    "x": 550,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "Floor-field CAs (module 2.3). Fast, discrete, need calibration."
+   },
+   {
+    "id": "sfm",
+    "label": "Force-based",
+    "sub": "social force",
+    "x": 770,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Social force and variants (module 2.4). Contact, clogging, pushing."
+   },
+   {
+    "id": "vel",
+    "label": "Velocity-based",
+    "sub": "choose a safe speed",
+    "x": 220,
+    "y": 320,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Speed and direction chosen directly to avoid collisions, e.g. the collision-free speed model (Tordeux, Chraibi and Seyfried 2016) or ORCA."
+   },
+   {
+    "id": "osm",
+    "label": "Optimal steps",
+    "sub": "best step on a circle",
+    "x": 450,
+    "y": 320,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Discrete steps to the best point on a circle (Seitz and Köster 2012), implemented in Vadere."
+   },
+   {
+    "id": "heu",
+    "label": "Cognitive heuristics",
+    "sub": "look, then go",
+    "x": 680,
+    "y": 320,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Visual heuristics: head for the direction with the longest free walk towards the goal; keep a time gap (Moussaïd, Helbing and Theraulaz 2011)."
+   },
+   {
+    "id": "q",
+    "label": "Your question",
+    "sub": "decides the choice",
+    "x": 450,
+    "y": 460,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Scale, phenomenon, data available, time and the need to explain results to decision makers."
+   }
+  ],
+  "edges": [
+   {
+    "from": "hyd",
+    "to": "mac",
+    "label": "more detail"
+   },
+   {
+    "from": "mac",
+    "to": "ca",
+    "label": ""
+   },
+   {
+    "from": "ca",
+    "to": "sfm",
+    "label": ""
+   },
+   {
+    "from": "q",
+    "to": "vel",
+    "label": ""
+   },
+   {
+    "from": "q",
+    "to": "osm",
+    "label": ""
+   },
+   {
+    "from": "q",
+    "to": "heu",
+    "label": ""
+   },
+   {
+    "from": "q",
+    "to": "hyd",
+    "label": "or simple",
+    "sys": "manage"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "hyd"
+    ],
+    "text": "At one end, a hand calculation with flow rates: transparent and quick."
+   },
+   {
+    "focus": [
+     "mac",
+     "ca",
+     "sfm"
+    ],
+    "text": "Then macroscopic fields, grid hops and forces: more detail, more parameters.",
+    "edges": [
+     [
+      "hyd",
+      "mac"
+     ],
+     [
+      "mac",
+      "ca"
+     ],
+     [
+      "ca",
+      "sfm"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "vel",
+     "osm"
+    ],
+    "text": "Velocity and step models choose speeds or steps directly to avoid collisions."
+   },
+   {
+    "focus": [
+     "heu"
+    ],
+    "text": "Cognitive heuristics model what people see and decide."
+   },
+   {
+    "focus": [
+     "q"
+    ],
+    "text": "Your question decides which family to use.",
+    "edges": [
+     [
+      "q",
+      "vel"
+     ],
+     [
+      "q",
+      "osm"
+     ],
+     [
+      "q",
+      "heu"
+     ],
+     [
+      "q",
+      "hyd"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Seven families",
+   "html": "<p>From simplest to most detailed: <b>hydraulic</b> calculations; <b>macroscopic</b> (continuum and cell-transmission) models; <b>cellular automata</b>; <b>force-based</b> models; <b>velocity-based</b> models; <b>optimal steps</b>; <b>cognitive heuristics</b>. The <a href=\"../models.html\">model atlas</a> has an animation, a simulator and a mind map for each.</p>"
+  },
+  {
+   "heading": "Velocity-based and step-based models",
+   "html": "<p>The <b>collision-free speed model</b> (Tordeux, Chraibi and Seyfried 2016) sets each person's speed to the largest value that avoids a collision within a time gap T:</p><div class=\"eq\">v = min( v<sub>0</sub>, max(0, (s − ℓ) ÷ T) )</div><p>where s is the distance to the person ahead and ℓ the body length. It reproduces the fundamental diagram with few parameters. The <b>optimal steps model</b> (Seitz and Köster 2012) moves people in steps to the best point on a circle, scoring distance to the goal and personal space.</p>"
+  },
+  {
+   "heading": "Cognitive heuristics",
+   "html": "<p>Moussaïd, Helbing and Theraulaz (2011) proposed two rules: <b>(1)</b> walk in the direction that gets you closest to your goal before you would collide with someone, scanning your field of vision; <b>(2)</b> walk at a speed that keeps a time gap τ to the first obstacle. Adding body contact forces, the same rules reproduce lanes, stop-and-go waves and turbulence at high density.</p>"
+  },
+  {
+   "heading": "Choosing by the question",
+   "html": "<p>Ask: what scale (a door, a building, a city)? Which phenomenon (capacity, queues, pushing, behaviour)? Which data can calibrate it? How will decision makers understand it? For a code check, a hydraulic calculation may be right; for a city festival network, a macroscopic or CA model; for pushing at a gate, a force-based model; for how information changes behaviour, a cognitive or agent-based model with route choice.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 3,
+   "kind": "try",
+   "title": "Use the explorer",
+   "html": "<p>Pick each question in the explorer and see how the ranking changes. Do you agree with it?</p>"
+  },
+  {
+   "after": 1,
+   "kind": "model",
+   "title": "In the atlas",
+   "html": "<p>The collision-free speed model runs on a ring in the <a href=\"../models.html\">model atlas</a>: add people and watch the fundamental diagram appear.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "modelcompare",
+  "intro": "Pick a question and see which model families suit it.",
+  "predict": "Which family would you choose to study pushing at a single stadium gate?"
+ },
+ "code": [
+  {
+   "title": "Collision-free speed model on a ring",
+   "lang": "python",
+   "runnable": true,
+   "source": "L, ell, v0 = 26.0, 0.3, 1.3              # ring length (m), body length (m), free speed\nfor T in [0.5, 1.0]:\n    for N in [5, 15, 30, 45, 60]:\n        s = L / N                               # equal spacing in the steady state\n        v = min(v0, max(0.0, (s - ell) / T))\n        print(f'T {T}: {N:2d} people, density {N/L:.2f} per m, speed {v:.2f} m/s, flow {N/L*v:.2f} per s')",
+   "explain": "Steady state of the collision-free speed model in single file. Flow rises, peaks and falls with density: a fundamental diagram from one rule.",
+   "expected": "T 0.5: 15 people, density 0.58 per m, speed 1.30 m/s, flow 0.75 per s\n...\nT 1.0: 60 people, density 2.31 per m, speed 0.13 m/s, flow 0.31 per s"
+  }
+ ],
+ "takeaways": [
+  "Seven model families run from hand calculations to cognitive heuristics.",
+  "Velocity-based models choose a collision-free speed directly; optimal steps moves people in discrete steps.",
+  "Cognitive heuristics model what people see and decide.",
+  "Choose by scale, phenomenon, available data and audience; open simulators let you compare."
+ ],
+ "quiz": [
+  {
+   "q": "In the collision-free speed model, speed is set by…",
+   "options": [
+    "Social forces",
+    "The gap ahead and a time gap T",
+    "A floor field",
+    "Random choice"
+   ],
+   "answer": 1,
+   "explain": "v = min(v₀, (s − ℓ)/T)."
+  },
+  {
+   "q": "Which family best suits pushing and clogging at a single gate?",
+   "options": [
+    "Hydraulic",
+    "Macroscopic",
+    "Force-based",
+    "Network flow"
+   ],
+   "answer": 2,
+   "explain": "Contact forces matter."
+  },
+  {
+   "q": "The optimal steps model moves people…",
+   "options": [
+    "Continuously by forces",
+    "In discrete steps to the best point on a circle",
+    "Between grid cells only",
+    "By density gradients"
+   ],
+   "answer": 1,
+   "explain": "Seitz and Köster 2012."
+  },
+  {
+   "q": "Which is a strength of hydraulic calculations?",
+   "options": [
+    "Shows individual behaviour",
+    "Transparent and fast",
+    "Reproduces turbulence",
+    "Needs no flow rates"
+   ],
+   "answer": 1,
+   "explain": "Simple and checkable by hand."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Hydraulic method",
+   "def": "Egress calculation using flow rates and speeds, without individual behaviour."
+  },
+  {
+   "term": "Velocity-based model",
+   "def": "A model in which agents choose their velocity directly, usually to avoid collisions."
+  },
+  {
+   "term": "Collision-free speed model",
+   "def": "Speed = min(v₀, (gap − body length)/T) (Tordeux, Chraibi and Seyfried 2016)."
+  },
+  {
+   "term": "Optimal steps model",
+   "def": "Agents move in discrete steps to the best point on a circle (Seitz and Köster 2012)."
+  },
+  {
+   "term": "Cognitive heuristics",
+   "def": "Simple perception-based rules for direction and speed (Moussaïd et al. 2011)."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Seitz and Köster (2012): Natural discretization of pedestrian movement in continuous space",
+   "url": "https://doi.org/10.1103/PhysRevE.86.046108",
+   "why": "The optimal steps model."
+  },
+  {
+   "title": "Moussaïd, Helbing and Theraulaz (2011)",
+   "url": "https://doi.org/10.1073/pnas.1016507108",
+   "why": "Cognitive heuristics and crowd disasters."
+  },
+  {
+   "title": "Vadere crowd simulation",
+   "url": "https://www.vadere.org/",
+   "why": "Open-source framework with optimal steps, social force and more."
+  },
+  {
+   "title": "JuPedSim",
+   "url": "https://www.jupedsim.org/",
+   "why": "Open-source simulator including the collision-free speed model."
+  }
+ ]
+}

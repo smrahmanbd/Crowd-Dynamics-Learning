@@ -1,0 +1,324 @@
+{
+ "id": "1.4",
+ "go": 1,
+ "slug": "bottlenecks-and-capacity",
+ "title": "Bottlenecks and capacity",
+ "minutes": 35,
+ "tag": "Core idea",
+ "systems": [
+  "space",
+  "flow"
+ ],
+ "summary": "The narrowest point on a route sets the flow for the whole route. Capacity grows with width, about 1.3 to 1.9 people per metre per second in experiments, and queues grow when demand exceeds it.",
+ "outcomes": [
+  "find the bottleneck on a route",
+  "calculate a door's capacity from its width",
+  "estimate how fast a queue grows and how long it takes to clear",
+  "describe the zipper effect and why wider is not always proportionally better"
+ ],
+ "narration_en": "Think of a wide corridor ending in a single door. However wide the corridor, everyone must squeeze through that door. The narrowest point on a route is the bottleneck, and its capacity sets the flow for the whole route. A good first estimate is simple: capacity equals the width of the bottleneck times a specific flow, typically between about one point three and one point nine people per metre per second in laboratory experiments. If people arrive faster than that, a queue forms in front of the bottleneck and grows by the difference every second. Inside a bottleneck, people often interleave like the teeth of a zipper, using the space efficiently. In this module you will find bottlenecks, calculate their capacity, and estimate how long a crowd takes to pass through. You will also see why a bottleneck in the wrong place, such as a narrowing at the bottom of a slope, can be dangerous.",
+ "narration_ar": "تخيّل ممراً عريضاً ينتهي بباب واحد. مهما كان الممر عريضاً، يجب أن يعبر الجميع من ذلك الباب. وأضيق نقطة على أي طريق هي عنق الزجاجة، وسعتها تحدد تدفق الطريق كله. والتقدير الأول بسيط: السعة تساوي عرض عنق الزجاجة مضروباً في تدفق نوعي، يتراوح عادة بين شخص وثلاثة أعشار وشخص وتسعة أعشار لكل متر في الثانية في التجارب المخبرية. وإذا وصل الناس أسرع من ذلك، يتكوّن طابور أمام عنق الزجاجة ويزداد بمقدار الفرق كل ثانية. وداخل عنق الزجاجة يتداخل الناس غالباً كأسنان السحّاب، فيستغلون المساحة بكفاءة. ستجد في هذه الوحدة أعناق الزجاجة، وتحسب سعتها، وتقدّر الوقت الذي يحتاجه الحشد ليعبرها. وسترى أيضاً لماذا قد يكون عنق الزجاجة في المكان الخطأ، كتضيّق عند أسفل منحدر، خطيراً.",
+ "diagram": {
+  "title": "A route is only as wide as its narrowest point",
+  "caption": "Demand meets the bottleneck's capacity. The difference becomes a queue upstream.",
+  "nodes": [
+   {
+    "id": "dem",
+    "label": "Demand",
+    "sub": "people arriving per s",
+    "x": 120,
+    "y": 120,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "How many people want to pass each second."
+   },
+   {
+    "id": "rt",
+    "label": "Wide route",
+    "sub": "plenty of capacity",
+    "x": 120,
+    "y": 320,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "Upstream the route is wide; its capacity is not the limit."
+   },
+   {
+    "id": "bn",
+    "label": "Bottleneck",
+    "sub": "narrowest point",
+    "x": 440,
+    "y": 220,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "A door, gate, stair, ramp or a narrowing street. Its width sets the route's capacity."
+   },
+   {
+    "id": "cap",
+    "label": "Capacity",
+    "sub": "width × specific flow",
+    "x": 760,
+    "y": 120,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Capacity ≈ b × Js, with Js about 1.3 to 1.9 per m per s in experiments (Seyfried et al. 2009). Planning guidance often uses lower values."
+   },
+   {
+    "id": "q",
+    "label": "Queue",
+    "sub": "grows at demand − capacity",
+    "x": 440,
+    "y": 420,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "If demand exceeds capacity, the queue grows by the difference every second. Its density rises at the back of the bottleneck."
+   },
+   {
+    "id": "zip",
+    "label": "Zipper effect",
+    "sub": "interleaved lanes",
+    "x": 760,
+    "y": 330,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Inside a bottleneck people form overlapping lanes like a zipper (Hoogendoorn and Daamen 2005), which uses the width efficiently."
+   }
+  ],
+  "edges": [
+   {
+    "from": "dem",
+    "to": "bn",
+    "label": "arrive"
+   },
+   {
+    "from": "rt",
+    "to": "bn",
+    "label": "feeds"
+   },
+   {
+    "from": "bn",
+    "to": "cap",
+    "label": "limits"
+   },
+   {
+    "from": "dem",
+    "to": "q",
+    "label": "excess"
+   },
+   {
+    "from": "cap",
+    "to": "q",
+    "label": "drains"
+   },
+   {
+    "from": "bn",
+    "to": "zip",
+    "label": "inside"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "dem",
+     "rt"
+    ],
+    "text": "People arrive along a wide route: no problem yet."
+   },
+   {
+    "focus": [
+     "bn"
+    ],
+    "text": "Then the route narrows. The narrowest point is the bottleneck.",
+    "edges": [
+     [
+      "rt",
+      "bn"
+     ],
+     [
+      "dem",
+      "bn"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "cap"
+    ],
+    "text": "Its capacity is roughly width × specific flow.",
+    "edges": [
+     [
+      "bn",
+      "cap"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "q"
+    ],
+    "text": "If more arrive than it can pass, the excess queues and the queue grows every second.",
+    "edges": [
+     [
+      "dem",
+      "q"
+     ],
+     [
+      "cap",
+      "q"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "zip"
+    ],
+    "text": "Inside the bottleneck, people interleave like a zipper.",
+    "edges": [
+     [
+      "bn",
+      "zip"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Find the bottleneck",
+   "html": "<p>Walk the route from start to finish and look for the narrowest effective width: a door, a turnstile line, a stair, a gate in a fence, a street narrowed by stalls. The route can carry no more than that point allows. <b>Upgrading anything else does not help.</b></p>"
+  },
+  {
+   "heading": "Capacity from width",
+   "html": "<div class=\"eq\">capacity = width × specific flow &nbsp;&nbsp;(people per second)</div><p>Laboratory experiments found specific flows of about <b>1.3 to 1.9 people per metre per second</b> through bottlenecks (Seyfried et al. 2009). A 2 m door at 1.3 per m per s passes 2.6 people per second, or 156 per minute: 2,000 people take about 13 minutes.</p><p>Guidance for stadiums uses planning rates per minute instead, such as 82 people per metre per minute on level routes in the Green Guide (module 1.8).</p>"
+  },
+  {
+   "heading": "How queues grow",
+   "html": "<p>If 3.5 people arrive per second at that 2 m door, the queue grows by 3.5 − 2.6 = 0.9 people per second: 540 people after 10 minutes. The queue packs at high density right in front of the door, often 3 to 5 per m² or more.</p>"
+  },
+  {
+   "heading": "Zippers, steps and bad places",
+   "html": "<p>Inside bottlenecks people form <b>overlapping lanes</b>, the zipper effect. Some experiments suggested capacity rises in steps as each new lane fits (Hoogendoorn and Daamen 2005); others found nearly linear growth (Seyfried et al. 2009). For design, linear growth is a reasonable first estimate.</p><p>Where a bottleneck sits matters: a narrowing at the end of a downhill slope, at a T-junction, or where two flows meet concentrates pressure. The Itaewon alley in 2022 was narrow, sloping and fed from both ends.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 1,
+   "kind": "try",
+   "title": "Your turn",
+   "html": "<p>A 1.2 m exit at 1.3 per m per s. How long for 500 people? <i>Capacity 1.56 per s, so 500 ÷ 1.56 ≈ 320 s, about 5.3 minutes.</i></p>"
+  },
+  {
+   "after": 3,
+   "kind": "trap",
+   "title": "Doubling the width",
+   "html": "<p>Doubling width roughly doubles capacity only if the space before and after the bottleneck can supply and absorb the extra flow.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "bottleneck",
+  "intro": "Choose a door width, a specific flow and an arrival rate, and watch the queue.",
+  "predict": "If arrivals are just 10% above capacity, will the queue after 10 minutes be small or large?"
+ },
+ "code": [
+  {
+   "title": "Time to pass a bottleneck",
+   "lang": "python",
+   "runnable": true,
+   "source": "people = 2000\nfor width in [1.0, 2.0, 3.0, 4.0]:\n    for js in [1.3, 1.9]:\n        cap = width * js                     # people per second\n        print(f'width {width} m, Js {js}: capacity {cap:.1f}/s, {people/cap/60:.1f} min for {people}')",
+   "explain": "Compares the time for 2,000 people at low and high specific flows.",
+   "expected": "width 1.0 m, Js 1.3: capacity 1.3/s, 25.6 min for 2000"
+  }
+ ],
+ "takeaways": [
+  "The bottleneck, the narrowest point, sets a route's capacity.",
+  "Capacity ≈ width × specific flow (about 1.3 to 1.9 per m per s in experiments).",
+  "Queues grow at demand minus capacity, and pack densely in front of the bottleneck.",
+  "Where a bottleneck sits (slopes, junctions, meeting flows) can matter as much as its width."
+ ],
+ "quiz": [
+  {
+   "q": "A 3 m gate with specific flow 1.3 per m per s passes how many people per minute?",
+   "options": [
+    "39",
+    "234",
+    "390",
+    "78"
+   ],
+   "answer": 1,
+   "explain": "3 × 1.3 = 3.9 per s × 60 = 234 per minute."
+  },
+  {
+   "q": "Widening a corridor upstream of a narrow door will…",
+   "options": [
+    "Double the flow",
+    "Not raise the route's capacity",
+    "Halve the queue",
+    "Remove the zipper effect"
+   ],
+   "answer": 1,
+   "explain": "The door still limits the flow."
+  },
+  {
+   "q": "Demand is 5 per s and capacity 4 per s. After 5 minutes the queue is…",
+   "options": [
+    "60",
+    "300",
+    "1,200",
+    "1,500"
+   ],
+   "answer": 1,
+   "explain": "(5 − 4) × 300 s = 300 people."
+  },
+  {
+   "q": "The 'zipper effect' describes…",
+   "options": [
+    "People forming overlapping lanes in a bottleneck",
+    "A broken gate",
+    "Ticket checks",
+    "Fast walkers overtaking"
+   ],
+   "answer": 0,
+   "explain": "Lanes interleave to use the width efficiently."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Bottleneck",
+   "def": "The narrowest point on a route; it limits the route's flow."
+  },
+  {
+   "term": "Effective width",
+   "def": "The width people can use, often less than the clear width because people keep away from walls."
+  },
+  {
+   "term": "Zipper effect",
+   "def": "Overlapping lanes formed by people passing through a bottleneck."
+  },
+  {
+   "term": "Demand",
+   "def": "The rate at which people want to pass a point."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Seyfried et al. (2009): New insights into pedestrian flow through bottlenecks",
+   "url": "https://arxiv.org/abs/physics/0702004",
+   "why": "Experiments on bottleneck width and flow."
+  },
+  {
+   "title": "Hoogendoorn and Daamen (2005): Pedestrian behavior at bottlenecks",
+   "url": "https://doi.org/10.1287/trsc.1040.0102",
+   "why": "The zipper effect and stepwise capacity."
+  },
+  {
+   "title": "Itaewon crowd crush analysis (PLOS ONE 2024)",
+   "url": "https://doi.org/10.1371/journal.pone.0306764",
+   "why": "A narrow, sloping alley with flows from both ends."
+  }
+ ]
+}

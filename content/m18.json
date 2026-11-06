@@ -1,0 +1,329 @@
+{
+ "id": "1.8",
+ "go": 1,
+ "slug": "planning-safe-crowds",
+ "title": "Planning and managing safe crowds",
+ "minutes": 40,
+ "tag": "Practice",
+ "systems": [
+  "manage",
+  "space"
+ ],
+ "summary": "Safe events are designed, informed and managed in every phase. DIM-ICE and RAMP structure the risk analysis; flow rates and egress times size the exits.",
+ "outcomes": [
+  "use DIM-ICE to structure a crowd risk assessment",
+  "describe RAMP analysis: routes, areas, movement and profile",
+  "size an exit with a flow rate and an egress time",
+  "list practical measures that keep density down"
+ ],
+ "narration_en": "How do organisers keep crowds safe? Crowd scientist Keith Still teaches two tools. The first, DIM-ICE, crosses three things organisers control, design, information and management, with the three phases of an event, ingress, circulation and egress. Each of the nine cells is a question: is the design of the entry route adequate, does information reach people during circulation, how is egress managed? The second tool, RAMP, looks at routes, areas, movement over time, and the profile of the crowd. Then come numbers. Guidance for sports grounds in the United Kingdom, the Green Guide, gives planning flow rates of eighty two people per metre width per minute on level routes and sixty six on stepped routes, and egress times of up to eight minutes. Divide the number of people by the flow rate and the time, and you get the exit width needed. Finally, practical measures keep density down: separate flows, one-way systems, holding areas, staggered times, and stewards with clear authority to act.",
+ "narration_ar": "كيف يحافظ المنظمون على سلامة الحشود؟ يدرّس عالم الحشود كيث ستيل أداتين. الأولى، DIM-ICE، تجمع بين ثلاثة أمور يتحكم فيها المنظمون، التصميم والمعلومات والإدارة، وبين المراحل الثلاث لأي فعالية، الدخول والتنقل والخروج. وكل خلية من الخلايا التسع سؤال: هل تصميم طريق الدخول كافٍ، وهل تصل المعلومات إلى الناس أثناء التنقل، وكيف يُدار الخروج؟ والأداة الثانية، RAMP، تنظر إلى الطرق والمناطق والحركة عبر الزمن وخصائص الحشد. ثم تأتي الأرقام. فالدليل الإرشادي لملاعب الرياضة في المملكة المتحدة، المعروف بالدليل الأخضر، يقدّم معدلات تدفق تخطيطية قدرها اثنان وثمانون شخصاً لكل متر من العرض في الدقيقة على الطرق المستوية، وستة وستون على الطرق المدرّجة، وأزمنة خروج تصل إلى ثماني دقائق. اقسم عدد الأشخاص على معدل التدفق والزمن، تحصل على عرض المخرج المطلوب. وأخيراً، تحافظ إجراءات عملية على انخفاض الكثافة: فصل التدفقات، وأنظمة الاتجاه الواحد، ومناطق الانتظار، والمواعيد المتدرجة، ومنظّمون لديهم صلاحية واضحة للتصرف.",
+ "diagram": {
+  "title": "From risk analysis to exit widths",
+  "caption": "DIM-ICE and RAMP find where risk lies; flow rates and times size the spaces; management measures keep density down on the day.",
+  "nodes": [
+   {
+    "id": "dim",
+    "label": "DIM-ICE",
+    "sub": "design · information · management",
+    "x": 140,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Still's matrix: Design, Information, Management across Ingress, Circulation, Egress. Nine questions for every event (Still 2014)."
+   },
+   {
+    "id": "ramp",
+    "label": "RAMP",
+    "sub": "routes · areas · movement · profile",
+    "x": 140,
+    "y": 290,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Routes people take, the areas they use, movement over time, and the profile of the crowd (age, culture, familiarity)."
+   },
+   {
+    "id": "rate",
+    "label": "Flow rates",
+    "sub": "82 level, 66 stepped per m per min",
+    "x": 460,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Green Guide (6th edition) planning rates for sports grounds, in people per metre width per minute."
+   },
+   {
+    "id": "time",
+    "label": "Target times",
+    "sub": "egress up to 8 min",
+    "x": 460,
+    "y": 290,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "The Green Guide sets egress times of up to 8 minutes, shorter where fire risk is higher."
+   },
+   {
+    "id": "width",
+    "label": "Exit width",
+    "sub": "people ÷ (rate × time)",
+    "x": 780,
+    "y": 200,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "Example: 6,000 people, level route, 8 minutes: 6,000 ÷ (82 × 8) ≈ 9.1 m of exit width."
+   },
+   {
+    "id": "ops",
+    "label": "On the day",
+    "sub": "stewards, metering, information",
+    "x": 460,
+    "y": 450,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "One-way systems, holding areas, staggered times, metering at gates, clear communication, and stewards empowered to stop flows."
+   }
+  ],
+  "edges": [
+   {
+    "from": "dim",
+    "to": "ramp",
+    "label": "with"
+   },
+   {
+    "from": "dim",
+    "to": "rate",
+    "label": "design"
+   },
+   {
+    "from": "rate",
+    "to": "width",
+    "label": "÷"
+   },
+   {
+    "from": "time",
+    "to": "width",
+    "label": "÷"
+   },
+   {
+    "from": "ramp",
+    "to": "ops",
+    "label": "plans"
+   },
+   {
+    "from": "width",
+    "to": "ops",
+    "label": "limits",
+    "sys": "manage"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "dim"
+    ],
+    "text": "Start with DIM-ICE: what can go wrong in design, information and management, in each phase?"
+   },
+   {
+    "focus": [
+     "ramp"
+    ],
+    "text": "Then RAMP: which routes, which areas, how movement changes over time, and who the crowd is.",
+    "edges": [
+     [
+      "dim",
+      "ramp"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "rate",
+     "time"
+    ],
+    "text": "Choose planning flow rates and target times from the guidance that applies.",
+    "edges": [
+     [
+      "dim",
+      "rate"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "width"
+    ],
+    "text": "Width needed = people ÷ (rate × time).",
+    "edges": [
+     [
+      "rate",
+      "width"
+     ],
+     [
+      "time",
+      "width"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "ops"
+    ],
+    "text": "On the day, management keeps density down: stewards, metering, information.",
+    "edges": [
+     [
+      "ramp",
+      "ops"
+     ],
+     [
+      "width",
+      "ops"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "DIM-ICE",
+   "html": "<p>Keith Still's <b>DIM-ICE</b> model crosses what organisers control with the phases of an event:</p><table><thead><tr><th></th><th>Ingress</th><th>Circulation</th><th>Egress</th></tr></thead><tbody><tr><td><b>Design</b></td><td>entry routes, gates</td><td>concourses, toilets</td><td>exits, routes away</td></tr><tr><td><b>Information</b></td><td>tickets, signs</td><td>screens, announcements</td><td>exit signs, PA</td></tr><tr><td><b>Management</b></td><td>queues, searches</td><td>stewarding</td><td>staggered release</td></tr></tbody></table><p>Each cell is a question to ask. Clusters of weak cells point to where an incident is likely.</p>"
+  },
+  {
+   "heading": "RAMP analysis",
+   "html": "<p><b>RAMP</b> asks about <b>Routes</b> (where people come from and go), <b>Areas</b> (holding and moving spaces, measured), <b>Movement</b> (arrival and departure profiles over time) and <b>Profile</b> (who the crowd is: age, culture, familiarity, purpose). A football crowd, a family festival and a pilgrimage need different plans even in the same space.</p>"
+  },
+  {
+   "heading": "Sizing exits with flow rates",
+   "html": "<p>The Green Guide (6th edition) gives planning flow rates of <b>82 people per metre width per minute</b> on level routes and <b>66</b> on stepped routes, and egress times of up to <b>8 minutes</b> (less where fire risk is higher).</p><div class=\"eq\">exit width = people ÷ (flow rate × egress time)</div><p>Example: 6,000 people, level route, 8 minutes: 6,000 ÷ (82 × 8) ≈ <b>9.1 m</b>. Stepped route: 6,000 ÷ (66 × 8) ≈ 11.4 m. Note these are per minute, unlike the per-second specific flows of module 1.4.</p>"
+  },
+  {
+   "heading": "Keeping density down on the day",
+   "html": "<p>Good plans fail without good operations. Measures that work: <b>separate in and out flows</b>; <b>one-way systems</b>; <b>holding areas</b> and <b>metering</b> to release people in batches; <b>staggered</b> start and finish times; clear <b>information</b> in the crowd's languages; and <b>stewards</b> with the authority to stop inflow when density rises.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 2,
+   "kind": "trap",
+   "title": "Rates are not laws of nature",
+   "html": "<p>Planning rates include safety margins and apply to the venues they were written for. Use the guidance that applies where you work, and check routes beyond the exit too.</p>"
+  },
+  {
+   "after": 3,
+   "kind": "try",
+   "title": "Plan it",
+   "html": "<p>A stand of 4,000 needs to leave in 8 minutes by a stepped route. Width? <i>4,000 ÷ (66 × 8) ≈ 7.6 m.</i></p>"
+  }
+ ],
+ "explorer": {
+  "widget": "egress",
+  "intro": "Size the exits for a section of a venue using Green Guide flow rates.",
+  "predict": "If you halve the target egress time, how much more exit width do you need?"
+ },
+ "code": [
+  {
+   "title": "Exit width calculator",
+   "lang": "python",
+   "runnable": true,
+   "source": "def exit_width(people, minutes, stepped=False):\n    rate = 66 if stepped else 82        # people per metre width per minute (Green Guide, 6th ed.)\n    return people / (rate * minutes)\n\nfor people in [2000, 6000, 12000]:\n    print(f'{people:6d} people: level {exit_width(people, 8):.1f} m, stepped {exit_width(people, 8, True):.1f} m (8 min)')",
+   "explain": "Width = people ÷ (rate × time). Change the time to 6 minutes for a higher fire risk.",
+   "expected": "  2000 people: level 3.0 m, stepped 3.8 m (8 min)\n  6000 people: level 9.1 m, stepped 11.4 m (8 min)"
+  }
+ ],
+ "takeaways": [
+  "DIM-ICE crosses Design, Information and Management with Ingress, Circulation and Egress.",
+  "RAMP analysis looks at Routes, Areas, Movement and Profile.",
+  "Exit width = people ÷ (flow rate × egress time); the Green Guide uses 82 (level) and 66 (stepped) per metre per minute and up to 8 minutes.",
+  "On the day, separate flows, metering, information and empowered stewards keep density down."
+ ],
+ "quiz": [
+  {
+   "q": "In DIM-ICE, the 'I' in DIM stands for…",
+   "options": [
+    "Ingress",
+    "Information",
+    "Injury",
+    "Inspection"
+   ],
+   "answer": 1,
+   "explain": "Design, Information, Management; then Ingress, Circulation, Egress."
+  },
+  {
+   "q": "6,000 people must leave in 8 minutes by a level route at 82 per m per min. Width?",
+   "options": [
+    "4.6 m",
+    "9.1 m",
+    "18 m",
+    "73 m"
+   ],
+   "answer": 1,
+   "explain": "6,000 ÷ (82 × 8) ≈ 9.1 m."
+  },
+  {
+   "q": "RAMP stands for…",
+   "options": [
+    "Routes, Areas, Movement, Profile",
+    "Risk, Assessment, Management, Plan",
+    "Ramps, Aisles, Main exits, Paths",
+    "Rate, Area, Mass, Pressure"
+   ],
+   "answer": 0,
+   "explain": "Still's RAMP analysis."
+  },
+  {
+   "q": "Why are stepped routes given a lower flow rate than level routes?",
+   "options": [
+    "Stairs are wider",
+    "People move more slowly and carefully on steps",
+    "Fewer people use stairs",
+    "To save money"
+   ],
+   "answer": 1,
+   "explain": "Steps slow people down."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "DIM-ICE",
+   "def": "Still's risk model crossing Design, Information and Management with Ingress, Circulation and Egress."
+  },
+  {
+   "term": "RAMP analysis",
+   "def": "Routes, Areas, Movement and Profile: a structured look at a crowd and its site."
+  },
+  {
+   "term": "Egress time",
+   "def": "The time for people to leave a space or venue."
+  },
+  {
+   "term": "Green Guide",
+   "def": "Guide to Safety at Sports Grounds (UK), giving planning flow rates and egress times."
+  },
+  {
+   "term": "Metering",
+   "def": "Controlling the rate at which people enter a space."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Still et al. (2020): Place crowd safety, crowd science? (open access)",
+   "url": "https://e-space.mmu.ac.uk/625559/",
+   "why": "DIM-ICE applied to real case studies."
+  },
+  {
+   "title": "Sports Grounds Safety Authority: the Green Guide",
+   "url": "https://sgsa.org.uk/greenguide/",
+   "why": "The Guide to Safety at Sports Grounds, 6th edition."
+  },
+  {
+   "title": "HSE: Managing crowds safely (HSG154)",
+   "url": "https://www.hse.gov.uk/pubns/books/hsg154.htm",
+   "why": "Planning, stewarding and monitoring crowds."
+  }
+ ]
+}

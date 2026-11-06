@@ -1,0 +1,389 @@
+{
+ "id": "1.1",
+ "go": 1,
+ "slug": "what-is-a-crowd",
+ "title": "What a crowd is, and why it matters",
+ "minutes": 30,
+ "tag": "Big picture",
+ "systems": [
+  "people",
+  "risk"
+ ],
+ "summary": "A crowd is many people sharing one space and often one purpose. Its behaviour comes from simple local rules, and its risks from too many people in too little space.",
+ "outcomes": [
+  "say what makes a group of people a crowd, and name the three phases of an event",
+  "explain why crowd behaviour is about space and flow, not panic",
+  "read a queue as a stock that fills and empties",
+  "name three famous crowd disasters and what they had in common"
+ ],
+ "narration_en": "A crowd is a large number of people in one place at the same time, often sharing a purpose: watching a match, catching a train, or performing a pilgrimage. Crowds are usually safe, friendly and even pleasant. But they follow a simple physics. Every person needs space, and every route can carry only so many people each minute. When more people arrive than a space or a gate can pass, they wait, and the waiting crowd grows like water filling a bath. Most deadly crowd incidents were not caused by people panicking. They happened because too many people were packed into too little space, so that pressure built up and people could no longer move or breathe. In this course you will learn to see a crowd three ways: as people with goals, as a flow through space, and as a system that designers and managers can keep safe. We start with the big picture: what a crowd is, the three phases of an event, and why the numbers matter.",
+ "narration_ar": "الحشد عدد كبير من الناس في مكان واحد وفي الوقت نفسه، يجمعهم غالباً هدف واحد: مشاهدة مباراة، أو اللحاق بقطار، أو أداء الحج. الحشود في العادة آمنة وودودة بل وممتعة. لكنها تخضع لفيزياء بسيطة. فكل شخص يحتاج إلى مساحة، وكل طريق لا يستطيع أن يمرّر إلا عدداً محدوداً من الناس في كل دقيقة. وعندما يصل أناس أكثر مما يستطيع المكان أو البوابة تمريره، ينتظرون، ويكبر الحشد المنتظر كما يمتلئ حوض الماء. ومعظم حوادث الحشود المميتة لم يكن سببها ذعر الناس، بل حدثت لأن عدداً كبيراً جداً من الناس حُشر في مساحة صغيرة جداً، فتراكم الضغط ولم يعد الناس قادرين على الحركة أو التنفس. ستتعلم في هذا المقرر أن ترى الحشد بثلاث طرق: أناساً لهم أهداف، وتدفقاً عبر المكان، ونظاماً يستطيع المصممون والمديرون أن يحافظوا على سلامته. ونبدأ بالصورة الكبيرة: ما الحشد، وما المراحل الثلاث لأي فعالية، ولماذا تهم الأرقام.",
+ "diagram": {
+  "title": "A crowd as a system",
+  "caption": "People arrive, wait if they must, move through the space and leave. Space and management decide whether this stays comfortable or becomes dangerous.",
+  "nodes": [
+   {
+    "id": "arr",
+    "label": "Arrivals",
+    "sub": "people per minute",
+    "x": 120,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "How many people come, and when. Arrivals usually peak just before a start time or just after a train arrives."
+   },
+   {
+    "id": "gate",
+    "label": "Gates and routes",
+    "sub": "how many can pass",
+    "x": 410,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "Every gate, door, stair and street has a capacity: the most people it can pass per minute."
+   },
+   {
+    "id": "wait",
+    "label": "Waiting crowd",
+    "sub": "the stock",
+    "x": 410,
+    "y": 280,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "If arrivals exceed capacity, the extra people wait. The waiting crowd is a stock: it grows while arrivals exceed capacity, and shrinks afterwards."
+   },
+   {
+    "id": "space",
+    "label": "Available space",
+    "sub": "m² for the waiting crowd",
+    "x": 120,
+    "y": 280,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "The same number of people is comfortable in a big forecourt and dangerous in a narrow alley. Density = people ÷ area."
+   },
+   {
+    "id": "phase",
+    "label": "Event phases",
+    "sub": "ingress, circulation, egress",
+    "x": 730,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Arriving (ingress), moving around inside (circulation) and leaving (egress). Each has its own peaks and risks."
+   },
+   {
+    "id": "mgr",
+    "label": "Managers",
+    "sub": "information, stewards, timing",
+    "x": 730,
+    "y": 280,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Organisers can change arrivals (tickets, timing), capacity (gates, routes) and information (signs, announcements)."
+   },
+   {
+    "id": "out",
+    "label": "Outcome",
+    "sub": "comfort or crush",
+    "x": 410,
+    "y": 440,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "Low density means comfort. Very high density means people cannot move freely, pressure builds and a crush becomes possible."
+   }
+  ],
+  "edges": [
+   {
+    "from": "arr",
+    "to": "gate",
+    "label": "demand"
+   },
+   {
+    "from": "gate",
+    "to": "wait",
+    "label": "too slow?"
+   },
+   {
+    "from": "space",
+    "to": "wait",
+    "label": "how dense"
+   },
+   {
+    "from": "wait",
+    "to": "out",
+    "label": "density"
+   },
+   {
+    "from": "phase",
+    "to": "arr",
+    "label": "peaks",
+    "sys": "manage"
+   },
+   {
+    "from": "mgr",
+    "to": "gate",
+    "label": "opens, meters",
+    "sys": "manage"
+   },
+   {
+    "from": "mgr",
+    "to": "wait",
+    "label": "informs",
+    "sys": "manage"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "arr"
+    ],
+    "text": "It starts with people arriving. They rarely come evenly: they bunch before kick-off or after a train."
+   },
+   {
+    "focus": [
+     "arr",
+     "gate"
+    ],
+    "text": "Every gate and route can pass only so many people a minute: its capacity.",
+    "edges": [
+     [
+      "arr",
+      "gate"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "gate",
+     "wait"
+    ],
+    "text": "If arrivals beat capacity, the extra people wait. The waiting crowd grows like water in a bath.",
+    "edges": [
+     [
+      "gate",
+      "wait"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "space",
+     "wait",
+     "out"
+    ],
+    "text": "Whether waiting is safe depends on space. Density, people per square metre, is what turns comfort into danger.",
+    "edges": [
+     [
+      "space",
+      "wait"
+     ],
+     [
+      "wait",
+      "out"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "phase",
+     "mgr"
+    ],
+    "text": "Organisers plan each phase, arrival, circulation and departure, and manage gates, timing and information.",
+    "edges": [
+     [
+      "phase",
+      "arr"
+     ],
+     [
+      "mgr",
+      "gate"
+     ],
+     [
+      "mgr",
+      "wait"
+     ]
+    ]
+   }
+  ]
+ },
+ "components": {
+  "caption": "Five words you will use in every module.",
+  "rows": [
+   {
+    "name": "Density",
+    "purpose": "People per square metre (per m²)",
+    "analogy": "How full a lift is"
+   },
+   {
+    "name": "Speed",
+    "purpose": "How fast people walk, in metres per second",
+    "analogy": "Walking pace"
+   },
+   {
+    "name": "Flow",
+    "purpose": "People passing a line per second (or minute), often per metre of width",
+    "analogy": "Cars per minute on a road"
+   },
+   {
+    "name": "Capacity",
+    "purpose": "The largest flow a gate, door or route can carry",
+    "analogy": "The width of a funnel's neck"
+   },
+   {
+    "name": "Bottleneck",
+    "purpose": "The narrowest point on a route; it limits the whole route",
+    "analogy": "A tight door at the end of a wide corridor"
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "A crowd, in plain words",
+   "html": "<p>A crowd is a large number of people in one place at the same time. Some crowds share a purpose (a concert audience, pilgrims, commuters); others are just people passing (a busy street). Crowd scientists care about crowds because <b>most of the time they are safe and enjoyable, and occasionally they are deadly</b>, and the difference is usually predictable from numbers.</p><p>We describe a crowd with three linked quantities: <b>density</b> (people per square metre), <b>speed</b> (metres per second) and <b>flow</b> (people passing a line per second).</p>"
+  },
+  {
+   "heading": "Three phases of every event",
+   "html": "<p>Every event has three phases: <b>ingress</b> (arriving), <b>circulation</b> (moving around inside) and <b>egress</b> (leaving). Each has its own peak. Egress is often the most intense, because everyone leaves at once at the end.</p><p>Crowd safety expert Keith Still built these phases into his DIM-ICE model, which you will meet in module 1.8.</p>"
+  },
+  {
+   "heading": "A queue is a stock",
+   "html": "<p>Picture a bath. The tap is the arrival rate, the plug hole is the gate's capacity, and the water level is the number of people waiting. If the tap runs faster than the plug drains, the level rises. It keeps rising until arrivals fall below capacity, so <b>the biggest queue comes after the busiest arrival time</b>.</p><div class=\"eq\">change in people waiting = arrivals − departures</div><p>A worked example: 90 people a minute arrive at a gate that passes 70. The queue grows by 20 people every minute.</p>"
+  },
+  {
+   "heading": "Crowd crushes are not panic",
+   "html": "<p>News reports often say a crowd 'panicked' or 'stampeded'. Research tells a different story. In most deadly incidents, people were packed so tightly that they could not move, breathe or escape: <b>compressive asphyxia</b>. People in danger mostly help each other (Drury, Cocking and Reicher 2009).</p><p>Examples you will meet again: the Hillsborough stadium disaster (1989, 97 deaths), the Love Parade in Duisburg (2010, 21 deaths), the Mina crush during the Hajj (2015, 769 deaths in the official Saudi count; independent counts exceed 2,000) and the Itaewon crowd crush in Seoul (2022, 159 deaths). In each, too many people reached too little space.</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 2,
+   "kind": "try",
+   "title": "Try it in your head",
+   "html": "<p>A stadium gate passes 60 people a minute. For 30 minutes, 100 people a minute arrive. How many are waiting at the end? <i>(100 − 60) × 30 = 1,200.</i></p>"
+  },
+  {
+   "after": 3,
+   "kind": "trap",
+   "title": "The word 'stampede'",
+   "html": "<p>'Stampede' suggests animals running wildly and blames the victims. Most crushes happen where people are barely moving. Prefer 'crowd crush' or 'crowd collapse'.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "accum",
+  "intro": "Arrivals follow a bell curve that peaks 45 minutes after the doors open. Change the peak arrival rate and the gate capacity.",
+  "predict": "If the gate capacity is a little less than the peak arrival rate, does the queue peak at minute 45, or later?"
+ },
+ "code": [
+  {
+   "title": "A queue as a stock",
+   "lang": "python",
+   "runnable": true,
+   "source": "arrivals = [20, 50, 90, 120, 90, 50, 20]   # people per minute, one value per 5 minutes\ncapacity = 70                                  # people per minute through the gate\nqueue = 0\nfor i, a in enumerate(arrivals):\n    queue = max(0, queue + (a - capacity) * 5)   # 5 minutes per step\n    print(f'minute {5*(i+1):3d}: arrivals {a:3d}/min, waiting {queue:5d}')",
+   "explain": "Each step adds (arrivals − capacity) × 5 minutes to the queue, never below zero. Change capacity to 100 and run again.",
+   "expected": "minute   5: arrivals  20/min, waiting     0\n...\nminute  25: arrivals  90/min, waiting   400\nminute  35: arrivals  20/min, waiting     0"
+  }
+ ],
+ "takeaways": [
+  "A crowd is described by density, speed and flow.",
+  "Every event has ingress, circulation and egress phases, each with its own peak.",
+  "A waiting crowd is a stock: it grows while arrivals exceed capacity, and peaks after the arrival peak.",
+  "Deadly crowd incidents are about density and pressure, not panic."
+ ],
+ "quiz": [
+  {
+   "q": "A gate passes 50 people per minute and 80 arrive per minute for 10 minutes. How many are waiting at the end?",
+   "options": [
+    "30",
+    "300",
+    "800",
+    "130"
+   ],
+   "answer": 1,
+   "explain": "(80 − 50) × 10 = 300 people."
+  },
+  {
+   "q": "Which event phase is often the most intense?",
+   "options": [
+    "Ingress",
+    "Circulation",
+    "Egress",
+    "Set-up"
+   ],
+   "answer": 2,
+   "explain": "At the end everyone leaves at once, so egress flows are often the largest."
+  },
+  {
+   "q": "What killed most victims of major crowd crushes?",
+   "options": [
+    "Trampling during a panic",
+    "Compressive asphyxia from very high density",
+    "Heat",
+    "Fire"
+   ],
+   "answer": 1,
+   "explain": "People were squeezed so tightly they could not breathe."
+  },
+  {
+   "q": "The biggest queue usually forms…",
+   "options": [
+    "Before arrivals peak",
+    "Exactly when arrivals peak",
+    "After arrivals peak",
+    "At random"
+   ],
+   "answer": 2,
+   "explain": "The queue keeps growing until arrivals fall below capacity, which is after the peak."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Crowd",
+   "def": "A large number of people gathered in one place at one time, often sharing a purpose."
+  },
+  {
+   "term": "Ingress",
+   "def": "The arrival phase of an event."
+  },
+  {
+   "term": "Circulation",
+   "def": "Movement within a venue during an event."
+  },
+  {
+   "term": "Egress",
+   "def": "The departure phase of an event, normal or emergency."
+  },
+  {
+   "term": "Compressive asphyxia",
+   "def": "Inability to breathe because the chest is squeezed, the main cause of death in crowd crushes."
+  },
+  {
+   "term": "Stock",
+   "def": "A quantity that accumulates, such as the number of people waiting."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Drury, Cocking and Reicher (2009): Everyone for themselves?",
+   "url": "https://doi.org/10.1348/014466608X357893",
+   "why": "Evidence that people in emergencies cooperate rather than panic."
+  },
+  {
+   "title": "Still: Introduction to Crowd Science (book site)",
+   "url": "https://www.gkstill.com/Support/Book.html",
+   "why": "The crowd science textbook behind DIM-ICE and RAMP analysis."
+  },
+  {
+   "title": "UK HSE: Managing crowds safely (HSG154)",
+   "url": "https://www.hse.gov.uk/pubns/books/hsg154.htm",
+   "why": "A short official guide to planning for crowds at venues and events."
+  }
+ ]
+}

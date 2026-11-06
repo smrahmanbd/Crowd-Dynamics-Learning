@@ -1,0 +1,351 @@
+{
+ "id": "2.3",
+ "go": 2,
+ "slug": "cellular-automata",
+ "title": "Cellular automata and floor fields",
+ "minutes": 45,
+ "tag": "Model",
+ "systems": [
+  "flow",
+  "space"
+ ],
+ "summary": "Divide the floor into 40 cm cells, one person per cell. Each step, people hop to a neighbouring cell, guided by a static field (distance to the exit) and a dynamic field (others' trails).",
+ "outcomes": [
+  "describe the floor-field cellular automaton",
+  "explain the roles of the static and dynamic floor fields and their weights kS and kD",
+  "run a room evacuation and relate time steps to seconds",
+  "spot and fix an unrealistic exit flow by calibration"
+ ],
+ "narration_en": "A cellular automaton turns the floor into a chessboard of small cells, typically forty centimetres across, the space one person occupies in a dense crowd. Each cell is empty or holds one person. Every time step, about a third of a second, each person may hop to a free neighbouring cell. Which cell? That depends on floor fields. The static floor field is like a slope towards the exit: cells nearer the exit are more attractive. The dynamic floor field is like footprints in snow: people leave a trail that fades over time, and others are drawn to follow it, which reproduces lanes and herding. Two numbers, kS and kD, set how strongly people respond to each field. With strong kS everyone heads straight for the exit; with weak kS people wander. The model is fast and easy to code, which made it popular, as in the floor-field model of Burstedde and colleagues in two thousand and one. But it needs care: in its simplest form it lets people leave through a door much faster than real crowds do. Calibration fixes that.",
+ "narration_ar": "يحوّل الأوتوماتون الخلوي الأرض إلى رقعة شطرنج من خلايا صغيرة، يبلغ عرض كل منها نحو أربعين سنتيمتراً، وهي المساحة التي يشغلها شخص واحد في حشد كثيف. كل خلية إما فارغة وإما فيها شخص واحد. وفي كل خطوة زمنية، نحو ثلث ثانية، يمكن لكل شخص أن ينتقل إلى خلية مجاورة فارغة. أي خلية؟ يعتمد ذلك على حقول الأرضية. فحقل الأرضية الثابت أشبه بمنحدر نحو المخرج: الخلايا الأقرب إلى المخرج أكثر جاذبية. وحقل الأرضية الديناميكي أشبه بآثار الأقدام في الثلج: يترك الناس أثراً يتلاشى مع الوقت، وينجذب الآخرون إلى تتبعه، فيعيد ذلك إنتاج المسارات والتبعية. ويحدد رقمان، kS وkD، مدى استجابة الناس لكل حقل. فمع kS قوي يتجه الجميع مباشرة إلى المخرج، ومع kS ضعيف يتجول الناس. والنموذج سريع وسهل البرمجة، ما جعله شائعاً، كما في نموذج حقل الأرضية لبورستيدة وزملائه عام ألفين وواحد. لكنه يحتاج إلى عناية: ففي أبسط صوره يسمح للناس بالخروج من الباب أسرع بكثير مما تفعله الحشود الحقيقية. والمعايرة تصلح ذلك.",
+ "diagram": {
+  "title": "How a floor-field cellular automaton moves people",
+  "caption": "Each step, a person compares neighbouring cells using two floor fields and hops with a probability set by kS and kD.",
+  "nodes": [
+   {
+    "id": "grid",
+    "label": "Grid",
+    "sub": "0.4 m cells, one person each",
+    "x": 130,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "The floor becomes a lattice. 0.4 m × 0.4 m is about the space of one person in a dense crowd (6.25 per m² at full occupancy)."
+   },
+   {
+    "id": "sf",
+    "label": "Static field S",
+    "sub": "distance to the exit",
+    "x": 130,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "Fixed in time. Lower S = closer to the exit. Weighted by kS."
+   },
+   {
+    "id": "df",
+    "label": "Dynamic field D",
+    "sub": "fading trails",
+    "x": 130,
+    "y": 460,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Each move leaves a trace that decays and diffuses. Following trails creates lanes and herding. Weighted by kD."
+   },
+   {
+    "id": "prob",
+    "label": "Choice probability",
+    "sub": "∝ exp(−kS·S + kD·D)",
+    "x": 470,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "For each free neighbour cell (and staying put), weight = exp(−kS·S + kD·D); choose at random in proportion."
+   },
+   {
+    "id": "upd",
+    "label": "Update order",
+    "sub": "random sequential or parallel",
+    "x": 470,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "Random sequential: people move one at a time in random order. Parallel update needs rules for conflicts when two want the same cell."
+   },
+   {
+    "id": "time",
+    "label": "Time step",
+    "sub": "≈ 0.3 s",
+    "x": 780,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "One cell per step at 0.4 m: free speed ≈ 0.4 ÷ 0.3 ≈ 1.3 m/s."
+   },
+   {
+    "id": "cal",
+    "label": "Calibration",
+    "sub": "exit flow, speed",
+    "x": 780,
+    "y": 400,
+    "w": 170,
+    "h": 64,
+    "sys": "data",
+    "detail": "The plain model lets one person leave per exit cell per step, about 8 per m per s: too high. Friction or an exit probability brings it to 1.3–1.9."
+   }
+  ],
+  "edges": [
+   {
+    "from": "grid",
+    "to": "sf",
+    "label": ""
+   },
+   {
+    "from": "sf",
+    "to": "prob",
+    "label": "kS"
+   },
+   {
+    "from": "df",
+    "to": "prob",
+    "label": "kD"
+   },
+   {
+    "from": "upd",
+    "to": "prob",
+    "label": ""
+   },
+   {
+    "from": "prob",
+    "to": "time",
+    "label": "per step"
+   },
+   {
+    "from": "time",
+    "to": "cal",
+    "label": ""
+   },
+   {
+    "from": "prob",
+    "to": "cal",
+    "label": "check"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "grid"
+    ],
+    "text": "The floor is a grid of 40 cm cells; each holds at most one person."
+   },
+   {
+    "focus": [
+     "sf",
+     "df"
+    ],
+    "text": "Two floor fields guide people: distance to the exit, and fading trails left by others."
+   },
+   {
+    "focus": [
+     "prob"
+    ],
+    "text": "Each person scores neighbouring cells by exp(−kS·S + kD·D) and picks one at random in proportion.",
+    "edges": [
+     [
+      "sf",
+      "prob"
+     ],
+     [
+      "df",
+      "prob"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "upd",
+     "time"
+    ],
+    "text": "Everyone moves once per step, about 0.3 s, in random order.",
+    "edges": [
+     [
+      "upd",
+      "prob"
+     ],
+     [
+      "prob",
+      "time"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "cal"
+    ],
+    "text": "Then calibrate: the plain model's exit flow is far too high.",
+    "edges": [
+     [
+      "time",
+      "cal"
+     ],
+     [
+      "prob",
+      "cal"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "A floor of cells",
+   "html": "<p>A cellular automaton (CA) is a grid of cells with simple local rules. For crowds, cells are usually <b>0.4 m × 0.4 m</b>, about the space of one person in a dense crowd, so full occupancy is 6.25 per m². Each cell is empty or holds one person, which automatically prevents overlaps. Time moves in steps of about <b>0.3 s</b>, giving a free speed of about 1.3 m/s.</p>"
+  },
+  {
+   "heading": "Static and dynamic floor fields",
+   "html": "<p>Burstedde et al. (2001) guided people with two fields. The <b>static field S</b> measures distance to the exit and does not change. The <b>dynamic field D</b> is a virtual trail: each move adds to it, and it decays and diffuses over time. A person chooses among free neighbour cells with probability</p><div class=\"eq\">p ∝ exp(−k<sub>S</sub> × S) × exp(k<sub>D</sub> × D)</div><p>Large k<sub>S</sub>: people know the way and head straight for it. Large k<sub>D</sub>: people follow others (herding), useful for smoke or unfamiliar buildings.</p>"
+  },
+  {
+   "heading": "Update rules and time",
+   "html": "<p>In <b>random sequential update</b>, people move one at a time in a fresh random order each step; this is simple and avoids conflicts. In <b>parallel update</b> everyone moves at once, and two people may target the same cell: a conflict rule decides who wins, and a friction parameter can make both stay (Kirchner, Nishinari and Schadschneider 2003). Parallel update with friction reproduces clogging at exits.</p>"
+  },
+  {
+   "heading": "Calibrate before you trust it",
+   "html": "<p>Run the plain model and count the exit flow. With an exit two cells wide (0.8 m) the lab model empties 150 people in about 37 s: over <b>5 people per metre per second</b>, far above the 1.3 to 1.9 measured in experiments. One crude fix is an exit probability: a person on an exit cell leaves with probability q per step. With q = 0.2 the flow falls to about 1.35 per m per s. Real studies calibrate several outputs at once (module 2.8).</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 1,
+   "kind": "try",
+   "title": "Explore it",
+   "html": "<p>Set kS = 0: people wander randomly and take far longer. Then raise kD and watch trails form behind early leavers.</p>"
+  },
+  {
+   "after": 3,
+   "kind": "trap",
+   "title": "Nice pictures, wrong numbers",
+   "html": "<p>A CA can look convincing while getting capacity badly wrong. Always compare flows with data before using results.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "ca",
+  "intro": "A room 12 m × 8 m (30 × 20 cells) with an exit in the right wall. Brown shows the dynamic floor field.",
+  "predict": "Will doubling the exit width halve the evacuation time?"
+ },
+ "code": [
+  {
+   "title": "Floor-field CA evacuation",
+   "lang": "python",
+   "file": "labs/go2/m23_ca.py",
+   "runnable": true,
+   "explain": "Evacuates 150 people for four values of kS. Try kD = 2, or exit_w = 4. The function also takes q_exit, the probability of leaving from an exit cell.",
+   "expected": "kS = 0.5: 279 steps = 84 s\nkS = 1: 162 steps = 49 s\nkS = 2: 122 steps = 37 s\nkS = 4: 121 steps = 36 s"
+  },
+  {
+   "title": "Calibrating the exit flow",
+   "lang": "python",
+   "file": "labs/go2/m25_compare.py",
+   "runnable": false,
+   "explain": "Compares a hand calculation with the CA, and shows how an exit probability brings the CA's exit flow into the measured range. Download it with m23_ca.py and run both together.",
+   "expected": "cellular automaton, exit probability 0.2: 462 steps = 139 s, exit flow 1.35 per m per s"
+  }
+ ],
+ "takeaways": [
+  "A floor-field CA moves people between 0.4 m cells in steps of about 0.3 s.",
+  "The static field points to the exit; the dynamic field is a fading trail; kS and kD weight them.",
+  "Update rules and friction decide conflicts and clogging.",
+  "The plain CA's exit flow is far too high: calibrate before use."
+ ],
+ "quiz": [
+  {
+   "q": "A 0.4 m cell, fully occupied, corresponds to a density of…",
+   "options": [
+    "2.5 per m²",
+    "6.25 per m²",
+    "4 per m²",
+    "16 per m²"
+   ],
+   "answer": 1,
+   "explain": "1 ÷ 0.16 m² = 6.25."
+  },
+  {
+   "q": "A high kD makes people…",
+   "options": [
+    "Ignore others",
+    "Follow others' trails",
+    "Stop moving",
+    "Walk faster"
+   ],
+   "answer": 1,
+   "explain": "kD weights the dynamic field."
+  },
+  {
+   "q": "With kS = 0, people…",
+   "options": [
+    "Head straight to the exit",
+    "Wander randomly",
+    "Freeze",
+    "Push harder"
+   ],
+   "answer": 1,
+   "explain": "No preference for the exit."
+  },
+  {
+   "q": "The plain lab CA gives an exit flow of about…",
+   "options": [
+    "0.5 per m per s",
+    "1.5 per m per s",
+    "over 5 per m per s",
+    "exactly 1.3"
+   ],
+   "answer": 2,
+   "explain": "Much too high without calibration."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Cellular automaton",
+   "def": "A grid model where each cell's state changes by local rules each step."
+  },
+  {
+   "term": "Static floor field",
+   "def": "A fixed field, such as distance to the exit, that attracts people."
+  },
+  {
+   "term": "Dynamic floor field",
+   "def": "A virtual trail left by moving people that decays and diffuses."
+  },
+  {
+   "term": "Random sequential update",
+   "def": "Moving agents one at a time in a random order each step."
+  },
+  {
+   "term": "Friction parameter",
+   "def": "In parallel-update CAs, the chance that conflicting people both stay put."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Burstedde et al. (2001): Simulation of pedestrian dynamics using a 2-D cellular automaton",
+   "url": "https://arxiv.org/abs/cond-mat/0102397",
+   "why": "The floor-field model."
+  },
+  {
+   "title": "Kirchner, Nishinari and Schadschneider (2003): Friction effects and clogging",
+   "url": "https://arxiv.org/abs/cond-mat/0209383",
+   "why": "Friction in a CA reproduces clogging at exits."
+  },
+  {
+   "title": "Seyfried et al. (2009): Bottleneck experiments",
+   "url": "https://arxiv.org/abs/physics/0702004",
+   "why": "Exit flows to calibrate against."
+  }
+ ]
+}

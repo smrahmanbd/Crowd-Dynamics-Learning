@@ -1,0 +1,350 @@
+{
+ "id": "2.2",
+ "go": 2,
+ "slug": "macroscopic-models",
+ "title": "Macroscopic models: crowds as a fluid",
+ "minutes": 45,
+ "tag": "Model",
+ "systems": [
+  "flow",
+  "space"
+ ],
+ "summary": "Treat the crowd as a continuous density, conserve people, and let the fundamental diagram decide the flow. A jam forms at a bottleneck and its tail travels backwards, exactly as the numbers predict.",
+ "outcomes": [
+  "write the conservation law for crowds",
+  "explain demand and supply between cells",
+  "run a 1-D corridor model with a bottleneck and read the queue",
+  "describe Hughes' model and what macroscopic models are good for"
+ ],
+ "narration_en": "From far away, a dense crowd looks like a fluid. Macroscopic models use that view. Instead of tracking every person, they track density along a corridor or across a square. The basic rule is that people are conserved: the change in the number of people in a stretch of corridor equals those coming in minus those going out. To close the equations we need the fundamental diagram, which tells us the flow for each density. A simple, robust way to compute this is to cut the corridor into cells. Each step, the flow from one cell to the next is the smaller of two numbers: what the upstream cell can send, called demand, and what the downstream cell can receive, called supply. When the corridor narrows, the bottleneck's supply is smaller, a jam forms in front of it, and the tail of the jam moves backwards, just as you saw in Go 1. Roger Hughes extended the idea to two dimensions, with people moving down the fastest route to their goal. Macroscopic models are fast, so they suit large networks and quick what-if questions.",
+ "narration_ar": "من بعيد يبدو الحشد الكثيف كأنه سائل. وتستخدم النماذج العيانية هذه النظرة. فبدلاً من تتبع كل شخص، تتبع الكثافة على امتداد ممر أو عبر ساحة. والقاعدة الأساسية أن عدد الناس محفوظ: التغير في عدد الناس في جزء من الممر يساوي القادمين إليه ناقص الخارجين منه. ولإكمال المعادلات نحتاج إلى المخطط الأساسي الذي يعطينا التدفق لكل كثافة. والطريقة البسيطة المتينة لحساب ذلك هي تقسيم الممر إلى خلايا. وفي كل خطوة يكون التدفق من خلية إلى التي تليها أصغر رقمين: ما تستطيع الخلية السابقة إرساله ويسمى الطلب، وما تستطيع الخلية التالية استقباله ويسمى العرض. وعندما يضيق الممر يكون عرض عنق الزجاجة أصغر، فيتكوّن ازدحام أمامه، ويتحرك ذيل الازدحام إلى الخلف، تماماً كما رأيت في المرحلة الأولى. وقد مدّ روجر هيوز الفكرة إلى بعدين، حيث يتحرك الناس على أسرع طريق إلى هدفهم. والنماذج العيانية سريعة، فهي تناسب الشبكات الكبيرة والأسئلة السريعة عن الاحتمالات.",
+ "diagram": {
+  "title": "Conservation plus a fundamental diagram",
+  "caption": "People are conserved; the fundamental diagram gives the flow; demand and supply link the cells.",
+  "nodes": [
+   {
+    "id": "cons",
+    "label": "Conservation",
+    "sub": "in − out = change",
+    "x": 130,
+    "y": 100,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "∂ρ/∂t + ∂(ρv)/∂x = 0: people do not appear or vanish."
+   },
+   {
+    "id": "fd",
+    "label": "Fundamental diagram",
+    "sub": "flow for each density",
+    "x": 130,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "J(ρ) closes the equation. Here Weidmann's curve."
+   },
+   {
+    "id": "dem",
+    "label": "Demand",
+    "sub": "what a cell can send",
+    "x": 440,
+    "y": 120,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Below critical density: J(ρ). Above: capacity. A congested cell can still send at capacity."
+   },
+   {
+    "id": "sup",
+    "label": "Supply",
+    "sub": "what a cell can receive",
+    "x": 440,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "Below critical density: capacity. Above: J(ρ). A jammed cell can receive little. A narrower cell has proportionally less supply."
+   },
+   {
+    "id": "flux",
+    "label": "Flow between cells",
+    "sub": "min(demand, supply)",
+    "x": 760,
+    "y": 210,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "The Godunov or cell-transmission rule: flow = min(upstream demand, downstream supply)."
+   },
+   {
+    "id": "jam",
+    "label": "Jam and backward wave",
+    "sub": "queue tail moves upstream",
+    "x": 760,
+    "y": 400,
+    "w": 170,
+    "h": 64,
+    "sys": "risk",
+    "detail": "At a bottleneck supply is low, so density builds and the queue's tail travels backwards at a speed set by the fundamental diagram."
+   },
+   {
+    "id": "hug",
+    "label": "Hughes (2002)",
+    "sub": "2-D, fastest route",
+    "x": 440,
+    "y": 460,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "Density moves down the gradient of a potential: the travel time to the goal at the local speed. A continuum crowd in 2-D."
+   }
+  ],
+  "edges": [
+   {
+    "from": "cons",
+    "to": "flux",
+    "label": ""
+   },
+   {
+    "from": "fd",
+    "to": "dem",
+    "label": ""
+   },
+   {
+    "from": "fd",
+    "to": "sup",
+    "label": ""
+   },
+   {
+    "from": "dem",
+    "to": "flux",
+    "label": "min"
+   },
+   {
+    "from": "sup",
+    "to": "flux",
+    "label": ""
+   },
+   {
+    "from": "flux",
+    "to": "jam",
+    "label": "at a bottleneck"
+   },
+   {
+    "from": "cons",
+    "to": "hug",
+    "label": "in 2-D",
+    "sys": "model"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "cons"
+    ],
+    "text": "Start from conservation: people in minus people out equals the change in a cell."
+   },
+   {
+    "focus": [
+     "fd",
+     "dem",
+     "sup"
+    ],
+    "text": "The fundamental diagram gives each cell a demand (what it can send) and a supply (what it can take).",
+    "edges": [
+     [
+      "fd",
+      "dem"
+     ],
+     [
+      "fd",
+      "sup"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "flux"
+    ],
+    "text": "The flow between two cells is the smaller of upstream demand and downstream supply.",
+    "edges": [
+     [
+      "dem",
+      "flux"
+     ],
+     [
+      "sup",
+      "flux"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "jam"
+    ],
+    "text": "At a bottleneck the supply is small, a jam forms, and its tail moves backwards.",
+    "edges": [
+     [
+      "flux",
+      "jam"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "hug"
+    ],
+    "text": "Hughes took the same idea to 2-D, with people flowing down the fastest route.",
+    "edges": [
+     [
+      "cons",
+      "hug"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "People are conserved",
+   "html": "<p>Cut a corridor into cells of length Δx. Over a time step Δt, the number of people in cell i changes by what flows in minus what flows out:</p><div class=\"eq\">ρ<sub>i</sub>(t + Δt) = ρ<sub>i</sub>(t) + (Δt ÷ Δx) × (f<sub>i−1→i</sub> − f<sub>i→i+1</sub>)</div><p>This is the discrete form of the continuity equation ∂ρ/∂t + ∂(ρv)/∂x = 0, the basis of the LWR model (Lighthill, Whitham and Richards), first written for road traffic.</p>"
+  },
+  {
+   "heading": "Demand, supply and the flow between cells",
+   "html": "<p>Which flow goes between cells? The <b>cell transmission</b> (Godunov) rule says: the smaller of what the upstream cell can <b>send</b> (demand) and what the downstream cell can <b>receive</b> (supply). Below the critical density a cell can send J(ρ) and receive up to capacity; above it, it can send capacity but receive only J(ρ).</p><div class=\"eq\">f = min( D(ρ<sub>up</sub>), S(ρ<sub>down</sub>) )</div><p>Keep Δt small enough that nobody crosses more than one cell per step (v<sub>0</sub>Δt ≤ Δx).</p>"
+  },
+  {
+   "heading": "A jam at a bottleneck",
+   "html": "<p>Make cells 40 to 45 m half as wide. Their supply is halved, so less can enter. Density in front rises past critical: a jam. Its tail moves <b>backwards</b> at a speed set by the fundamental diagram (the slope between the upstream and jammed states). With an inflow of 0.9 per m per s into a bottleneck that passes only about 0.61, the queue tail retreats by about 5 to 6 m every minute in the lab model.</p>"
+  },
+  {
+   "heading": "Two dimensions and where macro models shine",
+   "html": "<p>Hughes (2002) wrote a 2-D continuum model in which people move in the direction that minimises their travel time to the goal, taking into account the density ahead. Macroscopic models are fast and smooth, so they suit <b>large networks, many scenarios and real-time forecasting</b>. They cannot show individual choices, groups or pushing at a door: for those, use microscopic models (modules 2.3 to 2.5).</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 1,
+   "kind": "model",
+   "title": "Same maths as roads",
+   "html": "<p>The cell transmission model (Daganzo 1994) is used for road traffic too. Crowds only need a different fundamental diagram.</p>"
+  },
+  {
+   "after": 2,
+   "kind": "try",
+   "title": "Explore it",
+   "html": "<p>Set the bottleneck share to 1 (no bottleneck): does any jam form at an inflow of 0.9? Then lower it step by step.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "lwr",
+  "intro": "A 60 m corridor with a bottleneck at 40–45 m. Change the inflow, the bottleneck width and the time.",
+  "predict": "If the inflow is below the bottleneck's capacity, will a jam form?"
+ },
+ "code": [
+  {
+   "title": "Corridor with a bottleneck (cell transmission)",
+   "lang": "python",
+   "file": "labs/go2/m22_macro.py",
+   "runnable": true,
+   "explain": "1 m cells, 0.5 s steps, Weidmann's diagram. Prints the queue tail every minute. Change the inflow or the bottleneck width w[40:45].",
+   "expected": "t =    60 s: queue tail at 38 m, outflow 0.57 per s, max density 4.02\n...\nt =   300 s: queue tail at 17 m, outflow 0.61 per s, max density 4.03"
+  }
+ ],
+ "takeaways": [
+  "Macroscopic models treat the crowd as a density field and conserve people.",
+  "The flow between cells is the minimum of upstream demand and downstream supply.",
+  "At a bottleneck a jam forms and its tail travels backwards.",
+  "Macro models are fast and suit large networks; they cannot show individual behaviour."
+ ],
+ "quiz": [
+  {
+   "q": "In the cell transmission rule, the flow between two cells is…",
+   "options": [
+    "The sum of demand and supply",
+    "The minimum of upstream demand and downstream supply",
+    "Always capacity",
+    "The average density"
+   ],
+   "answer": 1,
+   "explain": "f = min(D, S)."
+  },
+  {
+   "q": "A queue tail at a bottleneck moves…",
+   "options": [
+    "Forwards",
+    "Backwards",
+    "Not at all",
+    "Sideways"
+   ],
+   "answer": 1,
+   "explain": "The jam grows upstream."
+  },
+  {
+   "q": "Why must v₀Δt ≤ Δx?",
+   "options": [
+    "To save time",
+    "So that nobody skips a cell in one step (numerical stability)",
+    "Because people walk slowly",
+    "To make cells square"
+   ],
+   "answer": 1,
+   "explain": "The CFL condition."
+  },
+  {
+   "q": "Macroscopic models are best for…",
+   "options": [
+    "Pushing at a single door",
+    "Large networks and many quick scenarios",
+    "Individual route choice",
+    "Group behaviour"
+   ],
+   "answer": 1,
+   "explain": "They are fast and smooth."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Macroscopic model",
+   "def": "A model that describes a crowd by continuous density and flow fields."
+  },
+  {
+   "term": "Continuity equation",
+   "def": "∂ρ/∂t + ∂(ρv)/∂x = 0: conservation of people."
+  },
+  {
+   "term": "Demand (sending function)",
+   "def": "The flow a cell can send downstream."
+  },
+  {
+   "term": "Supply (receiving function)",
+   "def": "The flow a cell can accept from upstream."
+  },
+  {
+   "term": "Cell transmission model",
+   "def": "A discrete macroscopic model using min(demand, supply) between cells."
+  },
+  {
+   "term": "Hughes model",
+   "def": "A 2-D continuum crowd model where people follow the fastest route."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Hughes (2002): A continuum theory for the flow of pedestrians",
+   "url": "https://doi.org/10.1016/S0191-2615(01)00015-7",
+   "why": "The classic 2-D macroscopic crowd model."
+  },
+  {
+   "title": "Daganzo (1994): The cell transmission model",
+   "url": "https://doi.org/10.1016/0191-2615(94)90002-7",
+   "why": "The demand and supply rule used in the lab."
+  },
+  {
+   "title": "Seyfried et al. (2009): Pedestrian flow through bottlenecks",
+   "url": "https://arxiv.org/abs/physics/0702004",
+   "why": "Data to test the bottleneck behaviour."
+  }
+ ]
+}

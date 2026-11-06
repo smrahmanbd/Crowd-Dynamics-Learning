@@ -1,0 +1,343 @@
+{
+ "id": "2.6",
+ "go": 2,
+ "slug": "route-and-exit-choice",
+ "title": "Route and exit choice",
+ "minutes": 40,
+ "tag": "Behaviour",
+ "systems": [
+  "people",
+  "manage"
+ ],
+ "summary": "Where people go matters as much as how they walk. Shortest-path, quickest-path and equilibrium rules give different crowd patterns; good guidance moves the crowd towards the best split.",
+ "outcomes": [
+  "compare shortest-path and quickest-path route choice",
+  "find the best split of people between exits",
+  "explain the difference between a user optimum and a system optimum",
+  "describe how information and guidance shift choices"
+ ],
+ "narration_en": "Imagine two exits: one near, one far. If everybody takes the nearest, it queues while the far one stands empty. If some take the far exit, they walk longer but wait less, and everyone gets out sooner. The best split equalises the time at which each exit finishes. Models capture this with different rules. The simplest is the shortest path: walk the fewest metres. A better rule is the quickest path: choose the route with the least expected time, walking plus waiting. If everyone chooses selfishly in this way, the crowd reaches a user equilibrium, where no one could do better by switching. The system optimum, best for everyone together, can be different, and may need guidance to reach. In practice, people also follow habit, signs and others, as we saw in Go 1. Simulators compute route choice with distance fields, for example the fast marching method, and update them as congestion grows. In this module you will find the best split between two exits and see how a simple expected-time rule can find it on its own.",
+ "narration_ar": "تخيّل مخرجين: أحدهما قريب والآخر بعيد. إذا اتجه الجميع إلى الأقرب، تكوّن عنده طابور بينما يبقى البعيد فارغاً. وإذا اتجه بعضهم إلى المخرج البعيد، مشوا مسافة أطول لكنهم انتظروا أقل، فيخرج الجميع أسرع. والتقسيم الأفضل يجعل وقت انتهاء كل مخرج متساوياً. وتلتقط النماذج ذلك بقواعد مختلفة. أبسطها أقصر طريق: امشِ أقل عدد من الأمتار. والقاعدة الأفضل أسرع طريق: اختر الطريق ذا الوقت المتوقع الأقل، أي المشي مع الانتظار. وإذا اختار كل شخص بأنانية على هذا النحو، يصل الحشد إلى توازن المستخدم، حيث لا يستطيع أحد أن يحسّن وضعه بالتبديل. أما الأمثل للنظام، أي الأفضل للجميع معاً، فقد يكون مختلفاً، وقد يحتاج إلى توجيه للوصول إليه. وفي الواقع يتبع الناس أيضاً العادة واللافتات والآخرين، كما رأينا في المرحلة الأولى. وتحسب المحاكيات اختيار الطريق بحقول المسافة، كطريقة التقدم السريع، وتحدّثها كلما ازداد الازدحام. ستجد في هذه الوحدة أفضل تقسيم بين مخرجين، وترى كيف تستطيع قاعدة بسيطة للوقت المتوقع أن تجده من تلقاء نفسها.",
+ "diagram": {
+  "title": "From geometry to choices",
+  "caption": "Distance fields give the shortest path; adding expected waiting gives the quickest path; guidance nudges the crowd towards the best split.",
+  "nodes": [
+   {
+    "id": "geo",
+    "label": "Geometry",
+    "sub": "walls, exits, routes",
+    "x": 120,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "space",
+    "detail": "The layout and the possible routes."
+   },
+   {
+    "id": "dist",
+    "label": "Distance field",
+    "sub": "shortest path",
+    "x": 120,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "model",
+    "detail": "Distance to each exit, computed with the fast marching method or a graph. Leads everyone to the nearest exit."
+   },
+   {
+    "id": "time",
+    "label": "Expected time",
+    "sub": "walk + wait",
+    "x": 440,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "flow",
+    "detail": "Walking time plus expected queuing time, updated as queues grow (quickest path)."
+   },
+   {
+    "id": "ue",
+    "label": "User equilibrium",
+    "sub": "nobody gains by switching",
+    "x": 440,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Each person picks their quickest route; at equilibrium all used routes take equal time."
+   },
+   {
+    "id": "so",
+    "label": "System optimum",
+    "sub": "best for all",
+    "x": 760,
+    "y": 300,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "The split that minimises total evacuation time or total delay; may differ from the user equilibrium."
+   },
+   {
+    "id": "info",
+    "label": "Guidance",
+    "sub": "signs, stewards, apps",
+    "x": 760,
+    "y": 110,
+    "w": 170,
+    "h": 64,
+    "sys": "manage",
+    "detail": "Dynamic signs, stewards and apps can push choices towards the system optimum."
+   },
+   {
+    "id": "hab",
+    "label": "Habit and herding",
+    "sub": "real behaviour",
+    "x": 440,
+    "y": 460,
+    "w": 170,
+    "h": 64,
+    "sys": "people",
+    "detail": "Familiarity, following others and group decisions bias real choices (module 1.6)."
+   }
+  ],
+  "edges": [
+   {
+    "from": "geo",
+    "to": "dist",
+    "label": ""
+   },
+   {
+    "from": "dist",
+    "to": "time",
+    "label": "+ queues"
+   },
+   {
+    "from": "time",
+    "to": "ue",
+    "label": "selfish"
+   },
+   {
+    "from": "ue",
+    "to": "so",
+    "label": "gap?"
+   },
+   {
+    "from": "info",
+    "to": "so",
+    "label": "nudges",
+    "sys": "manage"
+   },
+   {
+    "from": "hab",
+    "to": "ue",
+    "label": "biases"
+   }
+  ],
+  "tour": [
+   {
+    "focus": [
+     "geo",
+     "dist"
+    ],
+    "text": "Start from the layout: a distance field gives each person their shortest path.",
+    "edges": [
+     [
+      "geo",
+      "dist"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "time"
+    ],
+    "text": "Add expected waiting time and you get the quickest path.",
+    "edges": [
+     [
+      "dist",
+      "time"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "ue"
+    ],
+    "text": "If everyone chooses their own quickest path, the crowd reaches a user equilibrium.",
+    "edges": [
+     [
+      "time",
+      "ue"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "so"
+    ],
+    "text": "The best split for everyone, the system optimum, can be different.",
+    "edges": [
+     [
+      "ue",
+      "so"
+     ]
+    ]
+   },
+   {
+    "focus": [
+     "info",
+     "hab"
+    ],
+    "text": "Guidance nudges people towards it; habit and herding pull the other way.",
+    "edges": [
+     [
+      "info",
+      "so"
+     ],
+     [
+      "hab",
+      "ue"
+     ]
+    ]
+   }
+  ]
+ },
+ "sections": [
+  {
+   "heading": "Shortest path and distance fields",
+   "html": "<p>The simplest rule: everyone takes the shortest path. In simulators this is a <b>distance field</b>, the distance from every point to the exit, computed for example with the fast marching method, which handles obstacles. People walk down its gradient. With several exits, each person heads for the nearest, which can overload one exit badly.</p>"
+  },
+  {
+   "heading": "Quickest path and the best split",
+   "html": "<p>Add waiting. A person's expected time to exit k is walking time plus the queue ahead divided by capacity:</p><div class=\"eq\">t<sub>k</sub> = d<sub>k</sub> ÷ v + Q<sub>k</sub> ÷ c<sub>k</sub></div><p>Example: 2,000 people, exit A at 30 m, exit B at 90 m, each passing 4 per s, speed 1.2 m/s. All to A: about 8.8 minutes. Best split: about 45% to B, everyone out in about 5.0 minutes. A simple rule where each person picks the exit with the smaller expected time finds the same split.</p>"
+  },
+  {
+   "heading": "User equilibrium and system optimum",
+   "html": "<p>When everyone minimises their own time, the crowd reaches a <b>user equilibrium</b>: all used routes take the same time and no one gains by switching. The <b>system optimum</b> minimises a total, such as the time until the last person leaves or the sum of everyone's delay. In networks the two can differ (as in Braess's paradox, where adding a route can make everyone slower). Guidance aims to close the gap.</p>"
+  },
+  {
+   "heading": "Guidance in practice",
+   "html": "<p>Real people do not compute expected times. They follow habit, signs, stewards and each other. Guidance that works is <b>early</b>, <b>visible</b> and <b>trusted</b>: dynamic signs showing open exits, stewards redirecting at decision points, and apps or announcements with clear instructions. At mass gatherings, routes are often <b>assigned</b> rather than chosen, by schedule and zone (module 3.3).</p>"
+  }
+ ],
+ "callouts": [
+  {
+   "after": 1,
+   "kind": "try",
+   "title": "Explore it",
+   "html": "<p>In the explorer, find the share that minimises the time. Is it where both exits finish at the same moment?</p>"
+  },
+  {
+   "after": 2,
+   "kind": "research",
+   "title": "Research angle",
+   "html": "<p>How far real crowds are from the system optimum, and how much guidance can close the gap, is an active research question.</p>"
+  }
+ ],
+ "explorer": {
+  "widget": "routechoice",
+  "intro": "2,000 people, two exits. Choose how many go to the far exit.",
+  "predict": "Will the best split send more or fewer than half to the far exit?"
+ },
+ "code": [
+  {
+   "title": "Best split and a quickest-path rule",
+   "lang": "python",
+   "file": "labs/go2/m26_route.py",
+   "runnable": true,
+   "explain": "Finds the best split by trying all shares, then lets each person choose the exit with the smaller expected time.",
+   "expected": "all to the nearest exit: 8.8 min\nbest split: 45% to the far exit, everyone out after 5.0 min\npeople choosing by expected time: 45% to the far exit -> 5.0 min"
+  }
+ ],
+ "takeaways": [
+  "Shortest-path choice can overload the nearest exit.",
+  "Quickest-path choice adds expected waiting: t = d/v + Q/c.",
+  "User equilibrium (selfish) and system optimum (best for all) can differ.",
+  "Guidance must be early, visible and trusted; mass gatherings often assign routes."
+ ],
+ "quiz": [
+  {
+   "q": "In the example, sending about 45% to the far exit…",
+   "options": [
+    "Makes everyone slower",
+    "Cuts the time from about 8.8 to 5.0 minutes",
+    "Has no effect",
+    "Doubles the queue"
+   ],
+   "answer": 1,
+   "explain": "Walking further saves waiting."
+  },
+  {
+   "q": "At a user equilibrium…",
+   "options": [
+    "Everyone uses the shortest path",
+    "No one can reduce their own time by switching",
+    "Total time is always minimal",
+    "Nobody moves"
+   ],
+   "answer": 1,
+   "explain": "Used routes take equal time."
+  },
+  {
+   "q": "A distance field gives…",
+   "options": [
+    "The quickest path",
+    "The shortest path",
+    "The density",
+    "The fundamental diagram"
+   ],
+   "answer": 1,
+   "explain": "Distance only, no waiting."
+  },
+  {
+   "q": "Braess's paradox shows that…",
+   "options": [
+    "Adding a route can make everyone slower",
+    "More exits always help",
+    "Signs never work",
+    "Distance does not matter"
+   ],
+   "answer": 0,
+   "explain": "Selfish choices on a new link can raise everyone's time."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Distance field",
+   "def": "The distance from every point to a target, used to steer simulated people."
+  },
+  {
+   "term": "Fast marching method",
+   "def": "An algorithm to compute distance (or travel-time) fields around obstacles."
+  },
+  {
+   "term": "Quickest path",
+   "def": "The route with the least expected travel time including waiting."
+  },
+  {
+   "term": "User equilibrium",
+   "def": "A state where no one can reduce their own travel time by changing route."
+  },
+  {
+   "term": "System optimum",
+   "def": "The routing that minimises a total measure for everyone."
+  }
+ ],
+ "resources": [
+  {
+   "title": "Hughes (2002): continuum crowd flow with fastest routes",
+   "url": "https://doi.org/10.1016/S0191-2615(01)00015-7",
+   "why": "Route choice inside a macroscopic model."
+  },
+  {
+   "title": "Haghani and Sarvi (2018): Crowd behaviour and motion, empirical methods",
+   "url": "https://doi.org/10.1016/j.trb.2017.06.017",
+   "why": "Review of experiments including exit choice."
+  },
+  {
+   "title": "Vadere: route choice and floor fields",
+   "url": "https://www.vadere.org/",
+   "why": "Open simulator with distance fields and dynamic routing."
+  }
+ ]
+}
